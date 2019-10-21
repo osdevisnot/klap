@@ -1,0 +1,11 @@
+{
+  "name": "klap",
+  "version": "0.0.0",
+  "repository": "https://github.com/osdevisnot/klap.git",
+  "license": "MIT",
+  "author": "osdevisnot <osdevisnot@gmail.com>",
+  "main": "src/index.js",
+  "bin": {
+    "klap": "src/index.js"
+  }
+}
