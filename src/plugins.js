@@ -16,7 +16,7 @@ export const plugins = async (command, pkg) => {
     nodeGlobals(),
     nodeResolve({ mainFields: ['module', 'main'], extensions }),
     commonjs(),
-    babel({ extensions, presets, plugins }),
+    babel({ babelrc: false, extensions, presets, plugins }),
     replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
     command === 'start' && serve({ contentBase: ['dist', 'public'], historyApiFallback: true, port: 1234 }),
     command === 'start' && livereload('dist'),

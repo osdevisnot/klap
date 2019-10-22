@@ -17,7 +17,7 @@ const createConfig = async (command, pkg) => {
       main && { file: main, format: 'cjs' },
       module && { file: module, format: 'es' },
       browser && { file: browser, format: 'umd', name: cleanName(pkg.name) },
-    ];
+    ].filter(Boolean);
   }
 
   inputOptions = { ...inputOptions, plugins: await plugins(command, pkg) };

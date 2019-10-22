@@ -4,7 +4,6 @@ zero config, zero dependency bundler for tiny javascript packages
 
 [![Build Status](https://travis-ci.org/osdevisnot/klap.svg?branch=master)](https://travis-ci.org/osdevisnot/klap)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 ## Features
 
@@ -45,6 +44,11 @@ klap init
 - `pkg.main`, `pkg.module` and `pkg.browser` determines compilation targets
 
 - `pkg.example` detemines the source file for `start` command
+
+If you need granular control on `klap` output. You can configure `klap` using these properties in your `package.json`
+
+- `klap.pragma` determines `pragma` for `jsx` and `tsx` compilation
+- `klap.pragmaFrag` determines a `pragma` for `jsx` and `tsx` fragments
 
 ## License
 
