@@ -24,6 +24,7 @@
     "@zeit/ncc": "^0.20.5",
     "babel-plugin-macros": "^2.6.1",
     "deepmerge": "^4.2.0",
+    "gzip-size": "^5.1.1",
     "mkdirp": "^0.5.1",
     "rollup": "^1.25.1",
     "rollup-plugin-babel": "^4.3.3",

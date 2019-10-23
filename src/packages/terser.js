@@ -1,6 +1,6 @@
-const { codeFrameColumns } = require('@babel/code-frame');
-const { createFilter } = require('rollup-pluginutils');
-const { minify } = require('terser');
+import { minify } from 'terser';
+import { createFilter } from 'rollup-pluginutils';
+import { codeFrameColumns } from '@babel/code-frame';
 
 const transform = code => {
   const result = minify(code);
@@ -11,7 +11,7 @@ const transform = code => {
   }
 };
 
-function terser(userOptions = {}) {
+export const terser = (userOptions = {}) => {
   const filter = createFilter(userOptions.include, userOptions.exclude, { resolve: false });
 
   return {
@@ -32,6 +32,4 @@ function terser(userOptions = {}) {
       return result;
     },
   };
-}
-
-exports.terser = terser;
+};

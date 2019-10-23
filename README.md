@@ -11,7 +11,7 @@ zero config, zero dependency bundler for tiny javascript packages
 - **zero config** typescript support: just rename `.js` file to `.ts`
 - **tiny bundles**: produces tiny, optimized code for all inputs
 - creates multiple output formats `cjs`, `umd` and `esm`
-- **zero dependency**: uses bundled deps.
+- **zero dependency**: bundled deps powered by [@zeit/ncc](https://www.npmjs.com/package/@zeit/ncc)
 
 ## Usage
 
@@ -45,7 +45,9 @@ klap init
 
 - `pkg.example` detemines the source file for `start` command
 
-If you need granular control on `klap` output. You can configure `klap` using these properties in your `package.json`
+### Granular Control
+
+For more granular control, configure `klap` using these properties in your `package.json`
 
 - `klap.pragma` determines `pragma` for `jsx` and `tsx` compilation
 - `klap.pragmaFrag` determines a `pragma` for `jsx` and `tsx` fragments
@@ -56,4 +58,4 @@ If you need granular control on `klap` output. You can configure `klap` using th
 
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).
 
-Created with ♥ by [@osdevisnot](https://github.com/osdevisnot) and [all contributors](https://github.com/osdevisnot/klick/graphs/contributors).
+Created with ♥ by [@osdevisnot](https://github.com/osdevisnot) and [all contributors](https://github.com/osdevisnot/klap/graphs/contributors).
