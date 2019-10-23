@@ -6,6 +6,7 @@ import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
+import { terser } from './terser';
 
 import { babelConfig } from './babel';
 
@@ -18,6 +19,7 @@ export const plugins = async (command, pkg) => {
     commonjs(),
     babel({ babelrc: false, extensions, presets, plugins }),
     replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
+    command !== 'start' && terser(),
     command === 'start' && serve({ contentBase: ['dist', 'public'], historyApiFallback: true, port: 1234 }),
     command === 'start' && livereload('dist'),
   ].filter(Boolean);
