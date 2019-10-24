@@ -41,12 +41,17 @@ export const klap = async (command, pkg) => {
     case 'start':
       const watchOptions = {
         ...inputOptions,
-        output: [outputOptions],
+        output: outputOptions,
       };
       const watcher = watch(watchOptions);
       watcher.on('event', event => {
-        if (event.code === 'END') {
-          console.log('Waiting for Changes...');
+        switch (event.code) {
+          case 'ERROR':
+            console.error(event.error);
+            break;
+          case 'END':
+            console.log('Waiting for Changes...');
+            break;
         }
       });
       break;
