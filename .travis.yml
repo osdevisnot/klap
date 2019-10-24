@@ -6,4 +6,6 @@ node_js:
   - '12'
   - '13'
 script:
-  - npm run build
+  - npm run build && npm link
+  - cd $TRAVIS_BUILD_DIR/examples/simple && klap build
+  - cd $TRAVIS_BUILD_DIR/examples/simple-ts && klap build
