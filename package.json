@@ -1,6 +1,7 @@
 {
   "name": "klap",
   "version": "0.1.0",
+  "description": "zero config, zero dependency bundler for tiny javascript packages.",
   "repository": "osdevisnot/klap",
   "license": "MIT",
   "author": "osdevisnot <osdevisnot@gmail.com>",
@@ -32,13 +33,11 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-livereload": "^1.0.4",
     "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-serve": "^1.0.1",
     "rollup-pluginutils": "^2.8.2",
     "sort-package-json": "^1.22.1",
     "terser": "^4.3.9"
-  },
-  "dependencies": {
-    "rollup-plugin-node-resolve": "^5.2.0"
   }
 }
