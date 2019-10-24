@@ -1,4 +1,5 @@
-import { exists, write } from './utils';
+import { basename } from 'path';
+import { exists, write, read } from './utils';
 import merge from 'deepmerge';
 import sort from 'sort-package-json';
 import cli from '../package.json';
@@ -40,7 +41,7 @@ const writePackage = async () => {
 const writeFiles = async pkg => {
   const files = {
     'src/index.js': `export const sum = (a, b) => a + b;`,
-    'public/index.js': `import { sum } from '../src';\n\nconsole.log('this works => ', sum);`,
+    'public/index.js': `import { sum } from '../src';\n\nconsole.log('this works => ', sum(2, 3));`,
     'public/index.html': `<!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -51,7 +52,7 @@ const writeFiles = async pkg => {
 	</head>
 	<body>
 		<div id="root"></div>
-		<script src="${pkg.browser}" type="module"></script>
+		<script src="${basename(pkg.browser)}" type="module"></script>
 	</body>
 </html>`,
   };
