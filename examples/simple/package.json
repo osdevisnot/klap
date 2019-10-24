@@ -1,0 +1,18 @@
+{
+  "name": "simple",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "source": "src/index.js",
+  "browser": "dist/index.js",
+  "example": "public/index.js",
+  "scripts": {
+    "build": "klap build",
+    "start": "klap start",
+    "watch": "klap watch"
+  },
+  "devDependencies": {
+    "klap": "0.2.0"
+  }
+}
