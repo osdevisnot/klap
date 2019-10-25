@@ -1,8 +1,8 @@
-import { exists, write, read } from './utils'
 import merge from 'deepmerge'
 import sort from 'sort-package-json'
 import cli from '../package.json'
-import { log } from './logger'
+import { info } from './logger'
+import { exists, read, write } from './utils'
 
 const writePackage = async () => {
 	let pkg = {}
@@ -35,7 +35,7 @@ const writePackage = async () => {
 		},
 	})
 	await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
-	log.info('- wrote ./package.json')
+	info('- wrote ./package.json')
 	return pkg
 }
 
@@ -53,13 +53,13 @@ const writeFiles = async pkg => {
 	</head>
 	<body>
 		<div id="root"></div>
-		<script src="${pkg.browser}" type="module"></script>
+		<script src="${pkg.browser}"></script>
 	</body>
 </html>`,
 	}
 	for (let [file, content] of Object.entries(files)) {
 		await write(file, content)
-		log.info(`- wrote ./${file}`)
+		info(`- wrote ./${file}`)
 	}
 }
 

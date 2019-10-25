@@ -16,6 +16,7 @@
 		"build": "ncc build src/cli.js -o dist",
 		"pub": "git clean -fdX && npm install && npm run build && npm link && npm version",
 		"postpub": "npm publish",
+		"setup": "git clean -fdX && npm install && npm run watch",
 		"watch": "ncc build src/cli.js -wo dist"
 	},
 	"devDependencies": {
@@ -29,6 +30,7 @@
 		"@types/node": "12.11.7",
 		"@zeit/ncc": "0.20.5",
 		"babel-plugin-macros": "2.6.1",
+		"babel-plugin-transform-async-to-promises": "^0.8.14",
 		"deepmerge": "4.2.1",
 		"gzip-size": "5.1.1",
 		"kleur": "3.0.3",
@@ -41,8 +43,9 @@
 		"rollup-plugin-node-globals": "1.4.0",
 		"rollup-plugin-node-resolve": "5.2.0",
 		"rollup-plugin-replace": "2.2.0",
+		"rollup-plugin-sourcemaps": "^0.4.2",
 		"rollup-pluginutils": "2.8.2",
-		"servor": "github:lukejacksonn/servor#v2",
+		"servor": "3.0.5",
 		"sort-package-json": "1.22.1",
 		"terser": "4.3.9"
 	}

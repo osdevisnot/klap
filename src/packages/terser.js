@@ -1,13 +1,13 @@
 /**
- * TODO: Extract into rollup-plugin-terser-simple
- * This plugin was created because https://www.npmjs.com/package/rollup-plugin-terser
- * relies on https://www.npmjs.com/package/jest-worker. The jest-worker package had issues
- * with bundling approach we want to follow for `klap`.
+ * A rollup plugin to run generated code through `terser`
+ * [rollup-plugin-terser](https://www.npmjs.com/package/rollup-plugin-terser)
+ * relies on [jest-worker](https://www.npmjs.com/package/jest-worker).
+ * jest-worker package had issues with bundling approach we want to follow for `klap`.
  */
 
-import { minify } from 'terser'
-import { createFilter } from 'rollup-pluginutils'
 import { codeFrameColumns } from '@babel/code-frame'
+import { createFilter } from 'rollup-pluginutils'
+import { minify } from 'terser'
 
 const transform = code => {
 	const result = minify(code)
@@ -18,16 +18,15 @@ const transform = code => {
 	}
 }
 
-export const terser = (userOptions = {}) => {
-	const filter = createFilter(userOptions.include, userOptions.exclude, { resolve: false })
+export const terser = (options = {}) => {
+	const filter = createFilter(options.include, options.exclude, { resolve: false })
 
 	return {
 		name: 'terser',
 
-		renderChunk(code, chunk, outputOptions) {
-			if (!filter(chunk.fileName)) {
-				return null
-			}
+		renderChunk(code, chunk) {
+			if (!filter(chunk.fileName)) return null
+
 			let result
 			try {
 				result = transform(code)

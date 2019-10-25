@@ -69,6 +69,7 @@ For more granular control, configure `klap` using these properties in your `pack
 
 - `klap.name` determines package name for `umd` bundles.
 - `klap.port` determines the PORT to run development server.
+- `klap.index` determines the location of `index.html` to use for `start` command.
 - `klap.pragma` determines `pragma` for `jsx` and `tsx` compilation. Useful for react like libraries such as `preact`, `hyperapp`, `superfine` or `klick`.
 - `klap.pragmaFrag` determines a `pragma` for `jsx` and `tsx` fragments.
 

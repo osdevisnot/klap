@@ -1,20 +1,19 @@
 /**
- * `servor` as rollup plugin.
- * TODO: extract into its own package once servor v2 is released
+ * A rollup plugin to start `servor` as build step
  */
 import _servor from 'servor'
-import { log } from '../logger'
+import { warn } from '../logger'
 
-let _instance = false
+let singleton = false
 
 export const servor = options => {
 	return {
 		name: 'servor',
 		generateBundle() {
-			if (!_instance) {
+			if (!singleton) {
 				_servor({ silent: true, browse: false, ...options })
-				log.warn(`Servor Listening on http://localhost:${options.port || 8080}`)
-				_instance = true
+				warn(`Servor Listening on http://localhost:${options.port || 8080}`)
+				singleton = true
 			}
 		},
 	}

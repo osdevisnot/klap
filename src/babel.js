@@ -1,13 +1,13 @@
 import { DEFAULT_EXTENSIONS } from '@babel/core'
-
 // babel presets
 import presetEnv from '@babel/preset-env'
 import presetTs from '@babel/preset-typescript'
 import presetReact from '@babel/preset-react'
 
 // babel plugins
-import pluginClassProperties from '@babel/plugin-proposal-class-properties'
 import pluginObjectRestSpread from '@babel/plugin-proposal-object-rest-spread'
+import pluginAsyncToPromise from 'babel-plugin-transform-async-to-promises'
+import pluginClassProperties from '@babel/plugin-proposal-class-properties'
 import pluginTransformRegen from '@babel/plugin-transform-regenerator'
 import pluginMacros from 'babel-plugin-macros'
 
@@ -33,6 +33,7 @@ export const babelConfig = async (command, pkg) => {
 
 	let plugins = [
 		pluginObjectRestSpread,
+		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginClassProperties, { loose: true }],
 		[pluginTransformRegen, { async: false }],
 		pluginMacros,
