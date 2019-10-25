@@ -67,11 +67,16 @@ klap init
 
 For more granular control, configure `klap` using these properties in your `package.json`
 
-- `klap.name` determines package name for `umd` bundles.
-- `klap.port` determines the PORT to run development server.
-- `klap.index` determines the location of `index.html` to use for `start` command.
-- `klap.pragma` determines `pragma` for `jsx` and `tsx` compilation. Useful for react like libraries such as `preact`, `hyperapp`, `superfine` or `klick`.
-- `klap.pragmaFrag` determines a `pragma` for `jsx` and `tsx` fragments.
+| option            | description                            | default               |
+| ----------------- | -------------------------------------- | --------------------- |
+| `klap.name`       | package name for `umd` bundles         | `pkg.name`            |
+| `klap.port`       | port for development server            | `1234`                |
+| `klap.index`      | location of index file                 | `public/index.html`   |
+| `klap.sourcemap`  | sourcemaps for builds                  | `true`                |
+| `klap.minify`     | minification for builds                | `true`                |
+| `klap.pragma`     | pragma for `jsx` and `tsx` compilation | `React.createElement` |
+| `klap.pragmaFrag` | pragma for `jsx` and `tsx` fragments   | `React.Fragment`      |
+|                   |                                        |                       |
 
 ## :clinking_glasses: License
 
