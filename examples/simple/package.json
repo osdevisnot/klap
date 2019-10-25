@@ -13,6 +13,6 @@
     "watch": "klap watch"
   },
   "devDependencies": {
-    "klap": "0.2.0"
+    "klap": "0.2.1"
   }
 }

@@ -1,4 +1,3 @@
-import { basename } from 'path';
 import { exists, write, read } from './utils';
 import merge from 'deepmerge';
 import sort from 'sort-package-json';
@@ -52,7 +51,7 @@ const writeFiles = async pkg => {
 	</head>
 	<body>
 		<div id="root"></div>
-		<script src="${basename(pkg.browser)}" type="module"></script>
+		<script src="${pkg.browser}" type="module"></script>
 	</body>
 </html>`,
   };
