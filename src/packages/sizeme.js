@@ -5,23 +5,25 @@
  * to generate final output anyway.
  */
 import gzip from 'gzip-size';
+import prettyBytes from 'pretty-bytes';
+import { log } from '../logger';
 
 export const sizeme = options => {
   const showSize = (options, bundle) => {
     const { code, fileName } = bundle;
-    const info = {};
-    info.fileName = fileName;
-    info.size = gzip.sync(code);
-    console.log(info);
+    const size = prettyBytes(gzip.sync(code));
+    log.log(`\t${size}\t${fileName}`);
   };
 
   return {
     name: 'sizeme',
-    generateBundle(options, bundle) {
-      Object.keys(bundle)
-        .map(file => bundle[file])
-        .filter(bundle => !bundle.isAsset)
-        .forEach(bundle => showSize(options, bundle));
+    generateBundle(options, bundle, isWrite) {
+      if (isWrite) {
+        Object.keys(bundle)
+          .map(file => bundle[file])
+          .filter(bundle => !bundle.isAsset)
+          .forEach(bundle => showSize(options, bundle));
+      }
     },
   };
 };

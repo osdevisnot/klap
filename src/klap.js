@@ -1,6 +1,7 @@
 import { rollup, watch } from 'rollup';
 import { cleanName } from './utils';
 import { plugins } from './plugins';
+import { log } from './logger';
 
 const createConfig = async (command, pkg) => {
   const { dependencies = {}, peerDependencies = {}, example, browser, source, main, module } = pkg;
@@ -47,10 +48,10 @@ export const klap = async (command, pkg) => {
       watcher.on('event', event => {
         switch (event.code) {
           case 'ERROR':
-            console.error(event.error);
+            log.error(event.error);
             break;
           case 'END':
-            console.log('Waiting for Changes...');
+            log.info(`${new Date().toLocaleTimeString('en-GB')} - Waiting for Changes...`);
             break;
         }
       });

@@ -2,6 +2,7 @@ import { exists, write, read } from './utils';
 import merge from 'deepmerge';
 import sort from 'sort-package-json';
 import cli from '../package.json';
+import { log } from './logger';
 
 const writePackage = async () => {
   let pkg = {};
@@ -34,6 +35,7 @@ const writePackage = async () => {
     },
   });
   await write('./package.json', JSON.stringify(sort(pkg), null, '  '));
+  log.info('- wrote ./package.json');
   return pkg;
 };
 
@@ -57,6 +59,7 @@ const writeFiles = async pkg => {
   };
   for (let [file, content] of Object.entries(files)) {
     await write(file, content);
+    log.info(`- wrote ./${file}`);
   }
 };
 
