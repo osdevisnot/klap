@@ -9,6 +9,7 @@ import pluginObjectRestSpread from '@babel/plugin-proposal-object-rest-spread'
 import pluginAsyncToPromise from 'babel-plugin-transform-async-to-promises'
 import pluginClassProperties from '@babel/plugin-proposal-class-properties'
 import pluginTransformRegen from '@babel/plugin-transform-regenerator'
+import pluginStyledComponents from 'babel-plugin-styled-components'
 import pluginMacros from 'babel-plugin-macros'
 
 export const babelConfig = async (command, pkg) => {
@@ -36,6 +37,7 @@ export const babelConfig = async (command, pkg) => {
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginClassProperties, { loose: true }],
 		[pluginTransformRegen, { async: false }],
+		[pluginStyledComponents, { displayName: true }],
 		pluginMacros,
 	]
 

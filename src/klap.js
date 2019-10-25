@@ -20,18 +20,21 @@ const createConfig = async (command, pkg) => {
 	let outputOptions,
 		inputOptions = { external }
 
+	const sourcemap = klap.sourcemap !== false
+
 	if (command === 'start') {
 		inputOptions = { ...inputOptions, input: example }
-		outputOptions = [{ file: browser, format: 'umd' }]
+		outputOptions = [{ file: browser, format: 'umd', sourcemap }]
 	} else {
 		inputOptions = { ...inputOptions, input: source }
 		outputOptions = [
-			main && { file: main, format: 'cjs' },
-			module && { file: module, format: 'es' },
+			main && { file: main, format: 'cjs', sourcemap },
+			module && { file: module, format: 'es', sourcemap },
 			browser && {
 				file: browser,
 				format: 'umd',
 				name: safePackageName(klap.name || pkg.name),
+				sourcemap,
 			},
 		].filter(Boolean)
 	}

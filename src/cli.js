@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
 /**
- * TODO: Proper sourcemap support including terser plugin
- * TODO: add option to control sourcemap generation
- * TODO: add options to control minified output ??
  * TODO: add react example
  * TODO: add react-tx example
  */

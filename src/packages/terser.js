@@ -8,14 +8,17 @@
 import { codeFrameColumns } from '@babel/code-frame'
 import { createFilter } from 'rollup-pluginutils'
 import { minify } from 'terser'
+import { warn, error } from '../logger'
 
-const transform = code => {
-	const result = minify(code)
+const transform = (code, options) => {
+	const result = minify(code, options)
 	if (result.error) {
 		throw result.error
-	} else {
-		return result
 	}
+	if (result.warnings) {
+		result.warnings.forEach(warning => warn(warning))
+	}
+	return result
 }
 
 export const terser = (options = {}) => {
@@ -29,13 +32,16 @@ export const terser = (options = {}) => {
 
 			let result
 			try {
-				result = transform(code)
-			} catch (e) {
-				const { message, line, col: column } = error
-				console.error(codeFrameColumns(code, { start: { line, column } }, { message }))
-				throw error
+				result = transform(code, { sourceMap: options.sourcemap, warnings: options.warnings })
+			} catch (err) {
+				const { message, line, col: column } = err
+				error(codeFrameColumns(code, { start: { line, column } }, { message }))
+				throw err
 			}
-			return result
+			return {
+				code: result.code,
+				map: result.map,
+			}
 		},
 	}
 }
