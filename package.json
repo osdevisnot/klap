@@ -14,6 +14,8 @@
 	},
 	"scripts": {
 		"build": "ncc build src/cli.js -o dist",
+		"pub": "git clean -fdX && npm install && npm run build && npm link && npm version",
+		"postpub": "npm publish",
 		"watch": "ncc build src/cli.js -wo dist"
 	},
 	"devDependencies": {
