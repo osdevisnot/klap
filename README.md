@@ -1,6 +1,12 @@
-<h1 align="center">klap&nbsp;&nbsp;<a href="https://travis-ci.org/osdevisnot/klap"><img src="https://travis-ci.org/osdevisnot/klap.svg?branch=master"></a>&nbsp;<a href="https://www.npmjs.com/package/klap"><img alt="NPM" src="https://img.shields.io/npm/l/klap"></a></h1><p align="center"><strong>zero config, zero dependency</strong> bundler for tiny javascript packages.</p>
+# klap :clap:
 
----
+> zero config, zero dependency bundler for tiny javascript packages.
+
+[![Build Status](https://travis-ci.org/osdevisnot/klap.svg?branch=master)](https://travis-ci.org/osdevisnot/klap)
+![David](https://img.shields.io/david/osdevisnot/klap)
+![David](https://img.shields.io/david/dev/osdevisnot/klap)
+![npm](https://img.shields.io/npm/v/klap)
+![NPM](https://img.shields.io/npm/l/klap)
 
 > ### 🛠 Status: In Development
 >
@@ -53,15 +59,17 @@ klap init
 
 - `pkg.source` determines source file to compile and bundle
 
-- `pkg.main`, `pkg.module` and `pkg.browser` determines compilation targets for `cjs`, `esm` and `umd` targets respectively.
+- `pkg.main`, `pkg.module` and `pkg.browser` determines compilation targets for `cjs`, `esm` and `umd` respectively.
 
-- `pkg.example` detemines the source file for `start` command
+- `pkg.example` determines the source file for `start` command
 
 ### :trident: Granular Control
 
 For more granular control, configure `klap` using these properties in your `package.json`
 
-- `klap.pragma` determines `pragma` for `jsx` and `tsx` compilation. Useful for react like libraries such as `preact`, `hyperapp`, `superfine` or `klick`
+- `klap.name` determines package name for `umd` bundles.
+- `klap.port` determines the PORT to run development server.
+- `klap.pragma` determines `pragma` for `jsx` and `tsx` compilation. Useful for react like libraries such as `preact`, `hyperapp`, `superfine` or `klick`.
 - `klap.pragmaFrag` determines a `pragma` for `jsx` and `tsx` fragments.
 
 ## :clinking_glasses: License

@@ -4,8 +4,19 @@ import { plugins } from './plugins'
 import { log } from './logger'
 
 const createConfig = async (command, pkg) => {
-	const { dependencies = {}, peerDependencies = {}, example, browser, source, main, module } = pkg
+	const {
+		dependencies = {},
+		peerDependencies = {},
+		example = 'public/index.js',
+		browser,
+		source = 'src/index.js',
+		main,
+		module,
+		klap = {},
+	} = pkg
+
 	const external = Object.keys({ ...dependencies, ...peerDependencies })
+
 	let outputOptions,
 		inputOptions = { external }
 
@@ -17,7 +28,7 @@ const createConfig = async (command, pkg) => {
 		outputOptions = [
 			main && { file: main, format: 'cjs' },
 			module && { file: module, format: 'es' },
-			browser && { file: browser, format: 'umd', name: cleanName(pkg.name) },
+			browser && { file: browser, format: 'umd', name: klap.name || cleanName(pkg.name) },
 		].filter(Boolean)
 	}
 

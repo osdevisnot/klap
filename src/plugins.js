@@ -12,6 +12,7 @@ import { babelConfig } from './babel'
 
 export const plugins = async (command, pkg) => {
 	const { extensions, presets, plugins } = await babelConfig(command, pkg)
+	const { klap = {} } = pkg
 	return [
 		json(),
 		nodeGlobals(),
@@ -21,6 +22,6 @@ export const plugins = async (command, pkg) => {
 		replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
 		command !== 'start' && terser(),
 		command !== 'start' && sizeme(),
-		command === 'start' && servor({ fallback: 'public/index.html', port: 1234 }),
+		command === 'start' && servor({ fallback: 'public/index.html', port: pkg.port || 1234 }),
 	].filter(Boolean)
 }
