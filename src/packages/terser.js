@@ -1,3 +1,10 @@
+/**
+ * TODO: Extract into rollup-plugin-terser-simple
+ * This plugin was created because https://www.npmjs.com/package/rollup-plugin-terser
+ * relies on https://www.npmjs.com/package/jest-worker. The jest-worker package had issues
+ * with bundling approach we want to follow for `klap`.
+ */
+
 import { minify } from 'terser';
 import { createFilter } from 'rollup-pluginutils';
 import { codeFrameColumns } from '@babel/code-frame';

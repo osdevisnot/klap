@@ -6,8 +6,9 @@ import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import { terser } from './packages/terser';
 import { sizeme } from './packages/sizeme';
-import { babelConfig } from './babel';
 import { servor } from './packages/servor';
+
+import { babelConfig } from './babel';
 
 export const plugins = async (command, pkg) => {
   const { extensions, presets, plugins } = await babelConfig(command, pkg);
