@@ -13,10 +13,13 @@
 		"klap": "dist/index.js"
 	},
 	"scripts": {
-		"build": "ncc build src/cli.js -o dist",
-		"pub": "git clean -fdX && npm install && npm run build && npm link && npm version",
+		"build": "ncc build src/cli.js -mo dist",
+		"prepare": "npm run build",
+		"prepub": "npm run setup",
+		"pub": "npm run build && npm version",
 		"postpub": "npm publish",
-		"setup": "git clean -fdX && npm install && npm run watch",
+		"presetup": "git clean -fdX",
+		"setup": "npm install",
 		"watch": "ncc build src/cli.js -wo dist"
 	},
 	"devDependencies": {
