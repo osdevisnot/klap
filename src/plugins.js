@@ -18,12 +18,12 @@ export const plugins = async (command, pkg) => {
 	const sourcemap = klap.sourcemap !== false
 	const minify = klap.minify !== false
 	return [
+		sourcemaps && sourcemaps(),
 		json(),
 		nodeGlobals(),
-		nodeResolve({ mainFields: ['module', 'main', 'browser'], extensions }),
-		commonjs(),
-		sourcemaps && sourcemaps(),
 		babel({ babelrc: false, extensions, presets, plugins }),
+		nodeResolve({ mainFields: ['module', 'main', 'browser'], extensions }),
+		commonjs({ extensions }),
 		replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
 		command !== 'start' && minify && terser({ sourcemap, warnings: true }),
 		command !== 'start' && sizeme(),

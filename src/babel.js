@@ -13,12 +13,12 @@ import pluginStyledComponents from 'babel-plugin-styled-components'
 import pluginMacros from 'babel-plugin-macros'
 
 export const babelConfig = async (command, pkg) => {
-	let extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx']
+	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx']
 
 	const { klap = {} } = pkg
 	const { pragma = 'React.createElement', pragmaFrag = 'React.Fragment' } = klap
 
-	let presets = [
+	const presets = [
 		[
 			presetEnv,
 			{
@@ -28,11 +28,11 @@ export const babelConfig = async (command, pkg) => {
 				exclude: ['transform-async-to-generator', 'transform-regenerator'],
 			},
 		],
+		[presetTs, { jsxPragma: pragma, isTSX: true, allExtensions: true }],
 		[presetReact, { pragma, pragmaFrag }],
-		[presetTs, { jsxPragma: pragma }],
 	]
 
-	let plugins = [
+	const plugins = [
 		pluginObjectRestSpread,
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginClassProperties, { loose: true }],
