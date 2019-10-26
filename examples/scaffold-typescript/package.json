@@ -1,5 +1,5 @@
 {
-	"name": "simple-ts",
+	"name": "scaffold-typescript",
 	"version": "0.0.0",
 	"private": true,
 	"main": "dist/index.cjs.js",
@@ -13,6 +13,6 @@
 		"watch": "klap watch"
 	},
 	"devDependencies": {
-		"klap": "0.2.1"
+		"klap": "0.3.0"
 	}
 }

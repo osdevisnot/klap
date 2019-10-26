@@ -7,5 +7,5 @@ node_js:
   - '13'
 script:
   - npm run build && npm link
-  - cd $TRAVIS_BUILD_DIR/examples/simple && klap build
-  - cd $TRAVIS_BUILD_DIR/examples/simple-ts && klap build
+  - cd $TRAVIS_BUILD_DIR/examples/scaffold && klap build
+  - cd $TRAVIS_BUILD_DIR/examples/scaffold-typescript && klap build
