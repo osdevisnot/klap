@@ -10,3 +10,4 @@ script:
   - cd $TRAVIS_BUILD_DIR/examples/scaffold && klap build
   - cd $TRAVIS_BUILD_DIR/examples/scaffold-typescript && klap build
   - cd $TRAVIS_BUILD_DIR/examples/react-component && klap build
+  - cd $TRAVIS_BUILD_DIR/examples/react-typescript && klap build

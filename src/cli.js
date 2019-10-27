@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 /**
- * TODO: add react-tx example
  * TODO: styled components examples
  * TODO: styled components ts example
  */

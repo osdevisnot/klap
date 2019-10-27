@@ -17,13 +17,14 @@ export const plugins = async (command, pkg) => {
 	const { klap = {} } = pkg
 	const sourcemap = klap.sourcemap !== false
 	const minify = klap.minify !== false
+	const namedExports = klap.namedExports || {}
 	return [
 		sourcemaps && sourcemaps(),
 		json(),
 		nodeGlobals(),
-		babel({ babelrc: false, extensions, presets, plugins }),
-		nodeResolve({ mainFields: ['module', 'main', 'browser'], extensions }),
-		commonjs({ extensions }),
+		nodeResolve({ mainFields: ['module', 'jsnext:main', 'browser', 'main'], extensions }),
+		commonjs({ extensions, include: /node_modules/, namedExports }),
+		babel({ babelrc: false, exclude: 'node_modules/**', extensions, presets, plugins }),
 		replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
 		command !== 'start' && minify && terser({ sourcemap, warnings: true }),
 		command !== 'start' && sizeme(),

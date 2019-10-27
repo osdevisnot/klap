@@ -13,7 +13,7 @@ import pluginStyledComponents from 'babel-plugin-styled-components'
 import pluginMacros from 'babel-plugin-macros'
 
 export const babelConfig = async (command, pkg) => {
-	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx']
+	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json']
 
 	const { klap = {} } = pkg
 	const { pragma = 'React.createElement', pragmaFrag = 'React.Fragment' } = klap

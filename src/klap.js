@@ -15,7 +15,7 @@ const createConfig = async (command, pkg) => {
 		browser,
 	} = pkg
 
-	const external = Object.keys({ ...dependencies, ...peerDependencies })
+	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
 
 	let outputOptions,
 		inputOptions = { external }
