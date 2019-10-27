@@ -1,42 +1,47 @@
 /**
- * TODO: Extract into rollup-plugin-terser-simple
- * This plugin was created because https://www.npmjs.com/package/rollup-plugin-terser
- * relies on https://www.npmjs.com/package/jest-worker. The jest-worker package had issues
- * with bundling approach we want to follow for `klap`.
+ * A rollup plugin to run generated code through `terser`
+ * [rollup-plugin-terser](https://www.npmjs.com/package/rollup-plugin-terser)
+ * relies on [jest-worker](https://www.npmjs.com/package/jest-worker).
+ * jest-worker package had issues with bundling approach we want to follow for `klap`.
  */
 
-import { minify } from 'terser'
-import { createFilter } from 'rollup-pluginutils'
 import { codeFrameColumns } from '@babel/code-frame'
+import { createFilter } from 'rollup-pluginutils'
+import { minify } from 'terser'
+import { warn, error } from '../logger'
 
-const transform = code => {
-	const result = minify(code)
+const transform = (code, options) => {
+	const result = minify(code, options)
 	if (result.error) {
 		throw result.error
-	} else {
-		return result
 	}
+	if (result.warnings) {
+		result.warnings.forEach(warning => warn(warning))
+	}
+	return result
 }
 
-export const terser = (userOptions = {}) => {
-	const filter = createFilter(userOptions.include, userOptions.exclude, { resolve: false })
+export const terser = (options = {}) => {
+	const filter = createFilter(options.include, options.exclude, { resolve: false })
 
 	return {
 		name: 'terser',
 
-		renderChunk(code, chunk, outputOptions) {
-			if (!filter(chunk.fileName)) {
-				return null
-			}
+		renderChunk(code, chunk) {
+			if (!filter(chunk.fileName)) return null
+
 			let result
 			try {
-				result = transform(code)
-			} catch (e) {
-				const { message, line, col: column } = error
-				console.error(codeFrameColumns(code, { start: { line, column } }, { message }))
-				throw error
+				result = transform(code, { sourceMap: options.sourcemap, warnings: options.warnings })
+			} catch (err) {
+				const { message, line, col: column } = err
+				error(codeFrameColumns(code, { start: { line, column } }, { message }))
+				throw err
 			}
-			return result
+			return {
+				code: result.code,
+				map: result.map,
+			}
 		},
 	}
 }

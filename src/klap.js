@@ -1,34 +1,41 @@
 import { rollup, watch } from 'rollup'
-import { cleanName } from './utils'
+import { error, info } from './logger'
 import { plugins } from './plugins'
-import { log } from './logger'
+import { safePackageName } from './utils'
 
 const createConfig = async (command, pkg) => {
 	const {
+		klap = {},
 		dependencies = {},
 		peerDependencies = {},
 		example = 'public/index.js',
-		browser,
 		source = 'src/index.js',
 		main,
 		module,
-		klap = {},
+		browser,
 	} = pkg
 
-	const external = Object.keys({ ...dependencies, ...peerDependencies })
+	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
 
 	let outputOptions,
 		inputOptions = { external }
 
+	const sourcemap = klap.sourcemap !== false
+
 	if (command === 'start') {
 		inputOptions = { ...inputOptions, input: example }
-		outputOptions = [{ file: browser, format: 'umd' }]
+		outputOptions = [{ file: browser, format: 'umd', sourcemap }]
 	} else {
 		inputOptions = { ...inputOptions, input: source }
 		outputOptions = [
-			main && { file: main, format: 'cjs' },
-			module && { file: module, format: 'es' },
-			browser && { file: browser, format: 'umd', name: klap.name || cleanName(pkg.name) },
+			main && { file: main, format: 'cjs', sourcemap },
+			module && { file: module, format: 'es', sourcemap },
+			browser && {
+				file: browser,
+				format: 'umd',
+				name: safePackageName(klap.name || pkg.name),
+				sourcemap,
+			},
 		].filter(Boolean)
 	}
 
@@ -47,7 +54,7 @@ export const klap = async (command, pkg) => {
 	switch (command) {
 		case 'build':
 			const bundle = await rollup(inputOptions)
-			outputOptions.map(out => writeBundle(bundle, out))
+			outputOptions.map(options => writeBundle(bundle, options))
 			break
 		case 'watch':
 		case 'start':
@@ -59,10 +66,10 @@ export const klap = async (command, pkg) => {
 			watcher.on('event', event => {
 				switch (event.code) {
 					case 'ERROR':
-						log.error(event.error)
+						error(event.error)
 						break
 					case 'END':
-						log.info(`${new Date().toLocaleTimeString('en-GB')} - Waiting for Changes...`)
+						info(`${new Date().toLocaleTimeString('en-GB')} - Waiting for Changes...`)
 						break
 				}
 			})
