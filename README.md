@@ -8,10 +8,6 @@
 ![npm](https://img.shields.io/npm/v/klap)
 ![NPM](https://img.shields.io/npm/l/klap)
 
-> ### 🛠 Status: In Development
->
-> Expect breaking changes in patch version until we reach **1.0 Milestone**
-
 ## :sparkles: Features
 
 - :rocket: **zero dependency**
