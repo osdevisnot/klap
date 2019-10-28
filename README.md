@@ -19,6 +19,7 @@
 - :fire: **Modern JS** syntax with class properties, async/await, and generators
 - :zap: Built in Minification and Gzip Size Tracking
 - :cyclone: Built in development server for quick prototyping.
+- :confetti_ball: supports `react` and `styled-components` out of the box.
 
 ### :muscle: Powered By
 
