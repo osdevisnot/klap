@@ -1,25 +1,27 @@
 {
-  "name": "scaffold-typescript",
+  "name": "react-sc-typescript",
   "version": "0.0.0",
-  "private": true,
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "source": "src/index.ts",
+  "source": "src/index.tsx",
   "browser": "dist/index.js",
-  "example": "public/index.ts",
+  "example": "public/index.tsx",
   "scripts": {
     "build": "klap build",
     "start": "klap start",
     "watch": "klap watch"
   },
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "styled-components": "*"
+  },
   "devDependencies": {
     "klap": "0.3.0"
   },
   "klap": {
-    "namedExports": {
-      "react-dom": [
-        "render"
-      ]
+    "globals": {
+      "styled-components": "styledComponents"
     }
   }
 }

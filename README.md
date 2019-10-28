@@ -8,10 +8,6 @@
 ![npm](https://img.shields.io/npm/v/klap)
 ![NPM](https://img.shields.io/npm/l/klap)
 
-> ### 🛠 Status: In Development
->
-> Expect breaking changes in patch version until we reach **1.0 Milestone**
-
 ## :sparkles: Features
 
 - :rocket: **zero dependency**
@@ -23,6 +19,7 @@
 - :fire: **Modern JS** syntax with class properties, async/await, and generators
 - :zap: Built in Minification and Gzip Size Tracking
 - :cyclone: Built in development server for quick prototyping.
+- :confetti_ball: supports `react` and `styled-components` out of the box.
 
 ### :muscle: Powered By
 
@@ -76,7 +73,8 @@ For more granular control, configure `klap` using these properties in your `pack
 | `klap.minify`       | minification for builds                | `true`                |
 | `klap.pragma`       | pragma for `jsx` and `tsx` compilation | `React.createElement` |
 | `klap.pragmaFrag`   | pragma for `jsx` and `tsx` fragments   | `React.Fragment`      |
-| `klap.namedExports` | named exports for commonjs modules     | `undefined`           |
+| `klap.namedExports` | named exports for commonjs modules     | `{}`                  |
+| `klap.globals`      | gloabal names for umd bundles          | `{}`                  |
 
 ## :clinking_glasses: License
 
