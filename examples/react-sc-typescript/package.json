@@ -6,11 +6,6 @@
   "source": "src/index.tsx",
   "browser": "dist/index.js",
   "example": "public/index.tsx",
-  "klap": {
-    "globals": {
-      "styled-components": "styledComponents"
-    }
-  },
   "scripts": {
     "build": "klap build",
     "start": "klap start",
@@ -23,5 +18,10 @@
   },
   "devDependencies": {
     "klap": "0.3.0"
+  },
+  "klap": {
+    "globals": {
+      "styled-components": "styledComponents"
+    }
   }
 }

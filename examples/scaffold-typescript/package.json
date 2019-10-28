@@ -12,14 +12,14 @@
     "start": "klap start",
     "watch": "klap watch"
   },
+  "devDependencies": {
+    "klap": "0.3.0"
+  },
   "klap": {
     "namedExports": {
       "react-dom": [
         "render"
       ]
     }
-  },
-  "devDependencies": {
-    "klap": "0.3.0"
   }
 }
