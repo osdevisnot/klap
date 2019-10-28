@@ -1,10 +1,5 @@
 #!/usr/bin/env node
 
-/**
- * TODO: styled components examples
- * TODO: styled components ts example
- */
-
 import init from './init'
 import { klap } from './klap'
 import { read } from './utils'

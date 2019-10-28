@@ -21,6 +21,7 @@ const createConfig = async (command, pkg) => {
 		inputOptions = { external }
 
 	const sourcemap = klap.sourcemap !== false
+	const globals = klap.globals || {}
 
 	if (command === 'start') {
 		inputOptions = { ...inputOptions, input: example }
@@ -35,6 +36,7 @@ const createConfig = async (command, pkg) => {
 				format: 'umd',
 				name: safePackageName(klap.name || pkg.name),
 				sourcemap,
+				globals,
 			},
 		].filter(Boolean)
 	}

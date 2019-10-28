@@ -76,7 +76,8 @@ For more granular control, configure `klap` using these properties in your `pack
 | `klap.minify`       | minification for builds                | `true`                |
 | `klap.pragma`       | pragma for `jsx` and `tsx` compilation | `React.createElement` |
 | `klap.pragmaFrag`   | pragma for `jsx` and `tsx` fragments   | `React.Fragment`      |
-| `klap.namedExports` | named exports for commonjs modules     | `undefined`           |
+| `klap.namedExports` | named exports for commonjs modules     | `{}`                  |
+| `klap.globals`      | gloabal names for umd bundles          | `{}`                  |
 
 ## :clinking_glasses: License
 

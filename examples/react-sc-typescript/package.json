@@ -1,0 +1,27 @@
+{
+  "name": "react-sc-typescript",
+  "version": "0.0.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "source": "src/index.tsx",
+  "browser": "dist/index.js",
+  "example": "public/index.tsx",
+  "klap": {
+    "globals": {
+      "styled-components": "styledComponents"
+    }
+  },
+  "scripts": {
+    "build": "klap build",
+    "start": "klap start",
+    "watch": "klap watch"
+  },
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "styled-components": "*"
+  },
+  "devDependencies": {
+    "klap": "0.3.0"
+  }
+}
