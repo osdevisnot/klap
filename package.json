@@ -1,6 +1,6 @@
 {
 	"name": "klap",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "zero config, zero dependency bundler for tiny javascript packages.",
 	"repository": "osdevisnot/klap",
 	"license": "MIT",
