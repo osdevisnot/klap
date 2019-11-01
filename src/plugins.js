@@ -26,12 +26,12 @@ export const plugins = async (command, pkg) => {
 		commonjs({ extensions, include: /node_modules/, namedExports }),
 		babel({ babelrc: false, exclude: 'node_modules/**', extensions, presets, plugins }),
 		replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
-		command !== 'start' && minify && terser({ sourcemap, warnings: true }),
+		command !== 'start' && minify && terser({ sourcemap, warnings: false }),
 		command !== 'start' && sizeme(),
 		command === 'start' &&
 			servor({
 				fallback: klap.index || 'public/index.html',
-				port: pkg.port || 1234,
+				port: klap.port || 1234,
 			}),
 	].filter(Boolean)
 }
