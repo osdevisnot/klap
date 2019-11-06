@@ -10,16 +10,17 @@
 
 ## :sparkles: Features
 
-- :rocket: **zero dependency**
 - :tada: **zero config** to bundle your library using only a `package.json`
+- :rocket: **zero dependency** build tool.
 - :boom: **zero config** typescript support (just rename `*.js` to `*.ts`)
 - :star2: **zero config** code transforms using babel macros
 - :haircut: **tiny bundles** for all inputs
-- :octopus: creates multiple output formats `cjs`, `esm` and `umd`
 - :fire: **Modern JS** syntax with class properties, async/await, and generators
+- :confetti_ball: Supports **`react`** and **`styled-components`** out of the box.
+- :octopus: creates multiple output formats `cjs`, `esm` and `umd`
 - :zap: Built in Minification and Gzip Size Tracking
 - :cyclone: Built in development server for quick prototyping.
-- :confetti_ball: supports `react` and `styled-components` out of the box.
+- :snowflake: Carefully picked default to optimize generated code.
 
 ### :muscle: Powered By
 
