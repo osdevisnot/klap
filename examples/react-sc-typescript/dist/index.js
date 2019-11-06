@@ -7,17 +7,16 @@
 })(this, function(e, t) {
 	'use strict'
 	function n() {
-		var e,
-			t,
-			o = ((e = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), t || (t = e.slice(0)), (e.raw = t), e)
+		const e = ((t = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), o || (o = t.slice(0)), (t.raw = o), t)
+		var t, o
 		return (
 			(n = function() {
-				return o
+				return e
 			}),
-			o
+			e
 		)
 	}
-	var o = (t = t && t.hasOwnProperty('default') ? t.default : t).button(n())
+	const o = (t = t && t.hasOwnProperty('default') ? t.default : t).button(n())
 	;(e.Button = o), Object.defineProperty(e, '__esModule', { value: !0 })
 })
 //# sourceMappingURL=index.js.map

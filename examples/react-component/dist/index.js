@@ -6,10 +6,7 @@
 		: t(((e = e || self).reactComponent = {}))
 })(this, function(e) {
 	'use strict'
-	;(e.Button = function(e) {
-		var t = e.onClick
-		return React.createElement('button', { class: 'button', onClick: t }, 'Hello Button')
-	}),
+	;(e.Button = ({ onClick: e }) => React.createElement('button', { class: 'button', onClick: e }, 'Hello Button')),
 		Object.defineProperty(e, '__esModule', { value: !0 })
 })
 //# sourceMappingURL=index.js.map

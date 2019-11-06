@@ -1,5 +1,3 @@
-var sum = function(r, u) {
-	return r + u
-}
+const sum = (s, m) => s + m
 export { sum }
 //# sourceMappingURL=index.esm.js.map
