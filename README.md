@@ -65,17 +65,18 @@ klap init
 
 For more granular control, configure `klap` using these properties in your `package.json`
 
-| option              | description                            | default               |
-| ------------------- | -------------------------------------- | --------------------- |
-| `klap.name`         | package name for `umd` bundles         | `pkg.name`            |
-| `klap.port`         | port for development server            | `1234`                |
-| `klap.index`        | location of index file                 | `public/index.html`   |
-| `klap.sourcemap`    | sourcemaps for builds                  | `true`                |
-| `klap.minify`       | minification for builds                | `true`                |
-| `klap.pragma`       | pragma for `jsx` and `tsx` compilation | `React.createElement` |
-| `klap.pragmaFrag`   | pragma for `jsx` and `tsx` fragments   | `React.Fragment`      |
-| `klap.namedExports` | named exports for commonjs modules     | `{}`                  |
-| `klap.globals`      | gloabal names for umd bundles          | `{}`                  |
+| option              | description                               | default                                    |
+| ------------------- | ----------------------------------------- | ------------------------------------------ |
+| `klap.name`         | package name for `umd` bundles            | `pkg.name`                                 |
+| `klap.port`         | port for development server               | `1234`                                     |
+| `klap.index`        | location of index file                    | `public/index.html`                        |
+| `klap.sourcemap`    | sourcemaps for builds                     | `true`                                     |
+| `klap.minify`       | minification for builds                   | `true`                                     |
+| `klap.pragma`       | pragma for `jsx` and `tsx` compilation    | `React.createElement`                      |
+| `klap.pragmaFrag`   | pragma for `jsx` and `tsx` fragments      | `React.Fragment`                           |
+| `klap.namedExports` | named exports for commonjs modules        | `{}`                                       |
+| `klap.globals`      | global names for umd bundles              | `{}`                                       |
+| `browserslist`      | browserlist compatible compilation target | `>1%, not dead, not ie 11, not op_mini all |
 
 ## :clinking_glasses: License
 
