@@ -33,7 +33,7 @@ export const babelConfig = async (command, pkg) => {
 	]
 
 	const plugins = [
-		pluginObjectRestSpread,
+		[pluginObjectRestSpread, { loose: true, useBuiltIns: true }],
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginClassProperties, { loose: true }],
 		[pluginTransformRegen, { async: false }],
