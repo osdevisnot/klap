@@ -10,16 +10,17 @@
 
 ## :sparkles: Features
 
-- :rocket: **zero dependency**
 - :tada: **zero config** to bundle your library using only a `package.json`
+- :rocket: **zero dependency** build tool.
 - :boom: **zero config** typescript support (just rename `*.js` to `*.ts`)
 - :star2: **zero config** code transforms using babel macros
 - :haircut: **tiny bundles** for all inputs
-- :octopus: creates multiple output formats `cjs`, `esm` and `umd`
 - :fire: **Modern JS** syntax with class properties, async/await, and generators
+- :confetti_ball: Supports **`react`** and **`styled-components`** out of the box.
+- :octopus: creates multiple output formats `cjs`, `esm` and `umd`
 - :zap: Built in Minification and Gzip Size Tracking
 - :cyclone: Built in development server for quick prototyping.
-- :confetti_ball: supports `react` and `styled-components` out of the box.
+- :snowflake: Carefully picked default to optimize generated code.
 
 ### :muscle: Powered By
 
@@ -64,17 +65,20 @@ klap init
 
 For more granular control, configure `klap` using these properties in your `package.json`
 
-| option              | description                            | default               |
-| ------------------- | -------------------------------------- | --------------------- |
-| `klap.name`         | package name for `umd` bundles         | `pkg.name`            |
-| `klap.port`         | port for development server            | `1234`                |
-| `klap.index`        | location of index file                 | `public/index.html`   |
-| `klap.sourcemap`    | sourcemaps for builds                  | `true`                |
-| `klap.minify`       | minification for builds                | `true`                |
-| `klap.pragma`       | pragma for `jsx` and `tsx` compilation | `React.createElement` |
-| `klap.pragmaFrag`   | pragma for `jsx` and `tsx` fragments   | `React.Fragment`      |
-| `klap.namedExports` | named exports for commonjs modules     | `{}`                  |
-| `klap.globals`      | gloabal names for umd bundles          | `{}`                  |
+| option              | description                               | default                                    |
+| ------------------- | ----------------------------------------- | ------------------------------------------ |
+| `klap.name`         | package name for `umd` bundles            | `pkg.name`                                 |
+| `klap.port`         | port for development server               | `1234`                                     |
+| `klap.index`        | location of index file                    | `public/index.html`                        |
+| `klap.sourcemap`    | sourcemaps for builds                     | `true`                                     |
+| `klap.minify`       | minification for builds                   | `true`                                     |
+| `klap.pragma`       | pragma for `jsx` and `tsx` compilation    | `React.createElement`                      |
+| `klap.pragmaFrag`   | pragma for `jsx` and `tsx` fragments      | `React.Fragment`                           |
+| `klap.namedExports` | named exports for commonjs modules        | `{}`                                       |
+| `klap.globals`      | global names for umd bundles              | `{}`                                       |
+| `browserslist`      | browserlist compatible compilation target | `>1%, not dead, not ie 11, not op_mini all |
+
+Note: See default [browserlist coverage](https://browserl.ist/?q=%3E1%25%2C+not+dead%2C+not+ie+11%2C+not+op_mini+all)
 
 ## :clinking_glasses: License
 

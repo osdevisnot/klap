@@ -5,7 +5,6 @@ import presetTs from '@babel/preset-typescript'
 import presetReact from '@babel/preset-react'
 
 // babel plugins
-import pluginObjectRestSpread from '@babel/plugin-proposal-object-rest-spread'
 import pluginAsyncToPromise from 'babel-plugin-transform-async-to-promises'
 import pluginClassProperties from '@babel/plugin-proposal-class-properties'
 import pluginTransformRegen from '@babel/plugin-transform-regenerator'
@@ -15,7 +14,7 @@ import pluginMacros from 'babel-plugin-macros'
 export const babelConfig = async (command, pkg) => {
 	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json']
 
-	const { klap = {} } = pkg
+	const { klap = {}, browserslist = '>1%, not dead, not ie 11, not op_mini all' } = pkg
 	const { pragma = 'React.createElement', pragmaFrag = 'React.Fragment' } = klap
 
 	const presets = [
@@ -25,6 +24,7 @@ export const babelConfig = async (command, pkg) => {
 				loose: true,
 				useBuiltIns: false,
 				modules: false,
+				targets: browserslist,
 				exclude: ['transform-async-to-generator', 'transform-regenerator'],
 			},
 		],
@@ -33,7 +33,6 @@ export const babelConfig = async (command, pkg) => {
 	]
 
 	const plugins = [
-		pluginObjectRestSpread,
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginClassProperties, { loose: true }],
 		[pluginTransformRegen, { async: false }],

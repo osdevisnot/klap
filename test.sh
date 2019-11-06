@@ -9,6 +9,13 @@ npm install
 npm run build
 npm link
 
+cd examples
+
+for dir in scaffold scaffold-typescript react-component react-typescript react-sc-typescript
+do
+	cd ${dir} && klap build && rm -rf dist/*.map && prettier --write dist/*.js && cd ..
+done
+
 cd ~/temp
 
 rm -rf store
