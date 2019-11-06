@@ -78,6 +78,8 @@ For more granular control, configure `klap` using these properties in your `pack
 | `klap.globals`      | global names for umd bundles              | `{}`                                       |
 | `browserslist`      | browserlist compatible compilation target | `>1%, not dead, not ie 11, not op_mini all |
 
+Note: See default [browserlist coverage](https://browserl.ist/?q=%3E1%25%2C+not+dead%2C+not+ie+11%2C+not+op_mini+all)
+
 ## :clinking_glasses: License
 
 **klap** is licensed under the [MIT License](http://opensource.org/licenses/MIT).
