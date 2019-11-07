@@ -25,6 +25,7 @@ const writePackage = async () => {
 		browser: 'dist/index.js',
 		source: 'src/index.js',
 		example: 'public/index.js',
+		files: ['dist'],
 		scripts: {
 			start: 'klap start',
 			build: 'klap build',
