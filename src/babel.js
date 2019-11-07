@@ -38,7 +38,7 @@ export const babelConfig = async (command, pkg) => {
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginClassProperties, { loose: true }],
 		[pluginTransformRegen, { async: false }],
-		[pluginStyledComponents, { displayName: true }],
+		pluginStyledComponents,
 		pluginMacros,
 	]
 
