@@ -5,6 +5,7 @@ import presetTs from '@babel/preset-typescript'
 import presetReact from '@babel/preset-react'
 
 // babel plugins
+import pluginObjectRestSpread from '@babel/plugin-proposal-object-rest-spread'
 import pluginAsyncToPromise from 'babel-plugin-transform-async-to-promises'
 import pluginClassProperties from '@babel/plugin-proposal-class-properties'
 import pluginTransformRegen from '@babel/plugin-transform-regenerator'
@@ -28,11 +29,12 @@ export const babelConfig = async (command, pkg) => {
 				exclude: ['transform-async-to-generator', 'transform-regenerator'],
 			},
 		],
-		[presetTs, { jsxPragma: pragma, isTSX: true, allExtensions: true }],
+		[presetTs, { isTSX: true, allExtensions: true }],
 		[presetReact, { pragma, pragmaFrag }],
 	]
 
 	const plugins = [
+		[pluginObjectRestSpread, { loose: true, useBuiltIns: true }],
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginClassProperties, { loose: true }],
 		[pluginTransformRegen, { async: false }],

@@ -10,17 +10,17 @@
 	],
 	"main": "dist/index.js",
 	"bin": {
-		"klap": "dist/index.js"
+		"klap": "cli.js"
 	},
 	"scripts": {
-		"build": "ncc build src/cli.js -mo dist",
+		"build": "ncc build src/klap.js -mo dist",
 		"prepare": "npm run build",
 		"prepub": "npm run setup",
 		"pub": "npm run build && npm version",
 		"postpub": "npm publish",
 		"presetup": "git clean -fdX",
 		"setup": "npm install",
-		"watch": "ncc build src/cli.js -wo dist"
+		"watch": "ncc build src/klap.js -wo dist"
 	},
 	"devDependencies": {
 		"@babel/core": "7.6.4",

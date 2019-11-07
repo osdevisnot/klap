@@ -1,7 +1,8 @@
 import { rollup, watch } from 'rollup'
 import { error, info } from './logger'
 import { plugins } from './plugins'
-import { safePackageName } from './utils'
+import { safePackageName, read } from './utils'
+import init from './init'
 
 const createConfig = async (command, pkg) => {
 	const {
@@ -51,7 +52,7 @@ const writeBundle = async (bundle, outputOptions) => {
 	await bundle.write(outputOptions)
 }
 
-export const klap = async (command, pkg) => {
+const klap = async (command, pkg) => {
 	const { inputOptions, outputOptions } = await createConfig(command, pkg)
 	switch (command) {
 		case 'build':
@@ -78,3 +79,5 @@ export const klap = async (command, pkg) => {
 			break
 	}
 }
+
+export { klap, read, info, error, init }
