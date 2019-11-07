@@ -6,13 +6,13 @@
  */
 import gzip from 'gzip-size'
 import prettyBytes from 'pretty-bytes'
-import { log } from '../logger'
+import { info } from '../logger'
 
 export const sizeme = () => {
 	const showSize = bundle => {
 		const { code, fileName } = bundle
 		const size = prettyBytes(gzip.sync(code))
-		log(`\t${size}\t${fileName}`)
+		info(`\t${size}\t${fileName}`)
 	}
 
 	return {

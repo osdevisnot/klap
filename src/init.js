@@ -38,7 +38,7 @@ const writePackage = async () => {
 		},
 	})
 	await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
-	info('- wrote ./package.json')
+	info('\t- wrote ./package.json')
 	return pkg
 }
 
@@ -61,8 +61,10 @@ const writeFiles = async pkg => {
 </html>`,
 	}
 	for (let [file, content] of Object.entries(files)) {
-		await write(file, content)
-		info(`- wrote ./${file}`)
+		if (await !exists(file)) {
+			await write(file, content)
+			info(`\t- wrote ./${file}`)
+		}
 	}
 }
 

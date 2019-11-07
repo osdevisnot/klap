@@ -1,5 +1,5 @@
 import { rollup, watch } from 'rollup'
-import { error, info } from './logger'
+import { error, info, log } from './logger'
 import { plugins } from './plugins'
 import { safePackageName, read } from './utils'
 import init from './init'
@@ -73,4 +73,4 @@ const klap = async (command, pkg) => {
 	}
 }
 
-export { klap, read, info, error, init }
+export { klap, read, info, error, init, log }
