@@ -32,7 +32,12 @@ export const terser = (options = {}) => {
 
 			let result
 			try {
-				result = transform(code, { sourceMap: options.sourcemap, warnings: options.warnings })
+				result = transform(code, {
+					sourceMap: options.sourcemap,
+					warnings: options.warnings,
+					toplevel: true,
+					mangle: { properties: { regex: '^_' } },
+				})
 			} catch (err) {
 				const { message, line, col: column } = err
 				error(codeFrameColumns(code, { start: { line, column } }, { message }))
