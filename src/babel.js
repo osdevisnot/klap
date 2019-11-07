@@ -28,7 +28,7 @@ export const babelConfig = async (command, pkg) => {
 				exclude: ['transform-async-to-generator', 'transform-regenerator'],
 			},
 		],
-		[presetTs, { jsxPragma: pragma, isTSX: true, allExtensions: true }],
+		[presetTs, { isTSX: true, allExtensions: true }],
 		[presetReact, { pragma, pragmaFrag }],
 	]
 
