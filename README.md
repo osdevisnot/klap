@@ -69,7 +69,8 @@ For more granular control, configure `klap` using these properties in your `pack
 | ------------------- | ----------------------------------------- | ------------------------------------------ |
 | `klap.name`         | package name for `umd` bundles            | `pkg.name`                                 |
 | `klap.port`         | port for development server               | `1234`                                     |
-| `klap.index`        | location of index file                    | `public/index.html`                        |
+| `klap.index`        | location of index html file for example   | `public/index.html`                        |
+| `klap.example`      | location of index js/ts file for example  | `public/index.js`                          |
 | `klap.sourcemap`    | sourcemaps for builds                     | `true`                                     |
 | `klap.minify`       | minification for builds                   | `true`                                     |
 | `klap.pragma`       | pragma for `jsx` and `tsx` compilation    | `React.createElement`                      |

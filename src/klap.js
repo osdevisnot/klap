@@ -5,16 +5,9 @@ import { safePackageName, read } from './utils'
 import init from './init'
 
 const createConfig = async (command, pkg) => {
-	const {
-		klap = {},
-		dependencies = {},
-		peerDependencies = {},
-		example = 'public/index.js',
-		source = 'src/index.js',
-		main,
-		module,
-		browser,
-	} = pkg
+	const { klap = {}, dependencies = {}, peerDependencies = {}, source = 'src/index.js', main, module, browser } = pkg
+
+	const example = klap.example || 'public/index.js'
 
 	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
 

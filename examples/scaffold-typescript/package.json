@@ -1,25 +1,28 @@
 {
-  "name": "scaffold-typescript",
-  "version": "0.0.0",
-  "private": true,
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "source": "src/index.ts",
-  "browser": "dist/index.js",
-  "example": "public/index.ts",
-  "scripts": {
-    "build": "klap build",
-    "start": "klap start",
-    "watch": "klap watch"
-  },
-  "devDependencies": {
-    "klap": "0.3.0"
-  },
-  "klap": {
-    "namedExports": {
-      "react-dom": [
-        "render"
-      ]
-    }
-  }
+	"name": "scaffold-typescript",
+	"version": "0.0.0",
+	"private": true,
+	"files": [
+		"dist"
+	],
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.esm.js",
+	"source": "src/index.ts",
+	"browser": "dist/index.js",
+	"scripts": {
+		"build": "klap build",
+		"start": "klap start",
+		"watch": "klap watch"
+	},
+	"devDependencies": {
+		"klap": "2.1.0"
+	},
+	"klap": {
+		"namedExports": {
+			"react-dom": [
+				"render"
+			]
+		},
+		"example": "public/index.js"
+	}
 }

@@ -24,7 +24,6 @@ const writePackage = async () => {
 		module: 'dist/index.esm.js',
 		browser: 'dist/index.js',
 		source: 'src/index.js',
-		example: 'public/index.js',
 		files: ['dist'],
 		scripts: {
 			start: 'klap start',
@@ -33,6 +32,9 @@ const writePackage = async () => {
 		},
 		devDependencies: {
 			[cli.name]: cli.version,
+		},
+		klap: {
+			example: 'public/index.js',
 		},
 	})
 	await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
