@@ -1,5 +1,5 @@
 import { rollup, watch } from 'rollup'
-import { error, info, log, warn } from './logger'
+import { error, info, log, warn, gray, green, bold } from './logger'
 import { init } from './init'
 import { plugins, babelConfig, terser, sizeme, servor } from './plugins'
 import { exists, read, write, safePackageName } from './utils'
@@ -77,7 +77,10 @@ export {
 	error,
 	info,
 	log,
-	warn, // logger
+	warn,
+	gray,
+	green,
+	bold, // logger
 	init, // init
 	plugins,
 	babelConfig,
