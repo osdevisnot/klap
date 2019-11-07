@@ -1,8 +1,8 @@
 import { rollup, watch } from 'rollup'
-import { error, info, log } from './logger'
-import { plugins } from './plugins'
-import { safePackageName, read } from './utils'
-import init from './init'
+import { error, info, log, warn } from './logger'
+import { init } from './init'
+import { plugins, babelConfig, terser, sizeme, servor } from './plugins'
+import { exists, read, write, safePackageName } from './utils'
 
 const createConfig = async (command, pkg) => {
 	const { klap = {}, dependencies = {}, peerDependencies = {}, source = 'src/index.js', main, module, browser } = pkg
@@ -73,4 +73,20 @@ const klap = async (command, pkg) => {
 	}
 }
 
-export { klap, read, info, error, init, log }
+export {
+	error,
+	info,
+	log,
+	warn, // logger
+	init, // init
+	plugins,
+	babelConfig,
+	terser,
+	sizeme,
+	servor, // plugins
+	exists,
+	read,
+	write,
+	safePackageName, // utils
+	klap,
+}

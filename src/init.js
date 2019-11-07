@@ -68,7 +68,7 @@ const writeFiles = async pkg => {
 	}
 }
 
-export default async () => {
+export const init = async () => {
 	const pkg = await writePackage()
 	await writeFiles(pkg)
 }

@@ -12,12 +12,15 @@ import { servor } from './packages/servor'
 
 import { babelConfig } from './babel'
 
-export const plugins = async (command, pkg) => {
+const plugins = async (command, pkg) => {
 	const { extensions, presets, plugins } = await babelConfig(command, pkg)
+
 	const { klap = {} } = pkg
-	const sourcemap = klap.sourcemap !== false
-	const minify = klap.minify !== false
-	const namedExports = klap.namedExports || {}
+
+	const sourcemap = klap.sourcemap !== false,
+		minify = klap.minify !== false,
+		namedExports = klap.namedExports || {}
+
 	return [
 		sourcemaps && sourcemaps(),
 		json(),
@@ -35,3 +38,5 @@ export const plugins = async (command, pkg) => {
 			}),
 	].filter(Boolean)
 }
+
+export { plugins, babelConfig, terser, sizeme, servor }
