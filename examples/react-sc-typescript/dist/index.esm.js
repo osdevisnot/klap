@@ -1,16 +1,14 @@
-import styled from 'styled-components'
-function _taggedTemplateLiteralLoose(t, e) {
-	return e || (e = t.slice(0)), (t.raw = e), t
-}
-function _templateObject() {
-	const t = _taggedTemplateLiteralLoose(['\n\tbackground-color: red;\n\twidth: 100%;\n'])
+import n from 'styled-components'
+function t() {
+	const n = ((o = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), r || (r = o.slice(0)), (o.raw = r), o)
+	var o, r
 	return (
-		(_templateObject = function() {
-			return t
+		(t = function() {
+			return n
 		}),
-		t
+		n
 	)
 }
-const Button = styled.button(_templateObject())
-export { Button }
+const o = n.button(t())
+export { o as Button }
 //# sourceMappingURL=index.esm.js.map
