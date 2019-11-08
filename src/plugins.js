@@ -19,7 +19,9 @@ const plugins = async (command, pkg) => {
 
 	const sourcemap = klap.sourcemap !== false,
 		minify = klap.minify !== false,
-		namedExports = klap.namedExports || {}
+		namedExports = klap.namedExports || {},
+		fallback = klap.index || 'public/index.html',
+		port = klap.port || 1234
 
 	return [
 		sourcemaps && sourcemaps(),
@@ -31,11 +33,7 @@ const plugins = async (command, pkg) => {
 		replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
 		command !== 'start' && minify && terser({ sourcemap, warnings: false }),
 		command !== 'start' && sizeme(),
-		command === 'start' &&
-			servor({
-				fallback: klap.index || 'public/index.html',
-				port: klap.port || 1234,
-			}),
+		command === 'start' && servor({ fallback, port }),
 	].filter(Boolean)
 }
 
