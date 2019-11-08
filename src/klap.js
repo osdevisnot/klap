@@ -1,20 +1,13 @@
 import { rollup, watch } from 'rollup'
-import { error, info } from './logger'
-import { plugins } from './plugins'
-import { safePackageName, read } from './utils'
-import init from './init'
+import { error, info, log, warn, gray, green, bold } from './logger'
+import { init } from './init'
+import { plugins, babelConfig, terser, sizeme, servor } from './plugins'
+import { exists, read, write, safePackageName } from './utils'
 
 const createConfig = async (command, pkg) => {
-	const {
-		klap = {},
-		dependencies = {},
-		peerDependencies = {},
-		example = 'public/index.js',
-		source = 'src/index.js',
-		main,
-		module,
-		browser,
-	} = pkg
+	const { klap = {}, dependencies = {}, peerDependencies = {}, source = 'src/index.js', main, module, browser } = pkg
+
+	const example = klap.example || 'public/index.js'
 
 	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
 
@@ -80,4 +73,23 @@ const klap = async (command, pkg) => {
 	}
 }
 
-export { klap, read, info, error, init }
+export {
+	error,
+	info,
+	log,
+	warn,
+	gray,
+	green,
+	bold, // logger
+	init, // init
+	plugins,
+	babelConfig,
+	terser,
+	sizeme,
+	servor, // plugins
+	exists,
+	read,
+	write,
+	safePackageName, // utils
+	klap,
+}

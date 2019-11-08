@@ -1,8 +1,8 @@
 /**
  * A rollup plugin to run generated code through `terser`
- * [rollup-plugin-terser](https://www.npmjs.com/package/rollup-plugin-terser)
- * relies on [jest-worker](https://www.npmjs.com/package/jest-worker).
- * jest-worker package had issues with bundling approach we want to follow for `klap`.
+ * Why we need a custom plugin :- to be able to bundle things up.
+ * - `rollup-plugin-terser` relies on `jest-worker`
+ * - `jest-worker` had issues with bundling approach we want to follow for `klap`.
  */
 
 import { codeFrameColumns } from '@babel/code-frame'
@@ -37,6 +37,7 @@ export const terser = (options = {}) => {
 					warnings: options.warnings,
 					toplevel: true,
 					mangle: { properties: { regex: '^_' } },
+					compress: { passes: 3 },
 				})
 			} catch (err) {
 				const { message, line, col: column } = err

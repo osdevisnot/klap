@@ -1,4 +1,5 @@
 import { DEFAULT_EXTENSIONS } from '@babel/core'
+
 // babel presets
 import presetEnv from '@babel/preset-env'
 import presetTs from '@babel/preset-typescript'
@@ -38,7 +39,7 @@ export const babelConfig = async (command, pkg) => {
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginClassProperties, { loose: true }],
 		[pluginTransformRegen, { async: false }],
-		[pluginStyledComponents, { displayName: true }],
+		pluginStyledComponents,
 		pluginMacros,
 	]
 

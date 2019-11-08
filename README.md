@@ -10,17 +10,16 @@
 
 ## :sparkles: Features
 
-- :tada: **zero config** to bundle your library using only a `package.json`
-- :rocket: **zero dependency** build tool.
+- :tada: **zero config** : bundle your library using only a `package.json`
 - :boom: **zero config** typescript support (just rename `*.js` to `*.ts`)
 - :star2: **zero config** code transforms using babel macros
+- :rocket: **zero dependency** build tool.
 - :haircut: **tiny bundles** for all inputs
 - :fire: **Modern JS** syntax with class properties, async/await, and generators
 - :confetti_ball: Supports **`react`** and **`styled-components`** out of the box.
 - :octopus: creates multiple output formats `cjs`, `esm` and `umd`
 - :zap: Built in Minification and Gzip Size Tracking
 - :cyclone: Built in development server for quick prototyping.
-- :snowflake: Carefully picked default to optimize generated code.
 
 ### :muscle: Powered By
 
@@ -29,27 +28,35 @@
 
 ## :plate_with_cutlery: Usage
 
-First, Install klap as a global dependency.
+First, setup your project using `klap init`:
 
 ```bash
-npm install -g klap
+npx klap init
 ```
 
-Then, use `init` command inside your package directory.
+This will create a `package.json` with `build`, `watch` and `start` commands.
+
+Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
+
+## Global Installation
+
+You can also install `klap` globally:
 
 ```bash
-klap init
+npm install -g
 ```
 
-> Tip: use `yarn init --yes` first if you are starting a new project
+While using global installation, use `klap init` command to initialize your project.
+
+Then use below `klap` commands:
 
 ### `klap` commands
 
-- **`npm run build`** to build your project.
+- **`klap build`** to build your project.
 
-- **`npm run watch`** to build and watch for changes.
+- **`klap watch`** to build and watch for changes.
 
-- **`npm run start`** to watch and start a dev server.
+- **`klap start`** to watch and start a dev server.
 
 ## :anger: `klap` configuration
 
@@ -59,17 +66,18 @@ klap init
 
 - `pkg.main`, `pkg.module` and `pkg.browser` determines compilation targets for `cjs`, `esm` and `umd` respectively.
 
-- `pkg.example` determines the source file for `start` command
+> Note: Dropping `pkg.main` will disable `cjs` output. Applies to `esm` and `umd` as well.
 
 ### :trident: Granular Control
 
-For more granular control, configure `klap` using these properties in your `package.json`
+`klap` uses sensible defaults for most part. However, as needed, use these properties in `package.json` to fine tune `klap`.
 
 | option              | description                               | default                                    |
 | ------------------- | ----------------------------------------- | ------------------------------------------ |
-| `klap.name`         | package name for `umd` bundles            | `pkg.name`                                 |
+| `klap.name`         | package name for `umd` bundles            | sanitized `pkg.name`                       |
 | `klap.port`         | port for development server               | `1234`                                     |
-| `klap.index`        | location of index file                    | `public/index.html`                        |
+| `klap.index`        | location of index html file for example   | `public/index.html`                        |
+| `klap.example`      | location of index js/ts file for example  | `public/index.js`                          |
 | `klap.sourcemap`    | sourcemaps for builds                     | `true`                                     |
 | `klap.minify`       | minification for builds                   | `true`                                     |
 | `klap.pragma`       | pragma for `jsx` and `tsx` compilation    | `React.createElement`                      |

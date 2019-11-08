@@ -24,7 +24,6 @@ const writePackage = async () => {
 		module: 'dist/index.esm.js',
 		browser: 'dist/index.js',
 		source: 'src/index.js',
-		example: 'public/index.js',
 		files: ['dist'],
 		scripts: {
 			start: 'klap start',
@@ -34,9 +33,12 @@ const writePackage = async () => {
 		devDependencies: {
 			[cli.name]: cli.version,
 		},
+		klap: {
+			example: 'public/index.js',
+		},
 	})
 	await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
-	info('- wrote ./package.json')
+	info('\t- wrote ./package.json')
 	return pkg
 }
 
@@ -59,12 +61,14 @@ const writeFiles = async pkg => {
 </html>`,
 	}
 	for (let [file, content] of Object.entries(files)) {
-		await write(file, content)
-		info(`- wrote ./${file}`)
+		if (!(await exists(file))) {
+			await write(file, content)
+			info(`\t- wrote ./${file}`)
+		}
 	}
 }
 
-export default async () => {
+export const init = async () => {
 	const pkg = await writePackage()
 	await writeFiles(pkg)
 }
