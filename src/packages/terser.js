@@ -37,6 +37,7 @@ export const terser = (options = {}) => {
 					warnings: options.warnings,
 					toplevel: true,
 					mangle: { properties: { regex: '^_' } },
+					compress: { passes: 3 },
 				})
 			} catch (err) {
 				const { message, line, col: column } = err
