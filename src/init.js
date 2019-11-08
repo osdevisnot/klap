@@ -61,7 +61,7 @@ const writeFiles = async pkg => {
 </html>`,
 	}
 	for (let [file, content] of Object.entries(files)) {
-		if (await !exists(file)) {
+		if (!(await exists(file))) {
 			await write(file, content)
 			info(`\t- wrote ./${file}`)
 		}
