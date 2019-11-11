@@ -3,19 +3,15 @@ import { error, info, log, warn, gray, green, bold } from './logger'
 import { init } from './init'
 import { plugins, babelConfig, terser, sizeme, servor } from './plugins'
 import { exists, read, write, safePackageName } from './utils'
+import { getOptions } from './options'
 
-const createConfig = async (command, pkg) => {
-	const { klap = {}, dependencies = {}, peerDependencies = {}, source = 'src/index.js', main, module, browser } = pkg
-
-	const example = klap.example || 'public/index.js'
-
+const createConfig = (command, pkg, options) => {
+	const { dependencies = {}, peerDependencies = {}, source = 'src/index.js', main, module, browser } = pkg
+	const { name, globals, example, sourcemap } = options
 	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
 
 	let outputOptions,
 		inputOptions = { external }
-
-	const sourcemap = klap.sourcemap !== false
-	const globals = klap.globals || {}
 
 	if (command === 'start') {
 		inputOptions = { ...inputOptions, input: example }
@@ -25,17 +21,11 @@ const createConfig = async (command, pkg) => {
 		outputOptions = [
 			main && { file: main, format: 'cjs', sourcemap },
 			module && { file: module, format: 'es', sourcemap },
-			browser && {
-				file: browser,
-				format: 'umd',
-				name: safePackageName(klap.name || pkg.name),
-				sourcemap,
-				globals,
-			},
+			browser && { file: browser, format: 'umd', name, sourcemap, globals },
 		].filter(Boolean)
 	}
 
-	inputOptions = { ...inputOptions, plugins: await plugins(command, pkg) }
+	inputOptions = { ...inputOptions, plugins: plugins(command, pkg, options) }
 
 	return { inputOptions, outputOptions }
 }
@@ -46,11 +36,12 @@ const writeBundle = async (bundle, outputOptions) => {
 }
 
 const klap = async (command, pkg) => {
-	const { inputOptions, outputOptions } = await createConfig(command, pkg)
+	const options = getOptions(pkg)
+	const { inputOptions, outputOptions } = createConfig(command, pkg, options)
 	switch (command) {
 		case 'build':
 			const bundle = await rollup(inputOptions)
-			outputOptions.map(options => writeBundle(bundle, options))
+			outputOptions.map(opts => writeBundle(bundle, opts))
 			break
 		case 'watch':
 		case 'start':
