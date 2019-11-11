@@ -76,14 +76,14 @@ Then use below `klap` commands:
 | ------------------- | ----------------------------------------- | ------------------------------------------ |
 | `klap.name`         | package name for `umd` bundles            | sanitized `pkg.name`                       |
 | `klap.port`         | port for development server               | `1234`                                     |
-| `klap.index`        | location of index html file for example   | `public/index.html`                        |
-| `klap.example`      | location of index js/ts file for example  | `public/index.js`                          |
 | `klap.sourcemap`    | sourcemaps for builds                     | `true`                                     |
 | `klap.minify`       | minification for builds                   | `true`                                     |
 | `klap.pragma`       | pragma for `jsx` and `tsx` compilation    | `React.createElement`                      |
 | `klap.pragmaFrag`   | pragma for `jsx` and `tsx` fragments      | `React.Fragment`                           |
-| `klap.namedExports` | named exports for commonjs modules        | `{}`                                       |
 | `klap.globals`      | global names for umd bundles              | `{}`                                       |
+| `klap.namedExports` | named exports for commonjs modules        | `{}`                                       |
+| `klap.example`      | location of index js/ts file for example  | `public/index.js`                          |
+| `klap.fallback`     | location of index html file for example   | `public/index.html`                        |
 | `browserslist`      | browserlist compatible compilation target | `>1%, not dead, not ie 11, not op_mini all |
 
 Note: See default [browserlist coverage](https://browserl.ist/?q=%3E1%25%2C+not+dead%2C+not+ie+11%2C+not+op_mini+all)
