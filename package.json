@@ -37,6 +37,7 @@
 		"babel-plugin-styled-components": "1.10.6",
 		"babel-plugin-transform-async-to-promises": "0.8.15",
 		"deepmerge": "4.2.2",
+		"getopts": "^2.2.5",
 		"gzip-size": "5.1.1",
 		"kleur": "3.0.3",
 		"mkdirp": "0.5.1",
