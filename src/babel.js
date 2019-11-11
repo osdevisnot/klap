@@ -13,11 +13,9 @@ import pluginTransformRegen from '@babel/plugin-transform-regenerator'
 import pluginStyledComponents from 'babel-plugin-styled-components'
 import pluginMacros from 'babel-plugin-macros'
 
-export const babelConfig = async (command, pkg) => {
+export const babelConfig = (command, pkg, options) => {
 	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json']
-
-	const { klap = {}, browserslist = '>1%, not dead, not ie 11, not op_mini all' } = pkg
-	const { pragma = 'React.createElement', pragmaFrag = 'React.Fragment' } = klap
+	const { browserslist, pragma, pragmaFrag } = options
 
 	const presets = [
 		[
