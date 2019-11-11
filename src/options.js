@@ -12,7 +12,7 @@ const getOptions = pkg => {
 		pragmaFrag = 'React.Fragment',
 		globals = {},
 		namedExports = {},
-		index = 'public/index.html',
+		fallback = 'public/index.html',
 		example = 'public/index.js',
 		browserlist = '>1%, not dead, not ie 11, not op_mini all',
 	} = klap
@@ -26,7 +26,7 @@ const getOptions = pkg => {
 			pragmaFrag: 'pgf',
 			globals: 'g',
 			namedExports: 'd',
-			index: 'i',
+			fallback: 'f',
 			example: 'e',
 			browserlist: 'b',
 		},
@@ -39,12 +39,12 @@ const getOptions = pkg => {
 			pragmaFrag,
 			globals,
 			namedExports,
-			index,
+			fallback,
 			example,
 			browserlist,
 		},
 	})
-	return { ...pkg, ...opts }
+	return { ...opts }
 }
 
 export { getOptions }
