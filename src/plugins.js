@@ -12,19 +12,12 @@ import { servor } from './packages/servor'
 
 import { babelConfig } from './babel'
 
-const plugins = async (command, pkg) => {
-	const { extensions, presets, plugins } = await babelConfig(command, pkg)
-
-	const { klap = {} } = pkg
-
-	const sourcemap = klap.sourcemap !== false,
-		minify = klap.minify !== false,
-		namedExports = klap.namedExports || {},
-		fallback = klap.index || 'public/index.html',
-		port = klap.port || 1234
+const plugins = (command, pkg, options) => {
+	const { extensions, presets, plugins } = babelConfig(command, pkg, options)
+	const { sourcemap, minify, fallback, port, namedExports } = options
 
 	return [
-		sourcemaps && sourcemaps(),
+		sourcemap && sourcemaps(),
 		json(),
 		nodeGlobals(),
 		nodeResolve({ mainFields: ['module', 'jsnext:main', 'browser', 'main'], extensions }),
