@@ -15,7 +15,7 @@ import pluginMacros from 'babel-plugin-macros'
 
 export const babelConfig = (command, pkg, options) => {
 	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json']
-	const { browserslist, pragma, frag } = options
+	const { browserlist, pragma, frag } = options
 
 	const presets = [
 		[
@@ -24,7 +24,7 @@ export const babelConfig = (command, pkg, options) => {
 				loose: true,
 				useBuiltIns: false,
 				modules: false,
-				targets: browserslist,
+				targets: browserlist,
 				exclude: ['transform-async-to-generator', 'transform-regenerator'],
 			},
 		],
