@@ -72,19 +72,20 @@ Then use below `klap` commands:
 
 `klap` uses sensible defaults for most part. However, as needed, use these properties in `package.json` to fine tune `klap`.
 
-| option              | description                               | default                                    |
-| ------------------- | ----------------------------------------- | ------------------------------------------ |
-| `klap.name`         | package name for `umd` bundles            | sanitized `pkg.name`                       |
-| `klap.port`         | port for development server               | `1234`                                     |
-| `klap.sourcemap`    | sourcemaps for builds                     | `true`                                     |
-| `klap.minify`       | minification for builds                   | `true`                                     |
-| `klap.pragma`       | pragma for `jsx` and `tsx` compilation    | `React.createElement`                      |
-| `klap.pragmaFrag`   | pragma for `jsx` and `tsx` fragments      | `React.Fragment`                           |
-| `klap.globals`      | global names for umd bundles              | `{}`                                       |
-| `klap.namedExports` | named exports for commonjs modules        | `{}`                                       |
-| `klap.example`      | location of index js/ts file for example  | `public/index.js`                          |
-| `klap.fallback`     | location of index html file for example   | `public/index.html`                        |
-| `browserslist`      | browserlist compatible compilation target | `>1%, not dead, not ie 11, not op_mini all |
+| option              | cli flag(s)      | description                               | default                                     |
+| ------------------- | ---------------- | ----------------------------------------- | ------------------------------------------- |
+| `source`            | -s --source      | entry file for build command              | `src/index.js`                              |
+| `klap.name`         | -n --name        | package name for `umd` bundles            | sanitized `pkg.name`                        |
+| `klap.port`         | -p --port        | port for development server               | `1234`                                      |
+| `browserslist`      | -b --browserlist | browserlist compatible compilation target | `>1%, not dead, not ie 11, not op_mini all` |
+| `klap.example`      | -e --example     | location of index js/ts file for example  | `public/index.js`                           |
+| `klap.fallback`     | -f --fallback    | location of index html file for example   | `public/index.html`                         |
+| `klap.sourcemap`    | --no-sourcemap   | sourcemaps for builds                     | `true`                                      |
+| `klap.minify`       | --no-minify      | minification for builds                   | `true`                                      |
+| `klap.pragma`       | --pragma         | pragma for `jsx` and `tsx` compilation    | `React.createElement`                       |
+| `klap.frag`         | --frag           | pragma for `jsx` and `tsx` fragments      | `React.Fragment`                            |
+| `klap.globals`      |                  | global names for umd bundles              | `{}`                                        |
+| `klap.namedExports` |                  | named exports for commonjs modules        | `{}`                                        |
 
 Note: See default [browserlist coverage](https://browserl.ist/?q=%3E1%25%2C+not+dead%2C+not+ie+11%2C+not+op_mini+all)
 
