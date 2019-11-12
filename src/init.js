@@ -33,9 +33,6 @@ const writePackage = async () => {
 		devDependencies: {
 			[cli.name]: cli.version,
 		},
-		klap: {
-			example: 'public/index.js',
-		},
 	})
 	await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
 	info('\t- wrote ./package.json')
