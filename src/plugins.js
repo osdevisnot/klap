@@ -30,4 +30,4 @@ const plugins = (command, pkg, options) => {
 	].filter(Boolean)
 }
 
-export { plugins, babelConfig, terser, sizeme, servor }
+export { plugins }

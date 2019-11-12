@@ -1,8 +1,6 @@
 import { rollup, watch } from 'rollup'
-import { error, info, log, warn, gray, green, bold } from './logger'
-import { init } from './init'
-import { plugins, babelConfig, terser, sizeme, servor } from './plugins'
-import { exists, read, write, safePackageName } from './utils'
+import { error, info } from './logger'
+import { plugins } from './plugins'
 import { getOptions } from './options'
 
 const createConfig = (command, pkg, options) => {
@@ -64,23 +62,16 @@ const klap = async (command, pkg) => {
 	}
 }
 
-export {
-	error,
-	info,
-	log,
-	warn,
-	gray,
-	green,
-	bold, // logger
-	init, // init
-	plugins,
-	babelConfig,
-	terser,
-	sizeme,
-	servor, // plugins
-	exists,
-	read,
-	write,
-	safePackageName, // utils
-	klap,
-}
+export { klap }
+
+// Experimental: Export internals to support extending parts of `klap`
+// Remove parts once we determine what we need in `tslib-cli`
+export { error, info, log, warn, gray, green, bold } from './logger'
+export { getOptions } from './options'
+export { plugins } from './plugins'
+export { init } from 'init'
+export { exists, read, write, safePackageName } from './utils'
+export { babelConfig } from './babel'
+export { terser } from './packages/terser'
+export { sizeme } from './packages/sizeme'
+export { servor } from './packages/servor'
