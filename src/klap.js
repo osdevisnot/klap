@@ -7,8 +7,8 @@ import { getOptions } from './options'
 
 const createConfig = (command, pkg, options) => {
 	// TODO: add option for source
-	const { dependencies = {}, peerDependencies = {}, source = 'src/index.js', main, module, browser } = pkg
-	const { name, globals, example, sourcemap } = options
+	const { dependencies = {}, peerDependencies = {}, main, module, browser } = pkg
+	const { name, globals, example, source, sourcemap } = options
 	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
 
 	let outputOptions,
