@@ -69,7 +69,7 @@ export { klap }
 export { error, info, log, warn, gray, green, bold } from './logger'
 export { getOptions } from './options'
 export { plugins } from './plugins'
-export { init } from 'init'
+export { init } from './init'
 export { exists, read, write, safePackageName } from './utils'
 export { babelConfig } from './babel'
 export { terser } from './packages/terser'
