@@ -15,7 +15,7 @@ import pluginMacros from 'babel-plugin-macros'
 
 export const babelConfig = (command, pkg, options) => {
 	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json']
-	const { browserslist, pragma, pragmaFrag } = options
+	const { browserslist, pragma, frag } = options
 
 	const presets = [
 		[
@@ -29,7 +29,7 @@ export const babelConfig = (command, pkg, options) => {
 			},
 		],
 		[presetTs, { isTSX: true, allExtensions: true }],
-		[presetReact, { pragma, pragmaFrag }],
+		[presetReact, { pragma, pragmaFrag: frag }],
 	]
 
 	const plugins = [
