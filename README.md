@@ -10,10 +10,10 @@
 
 ## :sparkles: Features
 
-- :tada: **zero config** : bundle your library using only a `package.json`
-- :boom: **zero config** typescript support (just rename `*.js` to `*.ts`)
-- :star2: **zero config** code transforms using babel macros
-- :rocket: **zero dependency** build tool.
+- :tada: **zero config**: bundle your library using only a `package.json`
+- :boom: **zero config**: typescript support (just rename `*.js` to `*.ts`)
+- :star2: **zero config**: code transforms using babel macros
+- :rocket: **zero dependency**: uses [gcc-style bundling](https://www.npmjs.com/package/@zeit/ncc).
 - :haircut: **tiny bundles** for all inputs
 - :fire: **Modern JS** syntax with class properties, async/await, and generators
 - :confetti_ball: Supports **`react`** and **`styled-components`** out of the box.
@@ -23,8 +23,8 @@
 
 ### :muscle: Powered By
 
-- [babel](https://babeljs.io) The compiler for next generation JavaScript
 - [rollup](https://rollupjs.org) Next-generation ES module bundler
+- [babel](https://babeljs.io) The compiler for next generation JavaScript
 
 ## :plate_with_cutlery: Usage
 
@@ -46,7 +46,11 @@ You can also install `klap` globally:
 npm install -g
 ```
 
-While using global installation, use `klap init` command to initialize your project.
+While using global installation, use `init` command to initialize your project.
+
+```bash
+klap init
+```
 
 Then use below `klap` commands:
 
@@ -62,19 +66,19 @@ Then use below `klap` commands:
 
 `klap` reads your `package.json` for config options. Notably,
 
-- `pkg.source` determines source file to compile and bundle
+- **`pkg.source`** determines source file to compile and bundle
 
-- `pkg.main`, `pkg.module` and `pkg.browser` determines compilation targets for `cjs`, `esm` and `umd` respectively.
+- **`pkg.main`**, **`pkg.module`** and **`pkg.browser`** determines compilation targets for **`cjs`**, **`esm`** and **`umd`** respectively.
 
-> Note: Dropping `pkg.main` will disable `cjs` output. Applies to `esm` and `umd` as well.
+> Note: Dropping `pkg.main` will disable `cjs` output. This also applies to `esm` and `umd` as well.
 
 ### :trident: Granular Control
 
-`klap` uses sensible defaults for most part. However, as needed, use these properties in `package.json` to fine tune `klap`.
+`klap` uses sensible defaults for most part. However, as needed, use below properties in `package.json` to fine tune `klap`. You can also use `cli flags` to control config options for `klap`.
 
 | option              | cli flag(s)      | description                               | default                                     |
 | ------------------- | ---------------- | ----------------------------------------- | ------------------------------------------- |
-| `source`            | -s --source      | entry file for build command              | `src/index.js`                              |
+| `source`            | -s --source      | entry file for build & watch commands     | `src/index.js`                              |
 | `klap.name`         | -n --name        | package name for `umd` bundles            | sanitized `pkg.name`                        |
 | `klap.port`         | -p --port        | port for development server               | `1234`                                      |
 | `browserslist`      | -b --browserlist | browserlist compatible compilation target | `>1%, not dead, not ie 11, not op_mini all` |
