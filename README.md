@@ -38,7 +38,7 @@ This will create a `package.json` with `build`, `watch` and `start` commands.
 
 Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 
-## Global Installation
+### :pushpin: Global Installation
 
 You can also install `klap` globally:
 
@@ -50,7 +50,7 @@ While using global installation, use `klap init` command to initialize your proj
 
 Then use below `klap` commands:
 
-### `klap` commands
+### :hammer: `klap` commands
 
 - **`klap build`** to build your project.
 
@@ -87,7 +87,7 @@ Then use below `klap` commands:
 | `klap.globals`      |                  | global names for umd bundles              | `{}`                                        |
 | `klap.namedExports` |                  | named exports for commonjs modules        | `{}`                                        |
 
-Note: See default [browserlist coverage](https://browserl.ist/?q=%3E1%25%2C+not+dead%2C+not+ie+11%2C+not+op_mini+all)
+> Note: See default [browserlist coverage](https://browserl.ist/?q=%3E1%25%2C+not+dead%2C+not+ie+11%2C+not+op_mini+all)
 
 ## :clinking_glasses: License
 
