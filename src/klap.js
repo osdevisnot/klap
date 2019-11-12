@@ -6,7 +6,6 @@ import { exists, read, write, safePackageName } from './utils'
 import { getOptions } from './options'
 
 const createConfig = (command, pkg, options) => {
-	// TODO: add option for source
 	const { dependencies = {}, peerDependencies = {}, main, module, browser } = pkg
 	const { name, globals, example, source, sourcemap } = options
 	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
