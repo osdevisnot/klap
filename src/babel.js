@@ -28,10 +28,8 @@ export const babelConfig = (command, pkg, options) => {
 				exclude: ['transform-async-to-generator', 'transform-regenerator'],
 			},
 		],
-		// TODO: Create babel issue for this?
-		// the preset ts needs `React` as jsxPragma, vs preset react needs `React.createElement`
-		// but when using `h` as pragma, both presets needs it to be just `h`
-		[presetTs, { jsxPragma: pragma.split('.').pop(), isTSX: true, allExtensions: true }],
+		// Note: when using `React`, presetTs needs `React` as jsxPragma, vs presetReact needs `React.createElement`, but when using `h` as pragma, both presets needs it to be just `h`
+		[presetTs, { jsxPragma: pragma.split('.').shift(), isTSX: true, allExtensions: true }],
 		[presetReact, { pragma, pragmaFrag: frag }],
 	]
 
