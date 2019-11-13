@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-set -x
+# set -x
 
-npm cache clean --force
-yarn cache clean
+# npm cache clean --force
+# yarn cache clean
 
 git clean -fdX 
-npm install
-npm run build
 npm link
 
 cd examples
@@ -16,15 +14,4 @@ do
 	cd ${dir} && klap build && rm -rf dist/*.map && prettier --write dist/*.js && cd ..
 done
 
-cd ~/temp
-
-rm -rf store
-
-mkdir store
-
-cd store
-
-klap init
-
-npm run build
 
