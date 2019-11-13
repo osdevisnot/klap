@@ -11,7 +11,8 @@ cd examples
 
 for dir in scaffold scaffold-typescript react-component react-typescript react-sc-typescript
 do
-	cd ${dir} && klap build && rm -rf dist/*.map && prettier --write dist/*.js && cd ..
+	cd ${dir} && klap build && rm -rf dist/*.map && cd ..
 done
 
+prettier --write --no-semi **/dist/*.js
 
