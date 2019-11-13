@@ -20,7 +20,7 @@ const snakeToCamel = str =>
 		group
 			.toUpperCase()
 			.replace('-', '')
-			.replace('_', '')
+			.replace('_', ''),
 	)
 
 const safePackageName = str => snakeToCamel(str.replace('@', '').replace('/', '.'))
