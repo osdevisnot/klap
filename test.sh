@@ -14,5 +14,5 @@ do
 	cd ${dir} && klap build && rm -rf dist/*.map && cd ..
 done
 
-prettier --write --no-semi **/dist/*.js
+prettier --write **/dist/*.js
 
