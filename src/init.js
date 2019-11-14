@@ -17,7 +17,7 @@ const writePackage = async () => {
 				.pop(),
 			version: '0.0.0',
 		},
-		pkg
+		pkg,
 	)
 	pkg = merge(pkg, {
 		main: 'dist/index.cjs.js',
