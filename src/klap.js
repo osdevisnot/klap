@@ -8,22 +8,17 @@ const createConfig = (command, pkg, options) => {
 	const { name, globals, example, source, sourcemap } = options
 	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
 
-	let outputOptions,
-		inputOptions = { external }
-
-	if (command === 'start') {
-		inputOptions = { ...inputOptions, input: example }
-		outputOptions = [{ file: browser, format: 'umd', sourcemap }]
-	} else {
-		inputOptions = { ...inputOptions, input: source }
-		outputOptions = [
-			main && { file: main, format: 'cjs', sourcemap },
-			module && { file: module, format: 'es', sourcemap },
-			browser && { file: browser, format: 'umd', name, sourcemap, globals },
-		].filter(Boolean)
+	let inputOptions = {
+		external,
+		input: command === 'start' ? example : source,
+		plugins: plugins(command, pkg, options),
 	}
 
-	inputOptions = { ...inputOptions, plugins: plugins(command, pkg, options) }
+	let outputOptions = [
+		main && { file: main, format: 'cjs', sourcemap },
+		module && { file: module, format: 'es', sourcemap },
+		browser && { file: browser, format: 'umd', name, sourcemap, globals },
+	].filter(Boolean)
 
 	return { inputOptions, outputOptions }
 }
