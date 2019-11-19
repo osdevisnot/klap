@@ -4,21 +4,24 @@ import cli from '../package.json'
 import { info } from './logger'
 import { exists, read, write } from './utils'
 
+let name, source
+
 const writePackage = async () => {
 	let pkg = {}
-	let name = process
+	name = process
 		.cwd()
 		.split('/')
 		.pop()
+	source = `src/${name}.js`
 	if (await exists('./package.json')) {
 		pkg = JSON.parse(await read('./package.json'))
 	}
 	pkg = merge({ name, version: '0.0.0' }, pkg)
 	pkg = merge(pkg, {
-		main: 'dist/index.cjs.js',
-		module: 'dist/index.esm.js',
-		browser: 'dist/index.js',
-		source: 'src/index.js',
+		main: `dist/${name}.cjs.js`,
+		module: `dist/${name}.esm.js`,
+		browser: `dist/${name}.js`,
+		source,
 		files: ['dist'],
 		scripts: {
 			build: 'klap build',
@@ -37,8 +40,8 @@ const writePackage = async () => {
 
 const writeFiles = async pkg => {
 	const files = {
-		'src/index.js': `export const sum = (a, b) => a + b;`,
-		'public/index.js': `import { sum } from '../src';\n\nconsole.log('this works => ', sum(2, 3));`,
+		[source]: `export const sum = (a, b) => a + b;`,
+		'public/index.js': `import { sum } from '../src/${name}';\n\nconsole.log('this works => ', sum(2, 3));`,
 		'public/index.html': `<!DOCTYPE html>
 <html lang="en">
 	<head>
