@@ -39,6 +39,7 @@
 		"babel-plugin-macros": "2.6.2",
 		"babel-plugin-styled-components": "1.10.6",
 		"babel-plugin-transform-async-to-promises": "0.8.15",
+		"cz-conventional-changelog": "^3.0.2",
 		"deepmerge": "4.2.2",
 		"getopts": "2.2.5",
 		"gzip-size": "5.1.1",
@@ -57,5 +58,10 @@
 		"servor": "3.0.5",
 		"sort-package-json": "1.23.1",
 		"terser": "4.4.0"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
 	}
 }
