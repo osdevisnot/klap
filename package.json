@@ -13,6 +13,7 @@
 		"klap": "cli.js"
 	},
 	"scripts": {
+		"prebuild": "patch-package",
 		"build": "ncc build src/klap.js -mo dist",
 		"prepare": "npm run build",
 		"prepub": "npm run setup",
@@ -20,7 +21,6 @@
 		"postpub": "npm publish",
 		"presetup": "git clean -fdX",
 		"setup": "npm install",
-		"postsetup": "patch-package",
 		"watch": "ncc build src/klap.js -wo dist"
 	},
 	"prettier": "@osdevisnot/prettier",
