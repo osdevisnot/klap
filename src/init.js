@@ -26,8 +26,9 @@ const writePackage = async () => {
 		source: 'src/index.js',
 		files: ['dist'],
 		scripts: {
-			start: 'klap start',
 			build: 'klap build',
+			prepublishOnly: 'klap build',
+			start: 'klap start',
 			watch: 'klap watch',
 		},
 		devDependencies: {
