@@ -1,0 +1,17 @@
+diff --git a/node_modules/rollup-plugin-commonjs/dist/rollup-plugin-commonjs.cjs.js b/node_modules/rollup-plugin-commonjs/dist/rollup-plugin-commonjs.cjs.js
+index 7ca4ae0..d5e2fe6 100644
+--- a/node_modules/rollup-plugin-commonjs/dist/rollup-plugin-commonjs.cjs.js
++++ b/node_modules/rollup-plugin-commonjs/dist/rollup-plugin-commonjs.cjs.js
+@@ -53,10 +53,10 @@ var peerDependencies = {
+ };
+ 
+ const PROXY_SUFFIX = '?commonjs-proxy';
+-const getProxyId = id => `\0${id}${PROXY_SUFFIX}`;
++const getProxyId = id => '\0' + id + PROXY_SUFFIX;
+ const getIdFromProxyId = proxyId => proxyId.slice(1, -PROXY_SUFFIX.length);
+ const EXTERNAL_SUFFIX = '?commonjs-external';
+-const getExternalProxyId = id => `\0${id}${EXTERNAL_SUFFIX}`;
++const getExternalProxyId = id => '\0' + id + EXTERNAL_SUFFIX;
+ const getIdFromExternalProxyId = proxyId => proxyId.slice(1, -EXTERNAL_SUFFIX.length);
+ const HELPERS_ID = '\0commonjsHelpers.js'; // `x['default']` is used instead of `x.default` for backward compatibility with ES3 browsers.
+ // Minifiers like uglify will usually transpile it back if compatibility with ES3 is not enabled.
