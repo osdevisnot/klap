@@ -6,19 +6,14 @@ import { exists, read, write } from './utils'
 
 const writePackage = async () => {
 	let pkg = {}
+	let name = process
+		.cwd()
+		.split('/')
+		.pop()
 	if (await exists('./package.json')) {
 		pkg = JSON.parse(await read('./package.json'))
 	}
-	pkg = merge(
-		{
-			name: process
-				.cwd()
-				.split('/')
-				.pop(),
-			version: '0.0.0',
-		},
-		pkg,
-	)
+	pkg = merge({ name, version: '0.0.0' }, pkg)
 	pkg = merge(pkg, {
 		main: 'dist/index.cjs.js',
 		module: 'dist/index.esm.js',
@@ -54,7 +49,7 @@ const writeFiles = async pkg => {
 	</head>
 	<body>
 		<div id="root"></div>
-		<script src="${pkg.browser}"></script>
+		<script src="${pkg.module}" type="module"></script>
 	</body>
 </html>`,
 	}
