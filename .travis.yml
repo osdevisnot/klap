@@ -4,11 +4,19 @@ cache:
     - node_modules
 node_js:
   - '12'
-  - '13'
-script:
-  - npm run build && npm link
-  - cd $TRAVIS_BUILD_DIR/examples/scaffold && klap build
-  - cd $TRAVIS_BUILD_DIR/examples/scaffold-typescript && klap build
-  - cd $TRAVIS_BUILD_DIR/examples/react-component && klap build
-  - cd $TRAVIS_BUILD_DIR/examples/react-typescript && klap build
-  - cd $TRAVIS_BUILD_DIR/examples/react-sc-typescript && klap build
+jobs:
+  include:
+    - stage: test
+      script:
+        - npm run build && npm link
+        - cd $TRAVIS_BUILD_DIR/examples/scaffold && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/scaffold-typescript && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/react-component && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/react-typescript && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/react-sc-typescript && klap build
+    - stage: release
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
