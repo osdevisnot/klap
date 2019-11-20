@@ -44,7 +44,7 @@ npx klap init
 
 This will create a minimal `package.json` with `source`, `main`, `module` and `browser` entries and the `build`, `watch` and `start` scripts.
 
-```json
+```jsonc
 {
   "name": "...",
   "version": "0.0.0",
