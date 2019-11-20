@@ -8,7 +8,7 @@ a zero config, zero dependency bundler for tiny javascript packages.
 ![npm](https://img.shields.io/npm/v/klap)
 ![NPM](https://img.shields.io/npm/l/klap)
 
-<table>
+<table border="0">
 <tr><td>
 <img src="docs/klap-init.gif" alt="klap init output">
 </td><td>
@@ -31,8 +31,8 @@ a zero config, zero dependency bundler for tiny javascript packages.
 
 ### :muscle: Powered By
 
-- [rollup](https://rollupjs.org) Next-generation ES module bundler
-- [babel](https://babeljs.io) The compiler for next generation JavaScript
+- [rollup](https://rollupjs.org) - Next-generation ES module bundler
+- [babel](https://babeljs.io) - The compiler for next generation JavaScript
 
 ## :plate_with_cutlery: Usage
 
@@ -42,51 +42,42 @@ First, setup your project using `klap init`:
 npx klap init
 ```
 
-This will create a `package.json` with `build`, `watch` and `start` commands.
+This will create a minimal `package.json` with `source`, `main`, `module` and `browser` entries and the `build`, `watch` and `start` scripts.
 
-Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
+```json
+{
+  "name": "...",
+  "version": "0.0.0",
+  "files": [ "dist" ],
+  "source": "src/sum.js",         # source file to compile and bundle
+  "main": "dist/sum.cjs.js",      # commonjs target
+  "module": "dist/sum.esm.js",    # esm target
+  "browser": "dist/sum.js",       # umd target
+  "scripts": {
+    "build": "klap build",        # build your project
+    "watch": "klap watch",        # build and watch for changes
+    "start": "klap start",        # watch and start dev server
+  },
+  "devDependencies": {
+    "klap": "3.2.0"               # klap as dev dependency
+  }
+}
 
-### :pushpin: Global Installation
-
-You can also install `klap` globally:
-
-```bash
-npm install -g
 ```
-
-While using global installation, use `init` command to initialize your project.
-
-```bash
-klap init
-```
-
-Then use below `klap` commands:
-
-### :hammer: `klap` commands
-
-- **`klap build`** to build your project.
-
-- **`klap watch`** to build and watch for changes.
-
-- **`klap start`** to watch and start a dev server.
-
-## :anger: `klap` configuration
-
-`klap` reads your `package.json` for config options. Notably,
-
-- **`pkg.source`** determines source file to compile and bundle
-
-- **`pkg.main`**, **`pkg.module`** and **`pkg.browser`** determines compilation targets for **`cjs`**, **`esm`** and **`umd`** respectively.
 
 > Note: Dropping `pkg.main` will disable `cjs` output. This also applies to `esm` and `umd` as well.
 
-### :trident: Granular Control
+Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 
-`klap` uses sensible defaults for most part. However, as needed, use below properties in `package.json` to fine tune `klap`. You can also use `cli flags` to control config options for `klap`.
+### :anger: Granular Control
+
+`klap` uses sensible defaults for most part. However, as needed, use below properties in `package.json` to fine tune `klap`.
+
+You can also use `cli flags` to control config options for `klap`.
 
 | option              | cli flag(s)           | description                               | default                                     |
 | ------------------- | --------------------- | ----------------------------------------- | ------------------------------------------- |
-| `source`            | -s&nbsp;--source      | entry file for build & watch commands     | `src/index.js`                              |
+| `source`            | -s&nbsp;--source      | source file to compile and bundle         | `src/index.js`                              |
 | `klap.name`         | -n&nbsp;--name        | package name for `umd` bundles            | sanitized `pkg.name`                        |
 | `klap.port`         | -p&nbsp;--port        | port for development server               | `1234`                                      |
 | `browserslist`      | -b&nbsp;--browserlist | browserlist compatible compilation target | `>1%, not dead, not ie 11, not op_mini all` |
