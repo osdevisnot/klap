@@ -8,7 +8,13 @@ a zero config, zero dependency bundler for tiny javascript packages.
 ![npm](https://img.shields.io/npm/v/klap)
 ![NPM](https://img.shields.io/npm/l/klap)
 
-![Build Output](docs/klap-build.gif)
+<table>
+<tr><td>
+<img src="docs/klap-init.gif" alt="klap init output">
+</td><td>
+<img src="docs/klap-build.gif" alt="klap build output">
+</td></tr>
+</table>
 
 ## :sparkles: Features
 
