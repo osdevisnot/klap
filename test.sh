@@ -4,8 +4,8 @@
 # npm cache clean --force
 # yarn cache clean
 
-git clean -fdX 
-npm link
+# git clean -fdX 
+# npm link
 
 cd examples
 
