@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # set -x
 
-# git clean -fdX 
-# npm link
+git clean -fdX
+
+npm link
 
 npm run build
 
