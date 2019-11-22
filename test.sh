@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # set -x
 
-# npm cache clean --force
-# yarn cache clean
-
 # git clean -fdX 
 # npm link
+
+npm run build
 
 cd examples
 
