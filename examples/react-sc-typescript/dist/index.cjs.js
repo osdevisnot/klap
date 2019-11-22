@@ -1,16 +1,14 @@
-'use strict'
-var t
-function e() {
-	const t = ((n = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), o || (o = n.slice(0)), (n.raw = o), n)
-	var n, o
+var n
+function t() {
+	const n = ((o = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), r || (r = o.slice(0)), (o.raw = r), o)
+	var o, r
 	return (
-		(e = function() {
-			return t
+		(t = function() {
+			return n
 		}),
-		t
+		n
 	)
 }
-Object.defineProperty(exports, 't', { value: !0 })
-const n = ((t = require('styled-components')) && 'object' == typeof t && 'default' in t ? t.default : t).button(e())
-exports.Button = n
+const o = ((n = require('styled-components')) && 'object' == typeof n && 'default' in n ? n.default : n).button(t())
+exports.Button = o
 //# sourceMappingURL=index.cjs.js.map

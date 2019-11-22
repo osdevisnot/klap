@@ -14,10 +14,12 @@ const createConfig = (command, pkg, options) => {
 		plugins: plugins(command, pkg, options),
 	}
 
+	const defaultOptions = { esModule: false, strict: false, freeze: false }
+
 	let outputOptions = [
-		main && { file: main, format: 'cjs', sourcemap },
-		module && { file: module, format: 'es', sourcemap },
-		browser && { file: browser, format: 'umd', name, sourcemap, globals },
+		main && { ...defaultOptions, file: main, format: 'cjs', sourcemap },
+		module && { ...defaultOptions, file: module, format: 'es', sourcemap },
+		browser && { ...defaultOptions, file: browser, format: 'umd', name, sourcemap, globals },
 	].filter(Boolean)
 
 	return { inputOptions, outputOptions }
