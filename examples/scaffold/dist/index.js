@@ -1,12 +1,11 @@
-var e, t
+var e, f
 ;(e = this),
-	(t = function(e) {
-		'use strict'
-		;(e.sum = (e, t) => e + t), Object.defineProperty(e, 't', { value: !0 })
+	(f = function(e) {
+		e.sum = (e, f) => e + f
 	}),
 	'object' == typeof exports && 'undefined' != typeof module
-		? t(exports)
+		? f(exports)
 		: 'function' == typeof define && define.amd
-		? define(['exports'], t)
-		: t(((e = e || self).scaffold = {}))
+		? define(['exports'], f)
+		: f(((e = e || self).scaffold = {}))
 //# sourceMappingURL=index.js.map

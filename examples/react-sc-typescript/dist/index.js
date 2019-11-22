@@ -1,23 +1,22 @@
-var e, t
+var e, n
 ;(e = this),
-	(t = function(e, t) {
-		'use strict'
-		function n() {
-			const e = ((t = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), o || (o = t.slice(0)), (t.raw = o), t)
-			var t, o
+	(n = function(e, n) {
+		function t() {
+			const e = ((n = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), o || (o = n.slice(0)), (n.raw = o), n)
+			var n, o
 			return (
-				(n = function() {
+				(t = function() {
 					return e
 				}),
 				e
 			)
 		}
-		const o = (t = t && t.hasOwnProperty('default') ? t.default : t).button(n())
-		;(e.Button = o), Object.defineProperty(e, 't', { value: !0 })
+		const o = (n = n && n.hasOwnProperty('default') ? n.default : n).button(t())
+		e.Button = o
 	}),
 	'object' == typeof exports && 'undefined' != typeof module
-		? t(exports, require('styled-components'))
+		? n(exports, require('styled-components'))
 		: 'function' == typeof define && define.amd
-		? define(['exports', 'styled-components'], t)
-		: t(((e = e || self).reactScTypescript = {}), e.styledComponents)
+		? define(['exports', 'styled-components'], n)
+		: n(((e = e || self).reactScTypescript = {}), e.styledComponents)
 //# sourceMappingURL=index.js.map

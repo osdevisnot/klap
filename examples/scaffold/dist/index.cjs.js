@@ -1,3 +1,2 @@
-'use strict'
-Object.defineProperty(exports, 's', { value: !0 }), (exports.sum = (e, s) => e + s)
+exports.sum = (e, o) => e + o
 //# sourceMappingURL=index.cjs.js.map
