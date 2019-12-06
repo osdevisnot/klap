@@ -2,6 +2,8 @@ import { rollup, watch } from 'rollup'
 import { error, info } from './logger'
 import { plugins } from './plugins'
 import { getOptions } from './options'
+import { dirname } from 'path'
+import del from 'del'
 
 const createConfig = (command, pkg, options) => {
 	const { dependencies = {}, peerDependencies = {}, main, module, browser } = pkg
@@ -30,9 +32,16 @@ const writeBundle = async (bundle, outputOptions) => {
 	await bundle.write(outputOptions)
 }
 
+const deleteDirs = async pkg => {
+	const dirs = {}
+	;['main', 'module', 'browser'].map(type => pkg[type] && (dirs[dirname(pkg[type])] = true))
+	await del(Object.keys(dirs))
+}
+
 const klap = async (command, pkg) => {
 	const options = getOptions(pkg)
 	const { inputOptions, outputOptions } = createConfig(command, pkg, options)
+	await deleteDirs(pkg)
 	switch (command) {
 		case 'build':
 			const bundle = await rollup(inputOptions)
