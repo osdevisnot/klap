@@ -3,9 +3,9 @@
 
 git clean -fdX
 
-npm link
+yarn
 
-npm run build
+yarn run build
 
 cd examples
 
