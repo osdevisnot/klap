@@ -22,6 +22,7 @@
 		"semantic-release": "semantic-release",
 		"presetup": "git clean -fdX",
 		"setup": "yarn",
+		"test": "echo 'run ./test.sh'",
 		"watch": "ncc build src/klap.js -wo dist"
 	},
 	"config": {
