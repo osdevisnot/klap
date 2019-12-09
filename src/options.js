@@ -14,7 +14,7 @@ const getOptions = pkg => {
 		namedExports = {},
 		fallback = 'public/index.html',
 		example = 'public/index.js',
-		browserlist = '>1%, not dead, not ie 11, not op_mini all',
+		browserlist = '>1%, not ie 11, not op_mini all',
 	} = klap
 	const opts = getopts(process.argv.slice(2), {
 		boolean: ['sourcemap', 'minify'],
