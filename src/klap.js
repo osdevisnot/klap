@@ -1,16 +1,16 @@
+import del from 'del'
+import { dirname } from 'path'
 import { rollup, watch } from 'rollup'
 import { error, info } from './logger'
-import { plugins } from './plugins'
 import { getOptions } from './options'
-import { dirname } from 'path'
-import del from 'del'
+import { plugins } from './plugins'
 
-const createConfig = (command, pkg, options) => {
+const defaultOptions = { esModule: false, strict: false, freeze: false }
+
+const buildConfig = (command, pkg, options) => {
 	const { dependencies = {}, peerDependencies = {}, main, module, browser } = pkg
-	const { name, globals, example, source, sourcemap } = options
-	const defaultOptions = { esModule: false, strict: false, freeze: false }
-	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
-	const input = command === 'start' ? example : source
+	const { name, globals, source: input, sourcemap } = options
+	const external = Object.keys({ ...dependencies, ...peerDependencies })
 
 	let inputOptions = [
 		main && { external, input, plugins: plugins(command, pkg, { ...options, format: 'cjs' }) },
@@ -27,9 +27,23 @@ const createConfig = (command, pkg, options) => {
 	return { inputOptions, outputOptions }
 }
 
+const startConfig = (command, pkg, options) => {
+	const { module, browser } = pkg
+	const { name, globals, example: input, sourcemap, target } = options
+	let inputOptions, outputOptions
+	if (target === 'es') {
+		inputOptions = { input, plugins: plugins(command, pkg, { ...options, format: 'es' }) }
+		outputOptions = { ...defaultOptions, file: module, format: 'es', sourcemap }
+	} else if (target === 'umd') {
+		inputOptions = { input, plugins: plugins(command, pkg, { ...options, format: 'umd' }) }
+		outputOptions = { ...defaultOptions, file: browser, format: 'umd', name, sourcemap, globals }
+	}
+	return { inputOptions, outputOptions }
+}
+
 const deleteDirs = async pkg => {
 	const dirs = {}
-	;['main', 'module', 'browser'].map(type => pkg[type] && (dirs[dirname(pkg[type])] = true))
+	;['main', 'module', 'browser'].map(type => pkg[type] && (dirs[dirname(pkg[type]) + '/*.js'] = true))
 	await del(Object.keys(dirs))
 }
 
@@ -43,45 +57,57 @@ const build = async (options, index, inputOptions) => {
 	await writeBundle(bundle, options)
 }
 
-const klap = async (command, pkg) => {
-	const options = getOptions(pkg)
-	const { inputOptions, outputOptions } = createConfig(command, pkg, options)
-	await deleteDirs(pkg)
-	switch (command) {
-		case 'build':
-			outputOptions.map((opts, index) => build(opts, index, inputOptions[index]))
+const processWatcher = event => {
+	switch (event.code) {
+		case 'ERROR':
+			error(event.error)
 			break
-		case 'watch':
-		case 'start':
-			const watchOptions = outputOptions.map((output, index) => ({
-				...inputOptions[index],
-				output,
-			}))
-			const watcher = watch(watchOptions)
-			watcher.on('event', event => {
-				switch (event.code) {
-					case 'ERROR':
-						error(event.error)
-						break
-					case 'END':
-						info(`${new Date().toLocaleTimeString('en-GB')} - Waiting for Changes...`)
-						break
-				}
-			})
+		case 'END':
+			info(`${new Date().toLocaleTimeString('en-GB')} - Waiting for Changes...`)
 			break
 	}
 }
 
-export { klap }
+const klap = async (command, pkg) => {
+	const options = getOptions(pkg)
+	await deleteDirs(pkg)
+	let config, watchOptions, watcher
+	switch (command) {
+		case 'build':
+			config = buildConfig(command, pkg, options)
+			config.outputOptions.map((opts, index) => build(opts, index, config.inputOptions[index]))
+			break
+		case 'watch':
+			config = buildConfig(command, pkg, options)
+			watchOptions = config.outputOptions.map((output, index) => ({
+				...config.inputOptions[index],
+				output,
+			}))
+			watcher = watch(watchOptions)
+			watcher.on('event', processWatcher)
+			break
+		case 'start':
+			config = startConfig(command, pkg, options)
+			watchOptions = {
+				...config.inputOptions,
+				output: config.outputOptions,
+			}
+			console.log(watchOptions)
+			watcher = watch(watchOptions)
+			watcher.on('event', processWatcher)
+			break
+	}
+}
 
 // Experimental: Export internals to support extending parts of `klap`
 // Remove parts once we determine what we need in `tslib-cli`
-export { error, info, log, warn, gray, green, bold } from './logger'
-export { getOptions } from './options'
-export { plugins } from './plugins'
-export { init } from './init'
-export { exists, read, write, safePackageName } from './utils'
 export { babelConfig } from './babel'
-export { terser } from './packages/terser'
-export { sizeme } from './packages/sizeme'
+export { init } from './init'
+export { bold, error, gray, green, info, log, warn } from './logger'
+export { getOptions } from './options'
 export { servor } from './packages/servor'
+export { sizeme } from './packages/sizeme'
+export { terser } from './packages/terser'
+export { plugins } from './plugins'
+export { exists, read, safePackageName, write } from './utils'
+export { klap }
