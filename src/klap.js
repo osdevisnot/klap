@@ -92,7 +92,6 @@ const klap = async (command, pkg) => {
 				...config.inputOptions,
 				output: config.outputOptions,
 			}
-			console.log(watchOptions)
 			watcher = watch(watchOptions)
 			watcher.on('event', processWatcher)
 			break
