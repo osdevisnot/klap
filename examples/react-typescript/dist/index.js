@@ -2,7 +2,9 @@ var e, t
 ;(e = this),
 	(t = function(e, t) {
 		;(t = t && t.hasOwnProperty('default') ? t.default : t),
-			(e.Button = ({ onClick: e }) => t.createElement('button', { class: 'button', onClick: e }, 'Hello Button'))
+			(e.Button = function(e) {
+				return t.createElement('button', { class: 'button', onClick: e.onClick }, 'Hello Button')
+			})
 	}),
 	'object' == typeof exports && 'undefined' != typeof module
 		? t(exports, require('react'))

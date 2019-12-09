@@ -2,16 +2,17 @@ var e, n
 ;(e = this),
 	(n = function(e, n) {
 		function t() {
-			const e = ((n = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), o || (o = n.slice(0)), (n.raw = o), n)
-			var n, o
+			var e,
+				n,
+				o = ((e = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), n || (n = e.slice(0)), (e.raw = n), e)
 			return (
 				(t = function() {
-					return e
+					return o
 				}),
-				e
+				o
 			)
 		}
-		const o = (n = n && n.hasOwnProperty('default') ? n.default : n).button(t())
+		var o = (n = n && n.hasOwnProperty('default') ? n.default : n).button(t())
 		e.Button = o
 	}),
 	'object' == typeof exports && 'undefined' != typeof module

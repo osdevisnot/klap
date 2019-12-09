@@ -1,11 +1,13 @@
-var e, f
+var e, n
 ;(e = this),
-	(f = function(e) {
-		e.sum = (e, f) => e + f
+	(n = function(e) {
+		e.sum = function(e, n) {
+			return e + n
+		}
 	}),
 	'object' == typeof exports && 'undefined' != typeof module
-		? f(exports)
+		? n(exports)
 		: 'function' == typeof define && define.amd
-		? define(['exports'], f)
-		: f(((e = e || self).scaffold = {}))
+		? define(['exports'], n)
+		: n(((e = e || self).scaffold = {}))
 //# sourceMappingURL=index.js.map

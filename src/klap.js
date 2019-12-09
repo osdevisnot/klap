@@ -8,15 +8,15 @@ import del from 'del'
 const createConfig = (command, pkg, options) => {
 	const { dependencies = {}, peerDependencies = {}, main, module, browser } = pkg
 	const { name, globals, example, source, sourcemap } = options
-	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
-
-	let inputOptions = {
-		external,
-		input: command === 'start' ? example : source,
-		plugins: plugins(command, pkg, options),
-	}
-
 	const defaultOptions = { esModule: false, strict: false, freeze: false }
+	const external = command === 'start' ? [] : Object.keys({ ...dependencies, ...peerDependencies })
+	const input = command === 'start' ? example : source
+
+	let inputOptions = [
+		main && { external, input, plugins: plugins(command, pkg, { ...options, format: 'cjs' }) },
+		module && { external, input, plugins: plugins(command, pkg, { ...options, format: 'es' }) },
+		browser && { external, input, plugins: plugins(command, pkg, { ...options, format: 'umd' }) },
+	].filter(Boolean)
 
 	let outputOptions = [
 		main && { ...defaultOptions, file: main, format: 'cjs', sourcemap },
@@ -27,15 +27,20 @@ const createConfig = (command, pkg, options) => {
 	return { inputOptions, outputOptions }
 }
 
+const deleteDirs = async pkg => {
+	const dirs = {}
+	;['main', 'module', 'browser'].map(type => pkg[type] && (dirs[dirname(pkg[type])] = true))
+	await del(Object.keys(dirs))
+}
+
 const writeBundle = async (bundle, outputOptions) => {
 	await bundle.generate(outputOptions)
 	await bundle.write(outputOptions)
 }
 
-const deleteDirs = async pkg => {
-	const dirs = {}
-	;['main', 'module', 'browser'].map(type => pkg[type] && (dirs[dirname(pkg[type])] = true))
-	await del(Object.keys(dirs))
+const build = async (options, index, inputOptions) => {
+	const bundle = await rollup(inputOptions)
+	await writeBundle(bundle, options)
 }
 
 const klap = async (command, pkg) => {
@@ -44,15 +49,14 @@ const klap = async (command, pkg) => {
 	await deleteDirs(pkg)
 	switch (command) {
 		case 'build':
-			const bundle = await rollup(inputOptions)
-			outputOptions.map(opts => writeBundle(bundle, opts))
+			outputOptions.map((opts, index) => build(opts, index, inputOptions[index]))
 			break
 		case 'watch':
 		case 'start':
-			const watchOptions = {
-				...inputOptions,
-				output: outputOptions,
-			}
+			const watchOptions = outputOptions.map((output, index) => ({
+				...inputOptions[index],
+				output,
+			}))
 			const watcher = watch(watchOptions)
 			watcher.on('event', event => {
 				switch (event.code) {
