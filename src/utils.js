@@ -10,18 +10,18 @@ const exists = promisify(_exists)
 const read = async p => await readFile(p, 'utf-8')
 
 const write = async (p, d) => {
-	const dest = dirname(p)
-	if (!(await exists(dest))) mkdir.sync(dest)
-	await writeFile(p, d + '\n', 'utf-8')
+  const dest = dirname(p)
+  if (!(await exists(dest))) mkdir.sync(dest)
+  await writeFile(p, d + '\n', 'utf-8')
 }
 
 const snakeToCamel = str =>
-	str.replace(/([-_][a-z])/g, group =>
-		group
-			.toUpperCase()
-			.replace('-', '')
-			.replace('_', ''),
-	)
+  str.replace(/([-_][a-z])/g, group =>
+    group
+      .toUpperCase()
+      .replace('-', '')
+      .replace('_', '')
+  )
 
 const safePackageName = str => snakeToCamel(str.replace('@', '').replace('/', '.'))
 

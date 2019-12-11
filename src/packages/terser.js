@@ -11,43 +11,43 @@ import { minify } from 'terser'
 import { warn, error } from '../logger'
 
 const transform = (code, options) => {
-	const result = minify(code, options)
-	if (result.error) {
-		throw result.error
-	}
-	if (result.warnings) {
-		result.warnings.forEach(warning => warn(warning))
-	}
-	return result
+  const result = minify(code, options)
+  if (result.error) {
+    throw result.error
+  }
+  if (result.warnings) {
+    result.warnings.forEach(warning => warn(warning))
+  }
+  return result
 }
 
 export const terser = (options = {}) => {
-	const filter = createFilter(options.include, options.exclude, { resolve: false })
+  const filter = createFilter(options.include, options.exclude, { resolve: false })
 
-	return {
-		name: 'terser',
+  return {
+    name: 'terser',
 
-		renderChunk(code, chunk) {
-			if (!filter(chunk.fileName)) return null
+    renderChunk(code, chunk) {
+      if (!filter(chunk.fileName)) return null
 
-			let result
-			try {
-				result = transform(code, {
-					sourceMap: options.sourcemap,
-					warnings: options.warnings,
-					toplevel: true,
-					mangle: { properties: { regex: '^_' } },
-					compress: { passes: 10, pure_getters: true },
-				})
-			} catch (err) {
-				const { message, line, col: column } = err
-				error(codeFrameColumns(code, { start: { line, column } }, { message }))
-				throw err
-			}
-			return {
-				code: result.code,
-				map: result.map,
-			}
-		},
-	}
+      let result
+      try {
+        result = transform(code, {
+          sourceMap: options.sourcemap,
+          warnings: options.warnings,
+          toplevel: true,
+          mangle: { properties: { regex: '^_' } },
+          compress: { passes: 10, pure_getters: true },
+        })
+      } catch (err) {
+        const { message, line, col: column } = err
+        error(codeFrameColumns(code, { start: { line, column } }, { message }))
+        throw err
+      }
+      return {
+        code: result.code,
+        map: result.map,
+      }
+    },
+  }
 }
