@@ -1,0 +1,13 @@
+{
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
+    "lib": ["esnext"],
+    "removeComments": true
+}
