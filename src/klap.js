@@ -15,13 +15,13 @@ const buildConfig = (command, pkg, options) => {
   let inputOptions = [
     main && { external, input, plugins: plugins(command, pkg, { ...options, format: 'cjs' }) },
     module && { external, input, plugins: plugins(command, pkg, { ...options, format: 'es' }) },
-    browser && { external, input, plugins: plugins(command, pkg, { ...options, format: 'umd' }) },
+    browser && { external, input, plugins: plugins(command, pkg, { ...options, format: 'umd' }) }
   ].filter(Boolean)
 
   let outputOptions = [
     main && { ...defaultOptions, file: main, format: 'cjs', sourcemap },
     module && { ...defaultOptions, file: module, format: 'es', sourcemap },
-    browser && { ...defaultOptions, file: browser, format: 'umd', name, sourcemap, globals },
+    browser && { ...defaultOptions, file: browser, format: 'umd', name, sourcemap, globals }
   ].filter(Boolean)
 
   return { inputOptions, outputOptions }
@@ -53,8 +53,14 @@ const writeBundle = async (bundle, outputOptions) => {
 }
 
 const build = async (options, index, inputOptions) => {
-  const bundle = await rollup(inputOptions)
-  await writeBundle(bundle, options)
+  let err, bundle
+
+  try {
+    bundle = await rollup(inputOptions)
+  } catch (e) {
+    err = e
+  }
+  err ? error(err) : await writeBundle(bundle, options)
 }
 
 const processWatcher = event => {
@@ -81,7 +87,7 @@ const klap = async (command, pkg) => {
       config = buildConfig(command, pkg, options)
       watchOptions = config.outputOptions.map((output, index) => ({
         ...config.inputOptions[index],
-        output,
+        output
       }))
       watcher = watch(watchOptions)
       watcher.on('event', processWatcher)
@@ -90,7 +96,7 @@ const klap = async (command, pkg) => {
       config = startConfig(command, pkg, options)
       watchOptions = {
         ...config.inputOptions,
-        output: config.outputOptions,
+        output: config.outputOptions
       }
       watcher = watch(watchOptions)
       watcher.on('event', processWatcher)
