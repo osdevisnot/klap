@@ -4,7 +4,11 @@ var e, n
     function t() {
       var e,
         n,
-        o = ((e = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), n || (n = e.slice(0)), (e.raw = n), e)
+        o =
+          ((e = ['\n\tbackground-color: red;\n\twidth: 100%;\n']),
+          n || (n = e.slice(0)),
+          (e.raw = n),
+          e)
       return (
         (t = function() {
           return o

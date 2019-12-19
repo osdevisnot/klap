@@ -1,6 +1,10 @@
 import n from 'styled-components'
 function t() {
-  const n = ((o = ['\n\tbackground-color: red;\n\twidth: 100%;\n']), r || (r = o.slice(0)), (o.raw = r), o)
+  const n =
+    ((o = ['\n\tbackground-color: red;\n\twidth: 100%;\n']),
+    r || (r = o.slice(0)),
+    (o.raw = r),
+    o)
   var o, r
   return (
     (t = function() {
