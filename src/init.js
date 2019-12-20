@@ -1,7 +1,7 @@
 import merge from 'deepmerge'
 import sort from 'sort-package-json'
 import cli from '../package.json'
-import { info, log } from './logger'
+import { info, log, warn } from './logger'
 import { exists, read, write } from './utils'
 
 const writePackage = async () => {
@@ -66,6 +66,10 @@ const writeFiles = async pkg => {
 export const init = async () => {
   const pkg = await writePackage()
   await writeFiles(pkg)
+  if (!pkg.author) {
+    log('\npackage author not configured...')
+    warn('Consider using `yarn init -y` or `npm init -y` command.')
+  }
   log('\nWant to use typescript with klap?')
   info('Check https://bit.ly/2tzP98y for more examples.\n')
 }
