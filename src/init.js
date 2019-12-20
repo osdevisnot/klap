@@ -16,7 +16,7 @@ const writePackage = async () => {
   if (await exists('./package.json')) {
     pkg = JSON.parse(await read('./package.json'))
   }
-  pkg = merge({ name, version: '0.0.0' }, pkg)
+  pkg = merge({ name, version: '0.0.0', license: 'MIT' }, pkg)
   pkg = merge(pkg, {
     main: `dist/${name}.cjs.js`,
     module: `dist/${name}.esm.js`,
@@ -55,6 +55,7 @@ const writeFiles = async pkg => {
 		<script src="${pkg.module}" type="module"></script>
 	</body>
 </html>`,
+    '.gitignore': ['node_modules', 'dist', 'coverage'].join('\n'),
   }
   for (let [file, content] of Object.entries(files)) {
     if (!(await exists(file))) {
