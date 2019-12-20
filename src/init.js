@@ -4,15 +4,13 @@ import cli from '../package.json'
 import { info } from './logger'
 import { exists, read, write } from './utils'
 
-let name, source
-
 const writePackage = async () => {
-  let pkg = {}
-  name = process
-    .cwd()
-    .split('/')
-    .pop()
-  source = `src/${name}.js`
+  let pkg = {},
+    name = process
+      .cwd()
+      .split('/')
+      .pop()
+  let source = `src/${name}.js`
   if (await exists('./package.json')) {
     pkg = JSON.parse(await read('./package.json'))
   }
@@ -40,8 +38,8 @@ const writePackage = async () => {
 
 const writeFiles = async pkg => {
   const files = {
-    [source]: `export const sum = (a, b) => a + b;`,
-    'public/index.js': `import { sum } from '../src/${name}';\n\nconsole.log('this works => ', sum(2, 3));`,
+    [pkg.source]: `export const sum = (a, b) => a + b;`,
+    'public/index.js': `import { sum } from '../${pkg.source}';\n\nconsole.log('this works => ', sum(2, 3));`,
     'public/index.html': `<!DOCTYPE html>
 <html lang="en">
 	<head>
