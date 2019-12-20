@@ -1,22 +1,20 @@
 import merge from 'deepmerge'
 import sort from 'sort-package-json'
 import cli from '../package.json'
-import { info } from './logger'
+import { info, log, warn } from './logger'
 import { exists, read, write } from './utils'
 
-let name, source
-
 const writePackage = async () => {
-  let pkg = {}
-  name = process
-    .cwd()
-    .split('/')
-    .pop()
-  source = `src/${name}.js`
+  let pkg = {},
+    name = process
+      .cwd()
+      .split('/')
+      .pop()
+  let source = `src/${name}.js`
   if (await exists('./package.json')) {
     pkg = JSON.parse(await read('./package.json'))
   }
-  pkg = merge({ name, version: '0.0.0' }, pkg)
+  pkg = merge({ name, version: '0.0.0', license: 'MIT' }, pkg)
   pkg = merge(pkg, {
     main: `dist/${name}.cjs.js`,
     module: `dist/${name}.esm.js`,
@@ -40,8 +38,8 @@ const writePackage = async () => {
 
 const writeFiles = async pkg => {
   const files = {
-    [source]: `export const sum = (a, b) => a + b;`,
-    'public/index.js': `import { sum } from '../src/${name}';\n\nconsole.log('this works => ', sum(2, 3));`,
+    [pkg.source]: `export const sum = (a, b) => a + b;`,
+    'public/index.js': `import { sum } from '../${pkg.source}';\n\nconsole.log('this works => ', sum(2, 3));`,
     'public/index.html': `<!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -55,6 +53,7 @@ const writeFiles = async pkg => {
 		<script src="${pkg.module}" type="module"></script>
 	</body>
 </html>`,
+    '.gitignore': ['node_modules', 'dist', 'coverage'].join('\n'),
   }
   for (let [file, content] of Object.entries(files)) {
     if (!(await exists(file))) {
@@ -67,4 +66,10 @@ const writeFiles = async pkg => {
 export const init = async () => {
   const pkg = await writePackage()
   await writeFiles(pkg)
+  if (!pkg.author) {
+    log('\npackage author not configured...')
+    warn('Consider using `yarn init -y` or `npm init -y` command.')
+  }
+  log('\nWant to use typescript with klap?')
+  info('Check https://bit.ly/2tzP98y for more examples.\n')
 }

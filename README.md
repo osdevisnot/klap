@@ -22,12 +22,11 @@ a zero config, zero dependency bundler for tiny javascript packages.
 - :boom: **zero config**: typescript support (just rename `*.js` to `*.ts`)
 - :star2: **zero config**: code transforms using babel macros
 - :rocket: **zero dependency**: uses [gcc-style bundling](https://www.npmjs.com/package/@zeit/ncc).
-- :haircut: **tiny bundles** for all inputs
+- :octopus: creates **tiny bundles** for multiple output formats `cjs`, `esm` and `umd`
 - :fire: **Modern JS** syntax with class properties, async/await, and generators
-- :confetti_ball: Supports **`react`** and **`styled-components`** out of the box.
-- :octopus: creates multiple output formats `cjs`, `esm` and `umd`
 - :zap: Built in Minification and Gzip Size Tracking
 - :cyclone: Built in development server for quick prototyping.
+- :confetti_ball: Supports **`react`** and **`styled-components`** out of the box.
 
 ### :muscle: Powered By
 
@@ -49,14 +48,14 @@ This will create a minimal `package.json` with `source`, `main`, `module` and `b
   "name": "...",
   "version": "0.0.0",
   "files": [ "dist" ],
-  "source": "src/sum.js",         # source file to compile and bundle
-  "main": "dist/sum.cjs.js",      # commonjs target
-  "module": "dist/sum.esm.js",    # esm target
-  "browser": "dist/sum.js",       # umd target
+  "source": "src/sum.js",         # source file of your package
+  "main": "dist/sum.cjs.js",      # commonjs bundle target
+  "module": "dist/sum.esm.js",    # esm bundle target
+  "browser": "dist/sum.js",       # umd bundle target
   "scripts": {
-    "build": "klap build",        # build your project
-    "watch": "klap watch",        # build and watch for changes
-    "start": "klap start",        # watch and start dev server
+    "build": "klap build",        # bundle your package
+    "watch": "klap watch",        # bundle your package and watch for changes
+    "start": "klap start",        # start a development server
   },
   "devDependencies": {
     "klap": "3.2.0"               # klap as dev dependency
@@ -71,9 +70,7 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 
 ### :anger: Granular Control
 
-`klap` uses sensible defaults for most part. However, as needed, use below properties in `package.json` to fine tune `klap`.
-
-You can also use `cli flags` to control config options for `klap`.
+`klap` uses sensible defaults for most part. However, as needed, use below properties in `package.json` to fine tune `klap`. You can also use `cli flags` to control config options for `klap`.
 
 | option              | cli flag(s)           | description                               | default                           |
 | ------------------- | --------------------- | ----------------------------------------- | --------------------------------- |

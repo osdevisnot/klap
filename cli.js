@@ -14,18 +14,20 @@ const command = process.argv[2]
     case 'watch':
     case 'start':
       log(`${name}@${version} - Working on ${command}...`)
-      const pkg = JSON.parse(await read(path.join(process.cwd(), 'package.json')))
+      const pkg = JSON.parse(
+        await read(path.join(process.cwd(), 'package.json'))
+      )
       await klap(command, pkg)
       break
     case 'help':
       info(`
-      Usage:
-    
-      klap init - create a new Klap application
-      klap build - build in production mode
-      klap watch - watches files for changes
-      klap start - start watching and building in development mode
-      `)
+${name}@${version} - Usage
+
+  klap init  - create a new package.
+  klap build - bundle your package, in production mode.
+  klap watch - bundle your package and watch for changes.
+  klap start - start a development server.
+`)
       break
     default:
       error('No Such Command !!')
