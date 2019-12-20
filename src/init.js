@@ -1,7 +1,7 @@
 import merge from 'deepmerge'
 import sort from 'sort-package-json'
 import cli from '../package.json'
-import { info } from './logger'
+import { info, log } from './logger'
 import { exists, read, write } from './utils'
 
 const writePackage = async () => {
@@ -66,4 +66,6 @@ const writeFiles = async pkg => {
 export const init = async () => {
   const pkg = await writePackage()
   await writeFiles(pkg)
+  log('\nWant to use typescript with klap?')
+  info('Check https://bit.ly/2tzP98y for more examples.\n')
 }
