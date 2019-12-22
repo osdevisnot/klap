@@ -5,32 +5,34 @@
  * - `jest-worker` had issues with bundling approach we want to follow for `klap`.
  */
 
-import { codeFrameColumns } from '@babel/code-frame'
-import { createFilter } from 'rollup-pluginutils'
-import { minify } from 'terser'
-import { warn, error } from '../logger'
+import { codeFrameColumns } from '@babel/code-frame';
+import { createFilter } from 'rollup-pluginutils';
+import { minify } from 'terser';
+import { warn, error } from '../logger';
 
 const transform = (code, options) => {
-  const result = minify(code, options)
+  const result = minify(code, options);
   if (result.error) {
-    throw result.error
+    throw result.error;
   }
   if (result.warnings) {
-    result.warnings.forEach(warning => warn(warning))
+    result.warnings.forEach(warning => warn(warning));
   }
-  return result
-}
+  return result;
+};
 
 export const terser = (options = {}) => {
-  const filter = createFilter(options.include, options.exclude, { resolve: false })
+  const filter = createFilter(options.include, options.exclude, {
+    resolve: false,
+  });
 
   return {
     name: 'terser',
 
     renderChunk(code, chunk) {
-      if (!filter(chunk.fileName)) return null
+      if (!filter(chunk.fileName)) return null;
 
-      let result
+      let result;
       try {
         result = transform(code, {
           sourceMap: options.sourcemap,
@@ -38,16 +40,16 @@ export const terser = (options = {}) => {
           toplevel: true,
           mangle: { properties: { regex: '^_' } },
           compress: { passes: 10, pure_getters: true },
-        })
+        });
       } catch (err) {
-        const { message, line, col: column } = err
-        error(codeFrameColumns(code, { start: { line, column } }, { message }))
-        throw err
+        const { message, line, col: column } = err;
+        error(codeFrameColumns(code, { start: { line, column } }, { message }));
+        throw err;
       }
       return {
         code: result.code,
         map: result.map,
-      }
+      };
     },
-  }
-}
+  };
+};

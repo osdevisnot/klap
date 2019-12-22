@@ -1,18 +1,18 @@
-import n from 'styled-components'
-function t() {
+import n from 'styled-components';
+function o() {
   const n =
-    ((o = ['\n\tbackground-color: red;\n\twidth: 100%;\n']),
-    r || (r = o.slice(0)),
-    (o.raw = r),
-    o)
-  var o, r
+    ((r = ['\n  background-color: red;\n  width: 100%;\n']),
+    t || (t = r.slice(0)),
+    (r.raw = t),
+    r);
+  var r, t;
   return (
-    (t = function() {
-      return n
+    (o = function() {
+      return n;
     }),
     n
-  )
+  );
 }
-const o = n.button(t())
-export { o as Button }
+const r = n.button(o());
+export { r as Button };
 //# sourceMappingURL=index.esm.js.map

@@ -1,8 +1,8 @@
-import getopts from 'getopts'
-import { safePackageName } from './utils'
+import getopts from 'getopts';
+import { safePackageName } from './utils';
 
 const getOptions = pkg => {
-  const { klap = {}, source = 'src/index.js' } = pkg
+  const { klap = {}, source = 'src/index.js' } = pkg;
   const {
     name = pkg.name,
     port = 1234,
@@ -16,7 +16,7 @@ const getOptions = pkg => {
     fallback = 'public/index.html',
     example = 'public/index.js',
     browserlist = '>1%, not ie 11, not op_mini all',
-  } = klap
+  } = klap;
   const opts = getopts(process.argv.slice(2), {
     boolean: ['sourcemap', 'minify'],
     string: ['pragma', 'frag'],
@@ -42,8 +42,8 @@ const getOptions = pkg => {
       example,
       browserlist,
     },
-  })
-  return { ...opts, globals, namedExports }
-}
+  });
+  return { ...opts, globals, namedExports };
+};
 
-export { getOptions }
+export { getOptions };

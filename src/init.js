@@ -1,20 +1,20 @@
-import merge from 'deepmerge'
-import sort from 'sort-package-json'
-import cli from '../package.json'
-import { info, log, warn } from './logger'
-import { exists, read, write } from './utils'
+import merge from 'deepmerge';
+import sort from 'sort-package-json';
+import cli from '../package.json';
+import { info, log, warn } from './logger';
+import { exists, read, write } from './utils';
 
 const writePackage = async () => {
   let pkg = {},
     name = process
       .cwd()
       .split('/')
-      .pop()
-  let source = `src/${name}.js`
+      .pop();
+  let source = `src/${name}.js`;
   if (await exists('./package.json')) {
-    pkg = JSON.parse(await read('./package.json'))
+    pkg = JSON.parse(await read('./package.json'));
   }
-  pkg = merge({ name, version: '0.0.0', license: 'MIT' }, pkg)
+  pkg = merge({ name, version: '0.0.0', license: 'MIT' }, pkg);
   pkg = merge(pkg, {
     main: `dist/${name}.cjs.js`,
     module: `dist/${name}.esm.js`,
@@ -23,18 +23,18 @@ const writePackage = async () => {
     files: ['dist'],
     scripts: {
       build: 'klap build',
-      prepublishOnly: 'klap build',
+      prepublishOnly: 'yarn build',
       start: 'klap start',
       watch: 'klap watch',
     },
     devDependencies: {
       [cli.name]: cli.version,
     },
-  })
-  await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
-  info('\t- wrote ./package.json')
-  return pkg
-}
+  });
+  await write('./package.json', JSON.stringify(sort(pkg), null, '  '));
+  info('\t- wrote ./package.json');
+  return pkg;
+};
 
 const writeFiles = async pkg => {
   const files = {
@@ -54,22 +54,22 @@ const writeFiles = async pkg => {
 	</body>
 </html>`,
     '.gitignore': ['node_modules', 'dist', 'coverage'].join('\n'),
-  }
+  };
   for (let [file, content] of Object.entries(files)) {
     if (!(await exists(file))) {
-      await write(file, content)
-      info(`\t- wrote ./${file}`)
+      await write(file, content);
+      info(`\t- wrote ./${file}`);
     }
   }
-}
+};
 
 export const init = async () => {
-  const pkg = await writePackage()
-  await writeFiles(pkg)
+  const pkg = await writePackage();
+  await writeFiles(pkg);
   if (!pkg.author) {
-    log('\npackage author not configured...')
-    warn('Consider using `yarn init -y` or `npm init -y` command.')
+    log('\npackage author not configured...');
+    warn('Consider using `yarn init -y` or `npm init -y` command.');
   }
-  log('\nWant to use typescript with klap?')
-  info('Check https://bit.ly/2tzP98y for more examples.\n')
-}
+  log('\nWant to use typescript with klap?');
+  info('Check https://bit.ly/2tzP98y for more examples.\n');
+};
