@@ -1,27 +1,27 @@
 {
-	"name": "react-typescript",
-	"version": "0.0.0",
-	"private": true,
-	"files": [
-		"dist"
-	],
-	"main": "dist/index.cjs.js",
-	"module": "dist/index.esm.js",
-	"source": "src/index.tsx",
-	"browser": "dist/index.js",
-	"scripts": {
-		"build": "klap build",
-		"start": "klap start",
-		"watch": "klap watch"
-	},
-	"dependencies": {
-		"react": "*",
-		"react-dom": "*"
-	},
-	"devDependencies": {
-		"klap": "2.1.0"
-	},
-	"klap": {
-		"example": "public/index.tsx"
-	}
+  "name": "react-typescript",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "source": "src/index.tsx",
+  "browser": "dist/index.js",
+  "scripts": {
+    "build": "klap build",
+    "start": "klap start",
+    "watch": "klap watch"
+  },
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "klap": "2.1.0"
+  },
+  "klap": {
+    "example": "public/index.tsx"
+  }
 }

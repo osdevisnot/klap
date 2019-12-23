@@ -1,27 +1,27 @@
 {
-	"name": "react-component",
-	"version": "0.0.0",
-	"private": true,
-	"files": [
-		"dist"
-	],
-	"main": "dist/index.cjs.js",
-	"module": "dist/index.esm.js",
-	"source": "src/index.js",
-	"browser": "dist/index.js",
-	"scripts": {
-		"build": "klap build",
-		"start": "klap start",
-		"watch": "klap watch"
-	},
-	"dependencies": {
-		"react": "*",
-		"react-dom": "*"
-	},
-	"devDependencies": {
-		"klap": "2.1.0"
-	},
-	"klap": {
-		"example": "public/index.js"
-	}
+  "name": "react-component",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "source": "src/index.js",
+  "browser": "dist/index.js",
+  "scripts": {
+    "build": "klap build",
+    "start": "klap start",
+    "watch": "klap watch"
+  },
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "klap": "2.1.0"
+  },
+  "klap": {
+    "example": "public/index.js"
+  }
 }

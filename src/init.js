@@ -1,75 +1,104 @@
-import merge from 'deepmerge'
-import sort from 'sort-package-json'
-import cli from '../package.json'
-import { info, log, warn } from './logger'
-import { exists, read, write } from './utils'
+import merge from 'deepmerge';
+import sort from 'sort-package-json';
+import cli from '../package.json';
+import { createIndex, createLicense, createTsConfig } from './init-create';
+import { error, info, log } from './logger';
+import { exec, exists, read, write } from './utils';
 
-const writePackage = async () => {
+const unscopedName = name => name.split('/').pop();
+
+const gitInfo = () => {
+  let user = exec('git config github.username');
+  if (!user) user = exec('git config user.name');
+  let email = exec('git config user.email');
+  return { user, email };
+};
+
+const writePackage = async (template, { user, email }) => {
   let pkg = {},
-    name = process
-      .cwd()
-      .split('/')
-      .pop()
-  let source = `src/${name}.js`
+    name = unscopedName(process.cwd());
+  let source = `src/${name}.${template}`;
   if (await exists('./package.json')) {
-    pkg = JSON.parse(await read('./package.json'))
+    pkg = JSON.parse(await read('./package.json'));
   }
-  pkg = merge({ name, version: '0.0.0', license: 'MIT' }, pkg)
+  pkg = merge({ name, version: '0.0.0', license: 'MIT', description: '' }, pkg);
+  pkg = merge(
+    { repository: `${user}/${pkg.name}`, author: `${user} <${email}>` },
+    pkg
+  );
   pkg = merge(pkg, {
     main: `dist/${name}.cjs.js`,
+    unpkg: `dist/${name}.esm.js`,
     module: `dist/${name}.esm.js`,
     browser: `dist/${name}.js`,
     source,
     files: ['dist'],
     scripts: {
       build: 'klap build',
-      prepublishOnly: 'klap build',
+      prepublishOnly: 'yarn build',
       start: 'klap start',
       watch: 'klap watch',
     },
+    prettier: '@osdevisnot/prettier',
     devDependencies: {
       [cli.name]: cli.version,
+      '@osdevisnot/prettier': cli.devDependencies['@osdevisnot/prettier'],
     },
-  })
-  await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
-  info('\t- wrote ./package.json')
-  return pkg
-}
-
-const writeFiles = async pkg => {
-  const files = {
-    [pkg.source]: `export const sum = (a, b) => a + b;`,
-    'public/index.js': `import { sum } from '../${pkg.source}';\n\nconsole.log('this works => ', sum(2, 3));`,
-    'public/index.html': `<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>${pkg.name} example</title>
-	</head>
-	<body>
-		<div id="root"></div>
-		<script src="${pkg.module}" type="module"></script>
-	</body>
-</html>`,
-    '.gitignore': ['node_modules', 'dist', 'coverage'].join('\n'),
-  }
-  for (let [file, content] of Object.entries(files)) {
-    if (!(await exists(file))) {
-      await write(file, content)
-      info(`\t- wrote ./${file}`)
+  });
+  if (template !== 'js') {
+    pkg = merge(pkg, { klap: { example: `public/index.${template}` } });
+    if (template === 'ts' || template === 'tsx') {
+      pkg = merge(pkg, { types: 'dist/types' });
     }
   }
-}
+  await write('./package.json', JSON.stringify(sort(pkg), null, '  '));
+  info('\t- wrote ./package.json');
+  return pkg;
+};
+
+const writeFiles = async (pkg, template) => {
+  const defaults = {
+    LICENSE: createLicense(pkg.author),
+    '.gitignore': ['node_modules', 'dist', 'coverage'].join('\n'),
+    'public/index.html': createIndex(pkg),
+    [`public/index.${template}`]: `import { sum } from '../src/${unscopedName(
+      pkg.name
+    )}';\n\nconsole.log('this works => ', sum(2, 3));`,
+    [pkg.source]: `export const sum = (a, b) => a + b;`,
+  };
+  // overrides based on templates
+  const templates = {
+    ts: {
+      [pkg.source]: `export const sum = (a: number, b: number): number => a + b;`,
+      'tsconfig.json': createTsConfig(),
+    },
+  };
+  const files = Object.assign(
+    {},
+    defaults,
+    templates[template.substring(0, 2)]
+  );
+  for (let [file, content] of Object.entries(files)) {
+    if (!(await exists(file))) {
+      await write(file, content);
+      info(`\t- wrote ./${file}`);
+    }
+  }
+};
 
 export const init = async () => {
-  const pkg = await writePackage()
-  await writeFiles(pkg)
-  if (!pkg.author) {
-    log('\npackage author not configured...')
-    warn('Consider using `yarn init -y` or `npm init -y` command.')
+  let template = process.argv[3] || 'js'; // js, jsx, ts, tsx
+  if (
+    template == 'js' ||
+    template == 'ts' ||
+    template == 'jsx' ||
+    template == 'tsx'
+  ) {
+  } else {
+    error('Invalid init template. Try one of js, jsx, ts, tsx');
   }
-  log('\nWant to use typescript with klap?')
-  info('Check https://bit.ly/2tzP98y for more examples.\n')
-}
+  const pkg = await writePackage(template, gitInfo());
+  await writeFiles(pkg, template);
+  log('\nWant to use typescript with klap?');
+  info('Initialize your package with `klap init ts`\n');
+};
