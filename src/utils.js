@@ -1,11 +1,12 @@
-import mkdir from 'mkdirp';
-import { dirname } from 'path';
-import { promisify } from 'util';
+import { execSync } from 'child_process';
 import {
   exists as _exists,
   readFile as _readFile,
   writeFile as _writeFile,
 } from 'fs';
+import mkdir from 'mkdirp';
+import { dirname } from 'path';
+import { promisify } from 'util';
 
 const readFile = promisify(_readFile);
 const writeFile = promisify(_writeFile);
@@ -30,4 +31,9 @@ const snakeToCamel = str =>
 const safePackageName = str =>
   snakeToCamel(str.replace('@', '').replace('/', '.'));
 
-export { exists, read, write, safePackageName };
+const trim = str => str.replace(/^\s|\s$/, '');
+
+const exec = cmd =>
+  trim(execSync(cmd, { stdio: ['ignore', 'pipe', 'ignore'] }).toString());
+
+export { exists, read, write, safePackageName, exec };

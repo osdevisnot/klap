@@ -6,7 +6,8 @@
   "license": "MIT",
   "author": "osdevisnot <osdevisnot@gmail.com>",
   "files": [
-    "dist"
+    "dist",
+    "docs"
   ],
   "main": "dist/index.js",
   "bin": {

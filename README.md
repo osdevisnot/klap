@@ -41,6 +41,18 @@ First, setup your project using `klap init`:
 npx klap init
 ```
 
+**Prefer Typescript Setup ?** `init` using `ts` argument:
+
+```bash
+npx klap init ts
+```
+
+**Want to use JSX with Typescript?** `init` using `tsx` argument:
+
+```bash
+npx klap init tsx
+```
+
 This will create a minimal `package.json` with `source`, `main`, `module` and `browser` entries and the `build`, `watch` and `start` scripts.
 
 ```jsonc
