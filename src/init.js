@@ -48,7 +48,11 @@ const writePackage = async (template, { user, email }) => {
   if (template !== 'js') {
     pkg = merge(pkg, { klap: { example: `public/index.${template}` } });
     if (template === 'ts' || template === 'tsx') {
-      pkg = merge(pkg, { types: 'dist/types' });
+      pkg = merge(pkg, {
+        types: 'dist/types',
+        scripts: { postbuild: 'tsc -p tsconfig.json' },
+        devDependencies: { typescript: cli.devDependencies['typescript'] },
+      });
     }
   }
   await write('./package.json', JSON.stringify(sort(pkg), null, '  '));

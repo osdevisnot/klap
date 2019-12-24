@@ -67,6 +67,7 @@
     "semantic-release": "15.14.0",
     "servor": "3.0.5",
     "sort-package-json": "1.31.0",
-    "terser": "4.4.3"
+    "terser": "4.4.3",
+    "typescript": "3.7.4"
   }
 }
