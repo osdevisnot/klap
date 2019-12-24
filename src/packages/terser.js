@@ -38,7 +38,7 @@ export const terser = (options = {}) => {
           sourceMap: options.sourcemap,
           warnings: options.warnings,
           toplevel: true,
-          mangle: { properties: { regex: '^_' } },
+          mangle: { properties: { regex: '^_|^\\$' } },
           compress: { passes: 10, pure_getters: true },
         });
       } catch (err) {
