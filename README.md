@@ -98,8 +98,6 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 | `klap.fallback`     | -f&nbsp;--fallback    | location of index html file for example   | `public/index.html`               |
 | `klap.sourcemap`    | --no-sourcemap        | sourcemaps for builds                     | `true`                            |
 | `klap.minify`       | --no-minify           | minification for builds                   | `true`                            |
-| `klap.pragma`       | --pragma              | pragma for `jsx` and `tsx` compilation    | `React.createElement`             |
-| `klap.frag`         | --frag                | pragma for `jsx` and `tsx` fragments      | `React.Fragment`                  |
 | `klap.globals`      |                       | global names for umd bundles              | `{}`                              |
 | `klap.namedExports` |                       | named exports for commonjs modules        | `{}`                              |
 

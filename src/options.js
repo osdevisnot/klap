@@ -8,8 +8,6 @@ const getOptions = pkg => {
     port = 1234,
     sourcemap = true,
     minify = true,
-    pragma = 'React.createElement',
-    frag = 'React.Fragment',
     target = 'es',
     globals = {},
     namedExports = {},
@@ -19,7 +17,6 @@ const getOptions = pkg => {
   } = klap;
   const opts = getopts(process.argv.slice(2), {
     boolean: ['sourcemap', 'minify'],
-    string: ['pragma', 'frag'],
     alias: {
       name: 'n',
       port: 'p',
@@ -36,8 +33,6 @@ const getOptions = pkg => {
       target,
       sourcemap,
       minify,
-      pragma,
-      frag,
       fallback,
       example,
       browserlist,
