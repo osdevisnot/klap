@@ -87,7 +87,7 @@ const startConfig = (command, pkg, options) => {
 const deleteDirs = async pkg => {
   const dirs = {};
   ['main', 'module', 'browser'].map(
-    type => pkg[type] && (dirs[dirname(pkg[type]) + '/*.js'] = true)
+    type => pkg[type] && (dirs[dirname(pkg[type]) + '/*.{js,map}'] = true)
   );
   await del(Object.keys(dirs));
 };
