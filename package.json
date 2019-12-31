@@ -15,7 +15,7 @@
   },
   "scripts": {
     "prebuild": "patch-package",
-    "build": "ncc build src/klap.js -mo dist",
+    "build": "ncc build src/klap.js -mo dist -e google-closure-compiler",
     "prepare": "yarn build",
     "prepub": "yarn setup",
     "pub": "yarn build && npm version",
@@ -24,7 +24,7 @@
     "presetup": "git clean -fdX",
     "setup": "yarn",
     "test": "echo 'run ./test.sh'",
-    "watch": "ncc build src/klap.js -wo dist"
+    "watch": "yarn build --watch"
   },
   "config": {
     "commitizen": {
@@ -33,6 +33,7 @@
   },
   "prettier": "@osdevisnot/prettier",
   "devDependencies": {
+    "@ampproject/rollup-plugin-closure-compiler": "0.18.1",
     "@babel/core": "7.7.7",
     "@babel/plugin-proposal-class-properties": "7.7.4",
     "@babel/plugin-proposal-object-rest-spread": "7.7.7",

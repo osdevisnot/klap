@@ -90,12 +90,13 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 | option              | cli flag(s)           | description                               | default                           |
 | ------------------- | --------------------- | ----------------------------------------- | --------------------------------- |
 | `source`            | -s&nbsp;--source      | source file to compile and bundle         | `src/index.js`                    |
+| `browserslist`      | -b&nbsp;--browserlist | browserlist compatible compilation target | `>1%, not ie 11, not op_mini all` |
 | `klap.name`         | -n&nbsp;--name        | package name for `umd` bundles            | sanitized `pkg.name`              |
 | `klap.port`         | -p&nbsp;--port        | port for development server               | `1234`                            |
-| `klap.target`       | -t&nbsp;--target      | target for development server (`umd|es`)  | `es`                              |
-| `browserslist`      | -b&nbsp;--browserlist | browserlist compatible compilation target | `>1%, not ie 11, not op_mini all` |
 | `klap.example`      | -e&nbsp;--example     | location of index js/ts file for example  | `public/index.js`                 |
 | `klap.fallback`     | -f&nbsp;--fallback    | location of index html file for example   | `public/index.html`               |
+| `klap.closure`      | -c&nbsp;--closure     | use google closure compiler with klap     | `false`                           |
+| `klap.target`       | -t&nbsp;--target      | target for development server (`umd|es`)  | `es`                              |
 | `klap.sourcemap`    | --no-sourcemap        | sourcemaps for builds                     | `true`                            |
 | `klap.minify`       | --no-minify           | minification for builds                   | `true`                            |
 | `klap.globals`      |                       | global names for umd bundles              | `{}`                              |
