@@ -45,10 +45,8 @@ const writePackage = async (template, { user, email }) => {
       start: 'klap start',
       watch: 'klap watch',
     },
-    prettier: '@osdevisnot/prettier',
     devDependencies: {
       [cli.name]: cli.version,
-      '@osdevisnot/prettier': cli.devDependencies['@osdevisnot/prettier'],
     },
   });
   if (template !== 'js') {
