@@ -1,15 +1,16 @@
 # klap :clap:
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 a zero config, zero dependency bundler for tiny javascript packages.
 
-[![Build Status](https://travis-ci.org/osdevisnot/klap.svg?branch=master)](https://travis-ci.org/osdevisnot/klap)
-![David](https://img.shields.io/david/osdevisnot/klap)
-![David](https://img.shields.io/david/dev/osdevisnot/klap)
-![npm](https://img.shields.io/npm/v/klap)
-![NPM](https://img.shields.io/npm/l/klap)
+<!-- prettier-ignore-start -->
+[![Build Status](https://img.shields.io/travis/osdevisnot/klap/master?style=flat-square)](https://travis-ci.org/osdevisnot/klap)
+![David](https://img.shields.io/david/osdevisnot/klap?style=flat-square)
+![David](https://img.shields.io/david/dev/osdevisnot/klap?style=flat-square)
+![npm](https://img.shields.io/npm/v/klap?style=flat-square)
+![NPM](https://img.shields.io/npm/l/klap?style=flat-square)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- prettier-ignore-end -->
 
 <table border="0">
 <tr><td>
@@ -128,6 +129,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
