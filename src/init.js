@@ -8,9 +8,21 @@ import { exec, exists, read, write } from './utils';
 const unscopedName = name => name.split('/').pop();
 
 const gitInfo = () => {
-  let user = exec('git config github.username');
-  if (!user) user = exec('git config user.name');
-  let email = exec('git config user.email');
+  let { user, email } = {};
+  try {
+    user = exec('git config github.username');
+  } catch {
+    try {
+      user = exec('git config user.name');
+    } catch {
+      // neither github.username or user.name exist
+    }
+  }
+  try {
+    email = exec('git config user.email');
+  } catch {
+    // user.email doesn't exist
+  }
   return { user, email };
 };
 
@@ -22,10 +34,12 @@ const writePackage = async (template, { user, email }) => {
     pkg = JSON.parse(await read('./package.json'));
   }
   pkg = merge({ name, version: '0.0.0', license: 'MIT', description: '' }, pkg);
-  pkg = merge(
-    { repository: `${user}/${pkg.name}`, author: `${user} <${email}>` },
-    pkg
-  );
+  // only add fields to pkg if defined, otherwise omit them for author to
+  // handle manually
+  if (user) {
+    pkg = merge({ repository: `${user}/${pkg.name}` }, pkg);
+    if (email) pkg = merge({ author: `${user} <${email}>` }, pkg);
+  }
   pkg = merge(pkg, {
     main: `dist/${name}.cjs.js`,
     unpkg: `dist/${name}.esm.js`,
