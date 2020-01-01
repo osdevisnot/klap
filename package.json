@@ -43,7 +43,7 @@
     "@babel/preset-typescript": "7.7.7",
     "@osdevisnot/prettier": "4.0.0",
     "@rollup/plugin-replace": "2.3.0",
-    "@types/node": "13.1.1",
+    "@types/node": "13.1.2",
     "@zeit/ncc": "0.20.5",
     "babel-plugin-macros": "2.8.0",
     "babel-plugin-styled-components": "1.10.6",
@@ -67,7 +67,7 @@
     "rollup-pluginutils": "2.8.2",
     "semantic-release": "15.14.0",
     "servor": "3.0.5",
-    "sort-package-json": "1.32.2",
+    "sort-package-json": "1.35.0",
     "terser": "4.4.3",
     "typescript": "3.7.4"
   }
