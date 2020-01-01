@@ -86,8 +86,17 @@ const writeFiles = async (pkg, template) => {
     defaults,
     templates[template.substring(0, 2)]
   );
+  const variations = {
+    LICENSE: ['LICENSE.md', 'LICENSE.txt'],
+  };
   for (let [file, content] of Object.entries(files)) {
-    if (!(await exists(file))) {
+    let shouldCreate = true;
+    await Promise.all(
+      [file]
+        .concat(variations[file])
+        .map(async f => (await exists(f)) && (shouldCreate = false))
+    );
+    if (shouldCreate) {
       await write(file, content);
       info(`\t- wrote ./${file}`);
     }
