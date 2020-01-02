@@ -5,7 +5,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from '@rollup/plugin-replace';
 import sourcemaps from 'rollup-plugin-sourcemaps';
-import compiler from '@ampproject/rollup-plugin-closure-compiler';
+// import compiler from '@ampproject/rollup-plugin-closure-compiler';
 
 import { terser } from './packages/terser';
 import { sizeme } from './packages/sizeme';
@@ -39,7 +39,8 @@ const plugins = (command, pkg, options) => {
     command !== 'start' &&
       minify &&
       (closure
-        ? compiler({ compilation_level: 'ADVANCED' })
+        ? // ? compiler({ compilation_level: 'ADVANCED' })
+          terser({ sourcemap, warnings: false })
         : terser({ sourcemap, warnings: false })),
     command !== 'start' && sizeme(),
     command === 'start' && servor({ fallback, port }),
