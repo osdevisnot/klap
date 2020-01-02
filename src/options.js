@@ -2,24 +2,25 @@ import getopts from 'getopts';
 import { safePackageName } from './utils';
 
 const getOptions = pkg => {
-  const { klap = {}, source = 'src/index.js' } = pkg;
+  const {
+    klap = {},
+    source = 'src/index.js',
+    browserlist = '>1%, not ie 11, not op_mini all',
+  } = pkg;
   const {
     name = pkg.name,
     port = 1234,
     sourcemap = true,
     minify = true,
-    pragma = 'React.createElement',
-    frag = 'React.Fragment',
     target = 'es',
     globals = {},
     namedExports = {},
     fallback = 'public/index.html',
     example = 'public/index.js',
-    browserlist = '>1%, not ie 11, not op_mini all',
+    closure = false,
   } = klap;
   const opts = getopts(process.argv.slice(2), {
-    boolean: ['sourcemap', 'minify'],
-    string: ['pragma', 'frag'],
+    boolean: ['sourcemap', 'minify', 'closure'],
     alias: {
       name: 'n',
       port: 'p',
@@ -28,6 +29,7 @@ const getOptions = pkg => {
       fallback: 'f',
       example: 'e',
       browserlist: 'b',
+      closure: 'c',
     },
     default: {
       name: safePackageName(name),
@@ -36,11 +38,10 @@ const getOptions = pkg => {
       target,
       sourcemap,
       minify,
-      pragma,
-      frag,
       fallback,
       example,
       browserlist,
+      closure,
     },
   });
   return { ...opts, globals, namedExports };

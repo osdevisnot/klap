@@ -4,6 +4,7 @@ import { rollup, watch } from 'rollup';
 import { error, info } from './logger';
 import { getOptions } from './options';
 import { plugins } from './plugins';
+import { exists } from './utils';
 
 const defaultOptions = { esModule: false, strict: false, freeze: false };
 
@@ -52,9 +53,10 @@ const buildConfig = (command, pkg, options) => {
   return { inputOptions, outputOptions };
 };
 
-const startConfig = (command, pkg, options) => {
+const startConfig = async (command, pkg, options) => {
   const { module, browser } = pkg;
-  const { name, globals, example: input, sourcemap, target } = options;
+  const { name, globals, example, source, sourcemap, target } = options;
+  const input = (await exists(example)) ? example : source;
   let inputOptions, outputOptions;
   if (target === 'es') {
     inputOptions = {
@@ -87,7 +89,7 @@ const startConfig = (command, pkg, options) => {
 const deleteDirs = async pkg => {
   const dirs = {};
   ['main', 'module', 'browser'].map(
-    type => pkg[type] && (dirs[dirname(pkg[type]) + '/*.js'] = true)
+    type => pkg[type] && (dirs[dirname(pkg[type]) + '/*.{js,map}'] = true)
   );
   await del(Object.keys(dirs));
 };
@@ -142,7 +144,7 @@ const klap = async (command, pkg) => {
       watcher.on('event', processWatcher);
       break;
     case 'start':
-      config = startConfig(command, pkg, options);
+      config = await startConfig(command, pkg, options);
       watchOptions = {
         ...config.inputOptions,
         output: config.outputOptions,

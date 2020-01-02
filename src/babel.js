@@ -13,9 +13,22 @@ import pluginTransformRegen from '@babel/plugin-transform-regenerator';
 import pluginStyledComponents from 'babel-plugin-styled-components';
 import pluginMacros from 'babel-plugin-macros';
 
+let hasReact = pkg =>
+  ['dependencies', 'devDependencies', 'peerDependencies'].reduce(
+    (last, current) => last || (pkg[current] && pkg[current]['react']),
+    false
+  );
+
 export const babelConfig = (command, pkg, options) => {
   const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json'];
-  const { browserlist, pragma, frag, format } = options;
+  const { browserlist, format } = options;
+
+  // Note: when using `React`, presetTs needs `React` as jsxPragma,
+  // vs presetReact needs `React.createElement`,
+  // but when using `h` as pragma, both presets needs it to be just `h`
+  let [jsxPragma, pragma, pragmaFrag] = hasReact(pkg)
+    ? ['React', 'React.createElement', 'React.Fragment']
+    : ['h', 'h', 'h'];
 
   const presets = [
     [
@@ -28,16 +41,8 @@ export const babelConfig = (command, pkg, options) => {
         exclude: ['transform-async-to-generator', 'transform-regenerator'],
       },
     ],
-    // Note: when using `React`, presetTs needs `React` as jsxPragma, vs presetReact needs `React.createElement`, but when using `h` as pragma, both presets needs it to be just `h`
-    [
-      presetTs,
-      {
-        jsxPragma: pragma.split('.').shift(),
-        isTSX: true,
-        allExtensions: true,
-      },
-    ],
-    [presetReact, { pragma, pragmaFrag: frag }],
+    [presetTs, { jsxPragma, isTSX: true, allExtensions: true }],
+    [presetReact, { pragma, pragmaFrag }],
   ];
 
   const plugins = [
