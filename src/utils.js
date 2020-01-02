@@ -33,7 +33,12 @@ const safePackageName = str =>
 
 const trim = str => str.replace(/^\s|\s$/, '');
 
-const exec = cmd =>
-  trim(execSync(cmd, { stdio: ['ignore', 'pipe', 'ignore'] }).toString());
+const exec = cmd => {
+  try {
+    trim(execSync(cmd, { stdio: ['ignore', 'pipe', 'ignore'] }).toString());
+  } catch {
+    return false;
+  }
+};
 
 export { exists, read, write, safePackageName, exec };

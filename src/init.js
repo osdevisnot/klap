@@ -22,10 +22,16 @@ const writePackage = async (template, { user, email }) => {
     pkg = JSON.parse(await read('./package.json'));
   }
   pkg = merge({ name, version: '0.0.0', license: 'MIT', description: '' }, pkg);
-  pkg = merge(
-    { repository: `${user}/${pkg.name}`, author: `${user} <${email}>` },
-    pkg
-  );
+
+  if (user) {
+    pkg = merge({ repository: `${user}/${pkg.name}` }, pkg);
+    if (email) pkg = merge({ author: `${user} <${email}>` }, pkg);
+  } else {
+    error(
+      `"repository" and "author" fields NOT added to package.json. Please add manually.`
+    );
+  }
+
   pkg = merge(pkg, {
     main: `dist/${name}.cjs.js`,
     unpkg: `dist/${name}.esm.js`,
