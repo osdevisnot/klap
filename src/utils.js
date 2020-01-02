@@ -35,7 +35,9 @@ const trim = str => str.replace(/^\s|\s$/, '');
 
 const exec = cmd => {
   try {
-    trim(execSync(cmd, { stdio: ['ignore', 'pipe', 'ignore'] }).toString());
+    return trim(
+      execSync(cmd, { stdio: ['ignore', 'pipe', 'ignore'] }).toString()
+    );
   } catch {
     return false;
   }
