@@ -9,7 +9,7 @@ yarn run build
 
 cd examples
 
-for dir in scaffold scaffold-typescript react-component react-typescript react-sc-typescript
+for dir in minimal scaffold scaffold-typescript react-component react-typescript react-sc-typescript
 do
 	cd ${dir} && klap build && rm -rf dist/*.map && cd ..
 done
