@@ -5,7 +5,6 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from '@rollup/plugin-replace';
 import sourcemaps from 'rollup-plugin-sourcemaps';
-// import compiler from '@ampproject/rollup-plugin-closure-compiler';
 
 import { terser } from './packages/terser';
 import { sizeme } from './packages/sizeme';
@@ -15,7 +14,7 @@ import { babelConfig } from './babel';
 
 const plugins = (command, pkg, options) => {
   const { extensions, presets, plugins } = babelConfig(command, pkg, options);
-  const { sourcemap, minify, fallback, port, namedExports, closure } = options;
+  const { sourcemap, minify, fallback, port, namedExports } = options;
 
   const babelDefaults = { babelrc: false, configFile: false, compact: false };
 
@@ -36,12 +35,7 @@ const plugins = (command, pkg, options) => {
       plugins,
     }),
     replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
-    command !== 'start' &&
-      minify &&
-      (closure
-        ? // ? compiler({ compilation_level: 'ADVANCED' })
-          terser({ sourcemap, warnings: false })
-        : terser({ sourcemap, warnings: false })),
+    command !== 'start' && minify && terser({ sourcemap, warnings: false }),
     command !== 'start' && sizeme(),
     command === 'start' && servor({ fallback, port }),
   ].filter(Boolean);

@@ -17,10 +17,9 @@ const getOptions = pkg => {
     namedExports = {},
     fallback = 'public/index.html',
     example = 'public/index.js',
-    closure = false,
   } = klap;
   const opts = getopts(process.argv.slice(2), {
-    boolean: ['sourcemap', 'minify', 'closure'],
+    boolean: ['sourcemap', 'minify'],
     alias: {
       name: 'n',
       port: 'p',
@@ -29,7 +28,6 @@ const getOptions = pkg => {
       fallback: 'f',
       example: 'e',
       browserlist: 'b',
-      closure: 'c',
     },
     default: {
       name: safePackageName(name),
@@ -41,7 +39,6 @@ const getOptions = pkg => {
       fallback,
       example,
       browserlist,
-      closure,
     },
   });
   return { ...opts, globals, namedExports };
