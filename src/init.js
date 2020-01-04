@@ -1,26 +1,35 @@
 import merge from 'deepmerge';
 import sort from 'sort-package-json';
 import cli from '../package.json';
-import { createIndex, createLicense, createTsConfig } from './init-create';
+import { getDefaults, getTemplates } from './init-create';
 import { error, info, log } from './logger';
 import { exec, exists, read, write } from './utils';
 
-const unscopedName = name => name.split('/').pop();
-
+/**
+ * Source user's .gitconfig info (name & email)
+ */
 const gitInfo = () => {
-  let user = exec('git config github.username');
-  if (!user) user = exec('git config user.name');
-  let email = exec('git config user.email');
+  const cmd = 'git config';
+  const email = exec(`${cmd} user.email`);
+  const user = exec(`${cmd} github.username`) || exec(`${cmd} user.name`);
   return { user, email };
 };
 
+/**
+ * Generate / supplement `package.json` with fields and klap scripts
+ */
 const writePackage = async (template, { user, email }) => {
-  let pkg = {},
-    name = unscopedName(process.cwd());
-  let source = `src/${name}.${template}`;
+  let pkg = {};
+  const name = process
+    .cwd()
+    .split('/')
+    .pop();
+  const source = `src/${name}.${template}`;
+
   if (await exists('./package.json')) {
     pkg = JSON.parse(await read('./package.json'));
   }
+
   pkg = merge({ name, version: '0.0.0', license: 'MIT', description: '' }, pkg);
 
   if (user) {
@@ -64,58 +73,48 @@ const writePackage = async (template, { user, email }) => {
   return pkg;
 };
 
+/**
+ * Write boilerplate scripts and common files such as LICENSE and .gitignore to
+ * user's directories.
+ */
 const writeFiles = async (pkg, template) => {
-  const defaults = {
-    LICENSE: createLicense(pkg.author),
-    '.gitignore': ['node_modules', 'dist', 'coverage'].join('\n'),
-    'public/index.html': createIndex(pkg),
-    [`public/index.${template}`]: `import { sum } from '../src/${unscopedName(
-      pkg.name
-    )}';\n\nconsole.log('this works => ', sum(2, 3));`,
-    [pkg.source]: `export const sum = (a, b) => a + b;`,
-  };
-  // overrides based on templates
-  const templates = {
-    ts: {
-      [pkg.source]: `export const sum = (a: number, b: number): number => a + b;`,
-      'tsconfig.json': createTsConfig(),
-    },
-  };
-  const files = Object.assign(
-    {},
-    defaults,
-    templates[template.substring(0, 2)]
-  );
-  const variations = {
-    LICENSE: ['LICENSE.md', 'LICENSE.txt'],
-  };
-  for (let [file, content] of Object.entries(files)) {
-    let shouldCreate = true;
-    await Promise.all(
-      [file]
-        .concat(variations[file])
-        .map(async f => (await exists(f)) && (shouldCreate = false))
-    );
-    if (shouldCreate) {
+  // An array of objects each having `file`, `content`, & optionally
+  // `extensions` properties
+  const files = [...getDefaults(pkg, template), ...getTemplates(pkg, template)];
+
+  // Write files.
+  // Only write files that don't already exist.
+  for (const { file, content, extensions } of files) {
+    let existing = false;
+    // If there's a range of possible extensions, check them all.
+    if (extensions) {
+      existing = (
+        await Promise.all(extensions.map(async ext => await exists(file + ext)))
+      ).includes(true);
+    } else {
+      existing = await exists(file);
+    }
+
+    if (!existing) {
       await write(file, content);
       info(`\t- wrote ./${file}`);
     }
   }
 };
 
+/**
+ * The main function exported by this module.
+ */
 export const init = async () => {
-  let template = process.argv[3] || 'js'; // js, jsx, ts, tsx
-  if (
-    template == 'js' ||
-    template == 'ts' ||
-    template == 'jsx' ||
-    template == 'tsx'
-  ) {
-  } else {
+  const template = process.argv[3] || 'js'; // js, jsx, ts, tsx
+
+  if (!['js', 'ts', 'jsx', 'tsx'].includes(template)) {
     error('Invalid init template. Try one of js, jsx, ts, tsx');
+    return;
   }
   const pkg = await writePackage(template, gitInfo());
   await writeFiles(pkg, template);
+
   log('\nWant to use typescript with klap?');
   info('Initialize your package with `klap init ts`\n');
 };

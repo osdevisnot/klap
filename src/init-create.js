@@ -52,3 +52,47 @@ export const createTsConfig = () => `{
     "removeComments": true
   }
 }`;
+
+export const getDefaults = (pkg, template) => [
+  {
+    file: 'LICENSE',
+    content: createLicense(pkg.author),
+    extensions: ['', '.md', '.txt'],
+  },
+  {
+    file: '.gitignore',
+    content: ['node_modules', 'dist', 'coverage'].join('\n'),
+  },
+  {
+    file: 'public/index.html',
+    content: createIndex(pkg),
+  },
+  {
+    file: `public/index.${template}`,
+    content: `import { sum } from '../src/${pkg.name}';\n\nconsole.log('this works => ', sum(2, 3));`,
+  },
+  {
+    file: pkg.source,
+    content: `export const sum = (a, b) => a + b;`,
+  },
+];
+
+export const getTemplates = (pkg, template) => {
+  const templates = {
+    js: [],
+    jsx: [],
+    ts: [
+      {
+        file: pkg.source,
+        content: `export const sum = (a: number, b: number): number => a + b;`,
+      },
+      {
+        file: 'tsconfig.json',
+        content: createTsConfig(),
+      },
+    ],
+    tsx: [],
+  };
+
+  return templates[template];
+};
