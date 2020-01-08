@@ -101,6 +101,7 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 | `klap.minify`       | --no-minify           | minification for builds                        | `true`                            |
 | `klap.globals`      |                       | global names for umd bundles                   | `{}`                              |
 | `klap.namedExports` |                       | named exports for commonjs modules             | `{}`                              |
+| `klap.terser`       |                       | options for terser - useful for code golfing   | `{}`                              |
 
 > Note: See default [browserlist coverage](https://browserl.ist/?q=%3E1%25%2C+not+ie+11%2C+not+op_mini+all)
 
