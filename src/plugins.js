@@ -4,7 +4,6 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from '@rollup/plugin-replace';
-import sourcemaps from 'rollup-plugin-sourcemaps';
 
 import { terser } from './packages/terser';
 import { sizeme } from './packages/sizeme';
@@ -19,7 +18,6 @@ const plugins = (command, pkg, options) => {
   const babelDefaults = { babelrc: false, configFile: false, compact: false };
 
   return [
-    sourcemap && sourcemaps(),
     json(),
     nodeGlobals(),
     nodeResolve({
@@ -33,6 +31,8 @@ const plugins = (command, pkg, options) => {
       extensions,
       presets,
       plugins,
+      sourceMap: sourcemap,
+      inputSourceMap: sourcemap,
     }),
     replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
     command !== 'start' && minify && terser({ sourcemap, warnings: false }),
