@@ -53,25 +53,26 @@ export const createTsConfig = () => `{
   }
 }`;
 
-export const getDefaults = (pkg, template) => [
-  {
-    file: 'LICENSE',
-    content: createLicense(pkg.author),
-    extensions: ['', '.md', '.txt'],
-  },
-  {
-    file: '.gitignore',
-    content: ['node_modules', 'dist', 'coverage'].join('\n'),
-  },
-  {
-    file: 'public/index.html',
-    content: createIndex(pkg),
-  },
-  {
-    file: `public/index.${template}`,
-    content: `import { sum } from '../src/${pkg.name}';\n\nconsole.log('this works => ', sum(2, 3));`,
-  },
-];
+export const getDefaults = (pkg, template) =>
+  [
+    pkg.author && {
+      file: 'LICENSE',
+      content: createLicense(pkg.author),
+      extensions: ['', '.md', '.txt'],
+    },
+    {
+      file: '.gitignore',
+      content: ['node_modules', 'dist', 'coverage'].join('\n'),
+    },
+    {
+      file: 'public/index.html',
+      content: createIndex(pkg),
+    },
+    {
+      file: `public/index.${template}`,
+      content: `import { sum } from '../src/${pkg.name}';\n\nconsole.log('this works => ', sum(2, 3));`,
+    },
+  ].filter(Boolean);
 
 export const getTemplates = (pkg, template) => {
   const templates = {
