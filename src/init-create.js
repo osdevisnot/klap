@@ -71,16 +71,16 @@ export const getDefaults = (pkg, template) => [
     file: `public/index.${template}`,
     content: `import { sum } from '../src/${pkg.name}';\n\nconsole.log('this works => ', sum(2, 3));`,
   },
-  {
-    file: pkg.source,
-    content: `export const sum = (a, b) => a + b;`,
-  },
 ];
 
 export const getTemplates = (pkg, template) => {
   const templates = {
-    js: [],
-    jsx: [],
+    js: [
+      {
+        file: pkg.source,
+        content: `export const sum = (a, b) => a + b;`,
+      },
+    ],
     ts: [
       {
         file: pkg.source,
@@ -91,8 +91,7 @@ export const getTemplates = (pkg, template) => {
         content: createTsConfig(),
       },
     ],
-    tsx: [],
   };
 
-  return templates[template];
+  return templates[template.slice(0, 2)];
 };
