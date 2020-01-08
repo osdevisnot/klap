@@ -12,6 +12,15 @@ const gitInfo = () => {
   const cmd = 'git config';
   const email = exec(`${cmd} user.email`);
   const user = exec(`${cmd} github.username`) || exec(`${cmd} user.name`);
+  if (!user) {
+    error(
+      'Command Failed: Tried `git config github.username` && `git config user.name`'
+    );
+    warn(
+      'Count not determine `repository` and `author` fields for `package.json`'
+    );
+    warn('Skipped generating `LICENSE` file');
+  }
   return { user, email };
 };
 
@@ -35,10 +44,6 @@ const writePackage = async (template, { user, email }) => {
   if (user) {
     pkg = merge({ repository: `${user}/${pkg.name}` }, pkg);
     if (email) pkg = merge({ author: `${user} <${email}>` }, pkg);
-  } else {
-    error(
-      `"repository" and "author" fields NOT added to package.json. Please add manually.`
-    );
   }
 
   pkg = merge(pkg, {
