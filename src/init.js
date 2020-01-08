@@ -120,6 +120,8 @@ export const init = async () => {
   const pkg = await writePackage(template, gitInfo());
   await writeFiles(pkg, template);
 
-  log('\nWant to use typescript with klap?');
-  info('Initialize your package with `klap init ts`\n');
+  if (!process.argv[3]) {
+    log('\nWant to use typescript with klap?');
+    info('Initialize your package with `klap init ts`\n');
+  }
 };
