@@ -35,7 +35,7 @@ const plugins = (command, pkg, options) => {
       inputSourceMap: sourcemap,
     }),
     replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
-    command !== 'start' && minify && terser({ sourcemap, warnings: false }),
+    command !== 'start' && minify && terser({ sourcemap }),
     command !== 'start' && sizeme(),
     command === 'start' && servor({ fallback, port }),
   ].filter(Boolean);

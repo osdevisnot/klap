@@ -8,15 +8,12 @@
 import { codeFrameColumns } from '@babel/code-frame';
 import { createFilter } from 'rollup-pluginutils';
 import { minify } from 'terser';
-import { warn, error } from '../logger';
+import { error } from '../logger';
 
 const transform = (code, options) => {
   const result = minify(code, options);
   if (result.error) {
     throw result.error;
-  }
-  if (result.warnings) {
-    result.warnings.forEach(warning => warn(warning));
   }
   return result;
 };
@@ -36,7 +33,6 @@ export const terser = (options = {}) => {
       try {
         result = transform(code, {
           sourceMap: options.sourcemap,
-          warnings: options.warnings,
           toplevel: true,
           mangle: { properties: { regex: '^_|^\\$' } },
           compress: { passes: 10, pure_getters: true },
