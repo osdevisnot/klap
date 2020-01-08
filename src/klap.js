@@ -1,10 +1,10 @@
 import del from 'del';
 import { dirname } from 'path';
 import { rollup, watch } from 'rollup';
-import { error, info } from './logger';
+import { error, info, log } from './logger';
 import { getOptions } from './options';
 import { plugins } from './plugins';
-import { exists } from './utils';
+import { exists, read } from './utils';
 
 const defaultOptions = { esModule: false, strict: false, freeze: false };
 
@@ -100,14 +100,13 @@ const writeBundle = async (bundle, outputOptions) => {
 };
 
 const build = async (options, index, inputOptions) => {
-  let err, bundle;
-
   try {
-    bundle = await rollup(inputOptions);
-  } catch (e) {
-    err = e;
+    let bundle = await rollup(inputOptions);
+    await writeBundle(bundle, options);
+  } catch (err) {
+    error(err);
+    process.exit(1);
   }
-  err ? error(err) : await writeBundle(bundle, options);
 };
 
 const processWatcher = event => {
@@ -155,15 +154,5 @@ const klap = async (command, pkg) => {
   }
 };
 
-// Experimental: Export internals to support extending parts of `klap`
-// Remove parts once we determine what we need in `tslib-cli`
-export { babelConfig } from './babel';
 export { init } from './init';
-export { bold, error, gray, green, info, log, warn } from './logger';
-export { getOptions } from './options';
-export { servor } from './packages/servor';
-export { sizeme } from './packages/sizeme';
-export { terser } from './packages/terser';
-export { plugins } from './plugins';
-export { exists, read, safePackageName, write } from './utils';
-export { klap };
+export { klap, error, info, log, read };
