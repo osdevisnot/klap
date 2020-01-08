@@ -1,4 +1,6 @@
 import { execSync } from 'child_process';
+// TODO `exists` is deprecated, use fs.stat() or fs.access() instead.
+// https://nodejs.org/api/fs.html#fs_fs_exists_path_callback
 import {
   exists as _exists,
   readFile as _readFile,
