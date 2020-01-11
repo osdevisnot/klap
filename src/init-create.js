@@ -62,7 +62,9 @@ export const getDefaults = (pkg, template) =>
     },
     {
       file: '.gitignore',
-      content: ['node_modules', 'dist', 'coverage'].join('\n'),
+      content: ['node_modules', 'dist', 'coverage', '.idea', '*.log'].join(
+        '\n'
+      ),
     },
     {
       file: 'public/index.html',

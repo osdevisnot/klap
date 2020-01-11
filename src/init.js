@@ -85,7 +85,7 @@ const writePackage = async (template, { user, email }) => {
 const writeFiles = async (pkg, template) => {
   // An array of objects each having `file`, `content`, & optionally
   // `extensions` properties
-  const files = [...getTemplates(pkg, template), ...getDefaults(pkg, template)];
+  const files = [...getDefaults(pkg, template), ...getTemplates(pkg, template)];
 
   // Write files.
   // Only write files that don't already exist.
