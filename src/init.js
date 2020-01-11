@@ -12,6 +12,15 @@ const gitInfo = () => {
   const cmd = 'git config';
   const email = exec(`${cmd} user.email`);
   const user = exec(`${cmd} github.username`) || exec(`${cmd} user.name`);
+  if (!user) {
+    error(
+      'Command Failed: Tried `git config github.username` && `git config user.name`'
+    );
+    warn(
+      'Count not determine `repository` and `author` fields for `package.json`'
+    );
+    warn('Skipped generating `LICENSE` file');
+  }
   return { user, email };
 };
 
@@ -35,10 +44,6 @@ const writePackage = async (template, { user, email }) => {
   if (user) {
     pkg = merge({ repository: `${user}/${pkg.name}` }, pkg);
     if (email) pkg = merge({ author: `${user} <${email}>` }, pkg);
-  } else {
-    error(
-      `"repository" and "author" fields NOT added to package.json. Please add manually.`
-    );
   }
 
   pkg = merge(pkg, {
@@ -115,6 +120,8 @@ export const init = async () => {
   const pkg = await writePackage(template, gitInfo());
   await writeFiles(pkg, template);
 
-  log('\nWant to use typescript with klap?');
-  info('Initialize your package with `klap init ts`\n');
+  if (!process.argv[3]) {
+    log('\nWant to use typescript with klap?');
+    info('Initialize your package with `klap init ts`\n');
+  }
 };
