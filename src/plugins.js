@@ -13,14 +13,7 @@ import { babelConfig } from './babel';
 
 const plugins = (command, pkg, options) => {
   const { extensions, presets, plugins } = babelConfig(command, pkg, options);
-  const {
-    sourcemap,
-    minify,
-    fallback,
-    port,
-    namedExports,
-    terser: terserOptions,
-  } = options;
+  const { sourcemap, minify, fallback, port, namedExports } = options;
 
   const babelDefaults = { babelrc: false, configFile: false, compact: false };
 
@@ -42,9 +35,7 @@ const plugins = (command, pkg, options) => {
       inputSourceMap: sourcemap,
     }),
     replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
-    command !== 'start' &&
-      minify &&
-      terser({ sourceMap: sourcemap, ...terserOptions }),
+    command !== 'start' && minify && terser({ sourcemap }),
     command !== 'start' && sizeme(),
     command === 'start' && servor({ fallback, port }),
   ].filter(Boolean);

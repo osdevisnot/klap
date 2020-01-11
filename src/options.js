@@ -13,7 +13,6 @@ const getOptions = pkg => {
     sourcemap = true,
     minify = true,
     target = 'es',
-    terser = {},
     globals = {},
     namedExports = {},
     fallback = 'public/index.html',
@@ -42,7 +41,7 @@ const getOptions = pkg => {
       browserlist,
     },
   });
-  return { ...opts, globals, namedExports, terser };
+  return { ...opts, globals, namedExports };
 };
 
 export { getOptions };
