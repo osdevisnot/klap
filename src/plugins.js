@@ -1,9 +1,10 @@
-import json from 'rollup-plugin-json';
-import nodeGlobals from 'rollup-plugin-node-globals';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
+import json from '@rollup/plugin-json';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
+
+import nodeGlobals from 'rollup-plugin-node-globals';
+import babel from 'rollup-plugin-babel';
 
 import { terser } from './packages/terser';
 import { sizeme } from './packages/sizeme';
