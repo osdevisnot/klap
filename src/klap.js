@@ -8,6 +8,18 @@ import { exists, read } from './utils';
 
 const defaultOptions = { esModule: false, strict: false, freeze: false };
 
+const validateConfig = (inputOptions, outputOptions) => {
+  if (
+    !inputOptions ||
+    inputOptions.length === 0 ||
+    (outputOptions && outputOptions.length === 0)
+  ) {
+    error('Error: Count not determine input and output options.');
+    info('Are you running `klap` command in appropriate package directory ?');
+    process.exit(1);
+  }
+};
+
 const buildConfig = (command, pkg, options) => {
   const {
     dependencies = {},
@@ -50,6 +62,8 @@ const buildConfig = (command, pkg, options) => {
     },
   ].filter(Boolean);
 
+  validateConfig(inputOptions, outputOptions);
+
   return { inputOptions, outputOptions };
 };
 
@@ -83,6 +97,9 @@ const startConfig = async (command, pkg, options) => {
       globals,
     };
   }
+
+  validateConfig(inputOptions);
+
   return { inputOptions, outputOptions };
 };
 
