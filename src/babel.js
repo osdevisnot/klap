@@ -8,6 +8,7 @@ import presetReact from '@babel/preset-react';
 // babel plugins
 import pluginObjectRestSpread from '@babel/plugin-proposal-object-rest-spread';
 import pluginAsyncToPromise from 'babel-plugin-transform-async-to-promises';
+import pluginDecorators from '@babel/plugin-proposal-decorators';
 import pluginClassProperties from '@babel/plugin-proposal-class-properties';
 import pluginTransformRegen from '@babel/plugin-transform-regenerator';
 import pluginStyledComponents from 'babel-plugin-styled-components';
@@ -48,6 +49,7 @@ export const babelConfig = (command, pkg, options) => {
   const plugins = [
     [pluginObjectRestSpread, { loose: true, useBuiltIns: true }],
     [pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
+    [pluginDecorators, { legacy: true }],
     [pluginClassProperties, { loose: true }],
     [pluginTransformRegen, { async: false }],
     pluginStyledComponents,
