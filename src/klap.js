@@ -21,14 +21,16 @@ const validateConfig = (inputOptions, outputOptions) => {
 };
 
 const buildConfig = (command, pkg, options) => {
+  const { dependencies = {}, peerDependencies = {} } = pkg;
   const {
-    dependencies = {},
-    peerDependencies = {},
-    main,
+    name,
+    globals,
+    source: input,
+    node: main,
     module,
     browser,
-  } = pkg;
-  const { name, globals, source: input, sourcemap } = options;
+    sourcemap,
+  } = options;
   const external = Object.keys({ ...dependencies, ...peerDependencies });
 
   let inputOptions = [
@@ -68,8 +70,16 @@ const buildConfig = (command, pkg, options) => {
 };
 
 const startConfig = async (command, pkg, options) => {
-  const { module, browser } = pkg;
-  const { name, globals, example, source, sourcemap, target } = options;
+  const {
+    name,
+    globals,
+    example,
+    source,
+    module,
+    browser,
+    sourcemap,
+    target,
+  } = options;
   const input = (await exists(example)) ? example : source;
   let inputOptions, outputOptions;
   if (target === 'es') {
