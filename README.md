@@ -91,6 +91,9 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 | option              | cli flag(s)           | description                                    | default                           |
 | ------------------- | --------------------- | ---------------------------------------------- | --------------------------------- |
 | `source`            | -s&nbsp;--source      | source file to compile and bundle              | `src/index.js`                    |
+|                     | --node                | the output file to write the cjs file to       | pkg.main                          |
+|                     | --module              | the output file to write the esm file to       | pkg.module                        |
+|                     | --browser             | the output file to write the umd file to       | pkg.browser                       |
 | `browserslist`      | -b&nbsp;--browserlist | browserlist compatible compilation target      | `>1%, not ie 11, not op_mini all` |
 | `klap.name`         | -n&nbsp;--name        | package name for `umd` bundles                 | sanitized `pkg.name`              |
 | `klap.port`         | -p&nbsp;--port        | port for development server                    | `1234`                            |
