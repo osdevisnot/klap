@@ -1,5 +1,5 @@
 import del from 'del';
-import { dirname } from 'path';
+import { dirname, basename } from 'path';
 import { rollup, watch } from 'rollup';
 import { error, info, log } from './logger';
 import { getOptions } from './options';
@@ -113,11 +113,17 @@ const startConfig = async (command, pkg, options) => {
   return { inputOptions, outputOptions };
 };
 
-const deleteDirs = async pkg => {
+const deleteDirs = async (pkg, options) => {
   const dirs = {};
-  ['main', 'module', 'browser'].map(
-    type => pkg[type] && (dirs[dirname(pkg[type]) + '/*.{js,map}'] = true)
-  );
+  if(options.source == pkg.source) {
+    ['main', 'module', 'browser'].map(
+      type => pkg[type] && (dirs[dirname(pkg[type]) + "/" + basename(pkg[type], "js") + '.{js,map}'] = true)
+    );
+  } else {
+    ['node', 'module', 'browser'].map(
+      type => pkg[type] && (dirs[dirname(options[type]) + "/" + basename(options[type], "js") + '.{js,map}'] = true)
+    );
+  }
   await del(Object.keys(dirs));
 };
 
@@ -151,7 +157,7 @@ const processWatcher = event => {
 
 const klap = async (command, pkg) => {
   const options = getOptions(pkg);
-  await deleteDirs(pkg);
+  await deleteDirs(pkg, options);
   let config, watchOptions, watcher;
   switch (command) {
     case 'build':
