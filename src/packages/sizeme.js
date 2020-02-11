@@ -9,7 +9,7 @@ import prettyBytes from 'pretty-bytes';
 import { info } from '../logger';
 
 export const sizeme = () => {
-  const showSize = bundle => {
+  const showSize = (bundle) => {
     const { code, fileName } = bundle;
     const size = prettyBytes(gzip.sync(code));
     info(`\t${size}\t${fileName}`);
@@ -20,9 +20,9 @@ export const sizeme = () => {
     generateBundle(_, bundle, isWrite) {
       if (isWrite) {
         Object.keys(bundle)
-          .map(file => bundle[file])
-          .filter(bundle => !bundle.isAsset)
-          .forEach(bundle => showSize(bundle));
+          .map((file) => bundle[file])
+          .filter((bundle) => !bundle.isAsset)
+          .forEach((bundle) => showSize(bundle));
       }
     },
   };

@@ -14,7 +14,7 @@ import pluginTransformRegen from '@babel/plugin-transform-regenerator';
 import pluginStyledComponents from 'babel-plugin-styled-components';
 import pluginMacros from 'babel-plugin-macros';
 
-let hasReact = pkg =>
+let hasReact = (pkg) =>
   ['dependencies', 'devDependencies', 'peerDependencies'].reduce(
     (last, current) => last || (pkg[current] && pkg[current]['react']),
     false

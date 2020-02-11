@@ -14,9 +14,7 @@ const command = process.argv[2];
     case 'watch':
     case 'start':
       log(`${name}@${version} - Working on ${command}...`);
-      const pkg = JSON.parse(
-        await read(path.join(process.cwd(), 'package.json'))
-      );
+      const pkg = JSON.parse(await read(path.join(process.cwd(), 'package.json')));
       await klap(command, pkg);
       break;
     case 'help':
