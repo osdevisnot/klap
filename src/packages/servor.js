@@ -6,7 +6,7 @@ import { warn } from '../logger';
 
 let singleton = false;
 
-export const servor = options => {
+export const servor = (options) => {
   return {
     name: 'servor',
     generateBundle() {

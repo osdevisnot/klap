@@ -1,7 +1,7 @@
 import getopts from 'getopts';
 import { safePackageName } from './utils';
 
-const getOptions = pkg => {
+const getOptions = (pkg) => {
   const {
     klap = {},
     source = 'src/index.js',

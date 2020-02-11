@@ -1,4 +1,4 @@
-export const createLicense = author => {
+export const createLicense = (author) => {
   return `MIT License
 
 Copyright (c) ${new Date().getFullYear()} ${author}
@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`;
 };
 
-export const createIndex = pkg => {
+export const createIndex = (pkg) => {
   return `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -62,9 +62,7 @@ export const getDefaults = (pkg, template) =>
     },
     {
       file: '.gitignore',
-      content: ['node_modules', 'dist', 'coverage', '.idea', '*.log'].join(
-        '\n'
-      ),
+      content: ['node_modules', 'dist', 'coverage', '.idea', '*.log'].join('\n'),
     },
     {
       file: 'public/index.html',
