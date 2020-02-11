@@ -1,5 +1,5 @@
 import del from 'del';
-import { dirname } from 'path';
+import { dirname, basename } from 'path';
 import { rollup, watch } from 'rollup';
 import { error, info, log } from './logger';
 import { getOptions } from './options';
@@ -21,14 +21,16 @@ const validateConfig = (inputOptions, outputOptions) => {
 };
 
 const buildConfig = (command, pkg, options) => {
+  const { dependencies = {}, peerDependencies = {} } = pkg;
   const {
-    dependencies = {},
-    peerDependencies = {},
+    name,
+    globals,
+    source: input,
     main,
     module,
     browser,
-  } = pkg;
-  const { name, globals, source: input, sourcemap } = options;
+    sourcemap,
+  } = options;
   const external = Object.keys({ ...dependencies, ...peerDependencies });
 
   let inputOptions = [
@@ -68,8 +70,16 @@ const buildConfig = (command, pkg, options) => {
 };
 
 const startConfig = async (command, pkg, options) => {
-  const { module, browser } = pkg;
-  const { name, globals, example, source, sourcemap, target } = options;
+  const {
+    name,
+    globals,
+    example,
+    source,
+    module,
+    browser,
+    sourcemap,
+    target,
+  } = options;
   const input = (await exists(example)) ? example : source;
   let inputOptions, outputOptions;
   if (target === 'es') {
@@ -103,10 +113,10 @@ const startConfig = async (command, pkg, options) => {
   return { inputOptions, outputOptions };
 };
 
-const deleteDirs = async pkg => {
+const deleteDirs = async (options) => {
   const dirs = {};
   ['main', 'module', 'browser'].map(
-    type => pkg[type] && (dirs[dirname(pkg[type]) + '/*.{js,map}'] = true)
+    type => options[type] && (dirs[dirname(options[type]) + "/" + basename(options[type], "js") + '.{js,map}'] = true)
   );
   await del(Object.keys(dirs));
 };
@@ -141,7 +151,7 @@ const processWatcher = event => {
 
 const klap = async (command, pkg) => {
   const options = getOptions(pkg);
-  await deleteDirs(pkg);
+  await deleteDirs(options);
   let config, watchOptions, watcher;
   switch (command) {
     case 'build':
