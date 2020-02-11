@@ -32,7 +32,7 @@ const getOptions = pkg => {
       example: 'e',
       browserlist: 'b',
     },
-    string: ['node', 'browser', 'module'],
+    string: ['main', 'browser', 'module'],
     default: {
       name: safePackageName(name),
       source,
@@ -47,8 +47,8 @@ const getOptions = pkg => {
   });
 
   // If no specific target is given, build the standard outputs
-  if (!opts.node && !opts.module && !opts.browser) {
-    opts.node = main;
+  if (!opts.main && !opts.module && !opts.browser) {
+    opts.main = main;
     opts.module = module;
     opts.browser = browser;
   }
