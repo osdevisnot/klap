@@ -1,4 +1,4 @@
-export const createLicense = (author) => {
+const createLicense = (author) => {
   return `MIT License
 
 Copyright (c) ${new Date().getFullYear()} ${author}
@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`;
 };
 
-export const createIndex = (pkg) => {
+const createIndex = (pkg) => {
   return `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,7 +38,7 @@ export const createIndex = (pkg) => {
 </html>`;
 };
 
-export const createTsConfig = () => `{
+const createTsConfig = () => `{
   "include": ["src"],
   "compilerOptions": {
     "target": "esnext",
@@ -53,8 +53,16 @@ export const createTsConfig = () => `{
   }
 }`;
 
+const createReadme = (name) => `# ${name}
+`;
+
 export const getDefaults = (pkg, template) =>
   [
+    {
+      file: 'README.md',
+      content: createReadme(pkg.name),
+      extensions: ['.md', '.txt'],
+    },
     pkg.author && {
       file: 'LICENSE',
       content: createLicense(pkg.author),
