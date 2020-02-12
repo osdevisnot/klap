@@ -44,9 +44,9 @@ const writePackage = async (template, { user, email }) => {
 
   pkg = merge(pkg, {
     main: `dist/${name}.cjs.js`,
-    unpkg: `dist/${name}.esm.js`,
-    module: `dist/${name}.esm.js`,
-    browser: `dist/${name}.js`,
+    unpkg: `dist/${name}.js`,
+    module: `dist/${name}.js`,
+    browser: `dist/${name}.umd.js`,
     source,
     files: ['dist'],
     scripts: {
