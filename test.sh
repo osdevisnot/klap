@@ -3,9 +3,9 @@
 
 git clean -fdX
 
-yarn
+npm install
 
-yarn run build
+npm run build
 
 cd examples
 

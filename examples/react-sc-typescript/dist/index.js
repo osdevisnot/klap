@@ -12,7 +12,7 @@ var e, n;
         o
       );
     }
-    var o = (n = n && n.hasOwnProperty('default') ? n.default : n).button(t());
+    var o = (n = n && Object.prototype.hasOwnProperty.call(n, 'default') ? n.default : n).button(t());
     e.Button = o;
   }),
   'object' == typeof exports && 'undefined' != typeof module

@@ -7,7 +7,7 @@
 import { join } from 'path';
 import { readFileSync, existsSync } from 'fs';
 import { codeFrameColumns } from '@babel/code-frame';
-import { createFilter } from 'rollup-pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 import { minify } from 'terser';
 import { error } from '../logger';
 import merge from 'deepmerge';

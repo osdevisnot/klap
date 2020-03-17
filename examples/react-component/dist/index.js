@@ -1,7 +1,7 @@
 var e, t;
 (e = this),
   (t = function(e, t) {
-    (t = t && t.hasOwnProperty('default') ? t.default : t),
+    (t = t && Object.prototype.hasOwnProperty.call(t, 'default') ? t.default : t),
       (e.Button = function(e) {
         return t.createElement('button', { class: 'button', onClick: e.onClick }, 'Hello Button');
       });

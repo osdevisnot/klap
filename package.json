@@ -5,23 +5,23 @@
   "repository": "osdevisnot/klap",
   "license": "MIT",
   "author": "osdevisnot <osdevisnot@gmail.com>",
-  "files": [
-    "dist",
-    "docs"
-  ],
   "main": "dist/index.js",
   "bin": {
     "klap": "cli.js"
   },
+  "files": [
+    "dist",
+    "docs"
+  ],
   "scripts": {
     "prebuild": "patch-package",
     "build": "ncc build src/klap.js -mo dist",
-    "prepare": "yarn build",
+    "prepare": "npm run build",
     "semantic-release": "semantic-release",
     "presetup": "git clean -fdX",
-    "setup": "yarn",
+    "setup": "npm install",
     "test": "echo 'run ./test.sh'",
-    "watch": "yarn build --watch"
+    "watch": "npm run build --watch"
   },
   "config": {
     "commitizen": {
@@ -30,12 +30,12 @@
   },
   "prettier": "@osdevisnot/prettier",
   "devDependencies": {
-    "@babel/core": "7.8.6",
+    "@babel/core": "7.8.7",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/plugin-proposal-decorators": "7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "7.8.3",
-    "@babel/plugin-transform-regenerator": "7.8.3",
-    "@babel/preset-env": "7.8.6",
+    "@babel/plugin-transform-regenerator": "7.8.7",
+    "@babel/preset-env": "7.8.7",
     "@babel/preset-react": "7.8.3",
     "@babel/preset-typescript": "7.8.3",
     "@osdevisnot/prettier": "4.2.0",
@@ -43,7 +43,8 @@
     "@rollup/plugin-json": "4.0.2",
     "@rollup/plugin-node-resolve": "7.1.1",
     "@rollup/plugin-replace": "2.3.1",
-    "@types/node": "13.7.6",
+    "@rollup/pluginutils": "3.0.8",
+    "@types/node": "13.9.1",
     "@zeit/ncc": "0.21.1",
     "babel-plugin-macros": "2.8.0",
     "babel-plugin-styled-components": "1.10.7",
@@ -55,16 +56,15 @@
     "gzip-size": "5.1.1",
     "kleur": "3.0.3",
     "mkdirp": "1.0.3",
-    "patch-package": "6.2.0",
+    "patch-package": "6.2.1",
     "pretty-bytes": "5.3.0",
-    "rollup": "1.32.0",
-    "rollup-plugin-babel": "4.3.3",
+    "rollup": "1.32.1",
+    "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-node-globals": "1.4.0",
-    "rollup-pluginutils": "2.8.2",
     "semantic-release": "17.0.4",
     "servor": "3.2.0",
     "sort-package-json": "1.40.0",
-    "terser": "4.6.4",
-    "typescript": "3.8.2"
+    "terser": "4.6.7",
+    "typescript": "3.8.3"
   }
 }
