@@ -35,6 +35,7 @@ export const babelConfig = (command, pkg, options) => {
     [
       presetEnv,
       {
+        bugfixes: true,
         loose: true,
         useBuiltIns: false,
         modules: false,

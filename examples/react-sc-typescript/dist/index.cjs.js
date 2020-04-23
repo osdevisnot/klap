@@ -1,14 +1,11 @@
-var n;
-function t() {
-  const n = ((o = ['\n  background-color: red;\n  width: 100%;\n']), r || (r = o.slice(0)), (o.raw = r), o);
-  var o, r;
-  return (
-    (t = function() {
-      return n;
-    }),
-    n
-  );
-}
-const o = ((n = require('styled-components')) && 'object' == typeof n && 'default' in n ? n.default : n).button(t());
-exports.Button = o;
+var e;
+let o;
+const t = ((e = require('styled-components')) && 'object' == typeof e && 'default' in e ? e.default : e).button(
+  o ||
+    (o = ((e) => e)`
+  background-color: red;
+  width: 100%;
+`)
+);
+exports.Button = t;
 //# sourceMappingURL=index.cjs.js.map

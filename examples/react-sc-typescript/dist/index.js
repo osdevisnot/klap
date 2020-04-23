@@ -1,12 +1,12 @@
 var e, n;
 (e = this),
-  (n = function(e, n) {
+  (n = function (e, n) {
     function t() {
       var e,
         n,
         o = ((e = ['\n  background-color: red;\n  width: 100%;\n']), n || (n = e.slice(0)), (e.raw = n), e);
       return (
-        (t = function() {
+        (t = function () {
           return o;
         }),
         o

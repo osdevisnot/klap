@@ -1,7 +1,7 @@
 var e, n;
 (e = this),
-  (n = function(e) {
-    e.sum = function(e, n) {
+  (n = function (e) {
+    e.sum = function (e, n) {
       return e + n;
     };
   }),
