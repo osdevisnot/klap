@@ -31,6 +31,7 @@ const buildConfig = (command, pkg, options) => {
       external,
       input,
       plugins: plugins(command, pkg, { ...options, format: 'es' }),
+      inlineDynamicImports: true,
     },
     browser && {
       external,
