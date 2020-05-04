@@ -25,10 +25,7 @@ const gitInfo = () => {
  */
 const writePackage = async (template, { user, email }) => {
   let pkg = {};
-  const name = process
-    .cwd()
-    .split('/')
-    .pop();
+  const name = process.cwd().split('/').pop();
   const source = `src/${name}.${template}`;
 
   if (await exists('./package.json')) {
@@ -48,6 +45,7 @@ const writePackage = async (template, { user, email }) => {
     module: `dist/${name}.js`,
     browser: `dist/${name}.umd.js`,
     source,
+    sideEffects: false,
     files: ['dist'],
     scripts: {
       build: 'klap build',
