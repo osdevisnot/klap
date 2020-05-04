@@ -12,11 +12,13 @@ import pluginDecorators from '@babel/plugin-proposal-decorators';
 import pluginClassProperties from '@babel/plugin-proposal-class-properties';
 import pluginTransformRegen from '@babel/plugin-transform-regenerator';
 import pluginStyledComponents from 'babel-plugin-styled-components';
+import pluginEmotion from 'babel-plugin-emotion';
 import pluginMacros from 'babel-plugin-macros';
+import pluginCodegen from 'babel-plugin-codegen';
 
-let hasReact = (pkg) =>
+let hasPackage = (pkg, name) =>
   ['dependencies', 'devDependencies', 'peerDependencies'].reduce(
-    (last, current) => last || (pkg[current] && pkg[current]['react']),
+    (last, current) => last || (pkg[current] && pkg[current][name]),
     false
   );
 
@@ -27,9 +29,14 @@ export const babelConfig = (command, pkg, options) => {
   // Note: when using `React`, presetTs needs `React` as jsxPragma,
   // vs presetReact needs `React.createElement`,
   // but when using `h` as pragma, both presets needs it to be just `h`
-  let [jsxPragma, pragma, pragmaFrag] = hasReact(pkg)
+  let [jsxPragma, pragma, pragmaFrag] = hasPackage(pkg, 'react')
     ? ['React', 'React.createElement', 'React.Fragment']
     : ['h', 'h', 'h'];
+  // Note: The styled component plugin effects the css prop, even if
+  // styled components are not being used in project. So, we enable
+  // this only when styled-components is a project dependency...
+  let useStyledComponents = hasPackage(pkg, 'styled-components');
+  let useEmotion = hasPackage(pkg, 'emotion');
 
   const presets = [
     [
@@ -53,9 +60,11 @@ export const babelConfig = (command, pkg, options) => {
     [pluginDecorators, { legacy: true }],
     [pluginClassProperties, { loose: true }],
     [pluginTransformRegen, { async: false }],
-    pluginStyledComponents,
+    useStyledComponents && pluginStyledComponents,
+    useEmotion && pluginEmotion,
+    pluginCodegen,
     pluginMacros,
-  ];
+  ].filter(Boolean);
 
   return { presets, plugins, extensions };
 };
