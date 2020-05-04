@@ -1,7 +1,7 @@
 import getopts from 'getopts';
 import { safePackageName } from './utils';
 
-const getOptions = (pkg) => {
+const getOptions = (pkg, command) => {
   const {
     klap = {},
     source = 'src/index.js',
@@ -38,8 +38,8 @@ const getOptions = (pkg) => {
       source,
       port,
       target,
-      sourcemap,
-      minify,
+      sourcemap: command !== 'start',
+      minify: command !== 'start',
       fallback,
       example,
       browserlist,

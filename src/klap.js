@@ -105,7 +105,7 @@ const writeBundle = async (bundle, outputOptions) => {
   await bundle.write(outputOptions);
 };
 
-const build = async (options, index, inputOptions) => {
+const build = async (options, inputOptions) => {
   try {
     let bundle = await rollup(inputOptions);
     await writeBundle(bundle, options);
@@ -127,13 +127,13 @@ const processWatcher = (event) => {
 };
 
 const klap = async (command, pkg) => {
-  const options = getOptions(pkg);
+  const options = getOptions(pkg, command);
   await deleteDirs(options);
   let config, watchOptions, watcher;
   switch (command) {
     case 'build':
       config = buildConfig(command, pkg, options);
-      config.outputOptions.map((opts, index) => build(opts, index, config.inputOptions[index]));
+      config.outputOptions.map((opts, index) => build(opts, config.inputOptions[index]));
       break;
     case 'watch':
       config = buildConfig(command, pkg, options);
