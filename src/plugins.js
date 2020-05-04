@@ -4,7 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 
 import nodeGlobals from 'rollup-plugin-node-globals';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 
 import { terser } from './packages/terser';
 import { sizeme } from './packages/sizeme';
@@ -33,6 +33,7 @@ const plugins = (command, pkg, options) => {
       presets,
       plugins,
       sourceMap: sourcemap,
+      babelHelpers: 'bundled',
       inputSourceMap: sourcemap,
     }),
     replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
