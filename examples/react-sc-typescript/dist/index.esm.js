@@ -1,11 +1,11 @@
 import o from 'styled-components';
-let t;
-const r = o.button(
-  t ||
-    (t = ((o) => o)`
+var r,
+  t = o.button(
+    r ||
+      (r = ((o) => o)`
   background-color: red;
   width: 100%;
 `)
-);
-export { r as Button };
+  );
+export { t as Button };
 //# sourceMappingURL=index.esm.js.map
