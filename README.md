@@ -8,7 +8,7 @@ a zero config, zero dependency bundler for tiny javascript packages.
 ![David](https://img.shields.io/david/dev/osdevisnot/klap?style=flat-square)
 ![npm](https://img.shields.io/npm/v/klap?style=flat-square)
 ![NPM](https://img.shields.io/npm/l/klap?style=flat-square)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 
@@ -128,12 +128,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://v1rtl.site"><img src="https://avatars0.githubusercontent.com/u/35937217?v=4" width="100px;" alt=""/><br /><sub><b>v 1 r t l</b></sub></a><br /><a href="https://github.com/osdevisnot/klap/commits?author=talentlessguy" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dnl-brnr"><img src="https://avatars1.githubusercontent.com/u/58155720?v=4" width="100px;" alt=""/><br /><sub><b>Daniel Berner</b></sub></a><br /><a href="https://github.com/osdevisnot/klap/commits?author=dnl-brnr" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Tom-Julux"><img src="https://avatars2.githubusercontent.com/u/42802270?v=4" width="100px;" alt=""/><br /><sub><b>Tom Julius</b></sub></a><br /><a href="https://github.com/osdevisnot/klap/commits?author=Tom-Julux" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/marcuslindblom"><img src="https://avatars1.githubusercontent.com/u/319720?v=4" width="100px;" alt=""/><br /><sub><b>Marcus Lindblom</b></sub></a><br /><a href="https://github.com/osdevisnot/klap/commits?author=marcuslindblom" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
