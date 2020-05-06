@@ -9,7 +9,7 @@ npm run build
 
 cd examples
 
-for dir in minimal scaffold scaffold-typescript react-component react-typescript react-sc-typescript
+for dir in minimal scaffold scaffold-typescript react-component react-typescript react-sc-typescript dynamic-imports
 do
 	cd ${dir} && klap build && rm -rf dist/*.map && cd ..
 done
