@@ -6,7 +6,8 @@ import { getOptions } from './options';
 import { plugins } from './plugins';
 import { exists, read } from './utils';
 
-const defaultOptions = { esModule: false, strict: false, freeze: false };
+const defaultInputOptions = { inlineDynamicImports: true };
+const defaultOutputOptions = { esModule: false, strict: false, freeze: false };
 
 const validateConfig = (inputOptions, outputOptions) => {
   if (!inputOptions || inputOptions.length === 0 || (outputOptions && outputOptions.length === 0)) {
@@ -23,16 +24,19 @@ const buildConfig = (command, pkg, options) => {
 
   let inputOptions = [
     main && {
+      ...defaultInputOptions,
       external,
       input,
       plugins: plugins(command, pkg, { ...options, format: 'cjs' }),
     },
     module && {
+      ...defaultInputOptions,
       external,
       input,
       plugins: plugins(command, pkg, { ...options, format: 'es' }),
     },
     browser && {
+      ...defaultInputOptions,
       external,
       input,
       plugins: plugins(command, pkg, { ...options, format: 'umd' }),
@@ -40,10 +44,10 @@ const buildConfig = (command, pkg, options) => {
   ].filter(Boolean);
 
   let outputOptions = [
-    main && { ...defaultOptions, file: main, format: 'cjs', sourcemap },
-    module && { ...defaultOptions, file: module, format: 'es', sourcemap },
+    main && { ...defaultOutputOptions, file: main, format: 'cjs', sourcemap },
+    module && { ...defaultOutputOptions, file: module, format: 'es', sourcemap },
     browser && {
-      ...defaultOptions,
+      ...defaultOutputOptions,
       file: browser,
       format: 'umd',
       name,
@@ -63,22 +67,24 @@ const startConfig = async (command, pkg, options) => {
   let inputOptions, outputOptions;
   if (target === 'es') {
     inputOptions = {
+      ...defaultInputOptions,
       input,
       plugins: plugins(command, pkg, { ...options, format: 'es' }),
     };
     outputOptions = {
-      ...defaultOptions,
+      ...defaultOutputOptions,
       file: module,
       format: 'es',
       sourcemap,
     };
   } else if (target === 'umd') {
     inputOptions = {
+      ...defaultInputOptions,
       input,
       plugins: plugins(command, pkg, { ...options, format: 'umd' }),
     };
     outputOptions = {
-      ...defaultOptions,
+      ...defaultOutputOptions,
       file: browser,
       format: 'umd',
       name,
