@@ -21,7 +21,7 @@
     "presetup": "git clean -fdX",
     "setup": "npm install",
     "test": "echo 'run ./test.sh'",
-    "watch": "npm run build --watch"
+    "watch": "npm run build -- --watch"
   },
   "config": {
     "commitizen": {

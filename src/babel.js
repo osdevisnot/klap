@@ -24,7 +24,7 @@ let hasPackage = (pkg, name) =>
 
 export const babelConfig = (command, pkg, options) => {
   const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json'];
-  const { browserlist, format } = options;
+  const { browserslist, format } = options;
 
   // Note: when using `React`, presetTs needs `React` as jsxPragma,
   // vs presetReact needs `React.createElement`,
@@ -46,7 +46,7 @@ export const babelConfig = (command, pkg, options) => {
         loose: true,
         useBuiltIns: false,
         modules: false,
-        targets: format === 'umd' ? browserlist + ', ie 11' : browserlist,
+        targets: format === 'umd' ? browserslist + ', ie 11' : browserslist,
         exclude: ['transform-async-to-generator', 'transform-regenerator'],
         include: ['transform-block-scoping'],
       },

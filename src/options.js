@@ -5,7 +5,7 @@ const getOptions = (pkg, command) => {
   const {
     klap = {},
     source = 'src/index.js',
-    browserlist = '>1%, not ie 11, not op_mini all',
+    browserslist = '>1%, not ie 11, not op_mini all',
     main,
     module,
     browser,
@@ -30,7 +30,7 @@ const getOptions = (pkg, command) => {
       target: 't',
       fallback: 'f',
       example: 'e',
-      browserlist: 'b',
+      browserslist: 'b',
     },
     string: ['main', 'browser', 'module'],
     default: {
@@ -42,7 +42,7 @@ const getOptions = (pkg, command) => {
       minify,
       fallback,
       example,
-      browserlist,
+      browserslist,
     },
   });
 
