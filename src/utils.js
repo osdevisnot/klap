@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 // https://nodejs.org/api/fs.html#fs_fs_exists_path_callback
 import { exists as _exists, readFile as _readFile, writeFile as _writeFile } from 'fs';
 import mkdir from 'mkdirp';
-import { dirname } from 'path';
+import { dirname, parse } from 'path';
 import { promisify } from 'util';
 
 const readFile = promisify(_readFile);
@@ -19,16 +19,13 @@ const write = async (p, d) => {
 };
 
 const snakeToCamel = (str) =>
-  str.replace(/([-_][a-z])/g, (group) =>
-    group
-      .toUpperCase()
-      .replace('-', '')
-      .replace('_', '')
-  );
+  str.replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''));
 
 const safePackageName = (str) => snakeToCamel(str.replace('@', '').replace('/', '.'));
 
 const trim = (str) => str.replace(/^\s|\s$/, '');
+
+const baseName = (str) => parse(str).name;
 
 const exec = (cmd) => {
   try {
@@ -38,4 +35,4 @@ const exec = (cmd) => {
   }
 };
 
-export { exists, read, write, safePackageName, exec };
+export { exists, read, write, safePackageName, exec, baseName };

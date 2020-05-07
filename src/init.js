@@ -3,7 +3,7 @@ import sort from 'sort-package-json';
 import cli from '../package.json';
 import { getDefaults, getTemplates } from './init-create';
 import { error, info, log } from './logger';
-import { exec, exists, read, write } from './utils';
+import { exec, exists, read, write, baseName } from './utils';
 
 /**
  * Source user's .gitconfig info (name & email)
@@ -87,7 +87,7 @@ const writeFiles = async (pkg, template) => {
     let existing = false;
     // If there's a range of possible extensions, check them all.
     if (extensions) {
-      existing = (await Promise.all(extensions.map(async (ext) => await exists(file + ext)))).includes(true);
+      existing = (await Promise.all(extensions.map(async (ext) => await exists(baseName(file) + ext)))).includes(true);
     } else {
       existing = await exists(file);
     }
