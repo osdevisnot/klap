@@ -46,7 +46,7 @@ export const babelConfig = (command, pkg, options) => {
         loose: true,
         useBuiltIns: false,
         modules: false,
-        targets: format === 'umd' ? browserslist + ', ie 11' : browserslist,
+        targets: format === 'umd' ? 'defaults' : browserslist,
         exclude: ['transform-async-to-generator', 'transform-regenerator'],
         include: ['transform-block-scoping'],
       },
