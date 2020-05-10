@@ -11,6 +11,7 @@ const command = process.argv[2];
       await init(command);
       break;
     case 'build':
+    case 'prod':
     case 'watch':
     case 'start':
       log(`${name}@${version} - Working on ${command}...`);

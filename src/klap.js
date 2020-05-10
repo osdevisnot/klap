@@ -159,6 +159,10 @@ const klap = async (command, pkg) => {
       watcher = watch(watchOptions);
       watcher.on('event', processWatcher);
       break;
+    case 'prod':
+      config = await startConfig(command, pkg, options);
+      build(config.outputOptions, config.inputOptions);
+      break;
   }
 };
 
