@@ -4,7 +4,11 @@ var e, n;
     function t() {
       var e,
         n,
-        o = ((e = ['\n  background-color: red;\n  width: 100%;\n']), n || (n = e.slice(0)), (e.raw = n), e);
+        o =
+          ((e = ['\n  background-color: red;\n  width: 100%;\n']),
+          n || (n = e.slice(0)),
+          (e.raw = n),
+          e);
       return (
         (t = function () {
           return o;
@@ -12,7 +16,10 @@ var e, n;
         o
       );
     }
-    var o = (n = n && Object.prototype.hasOwnProperty.call(n, 'default') ? n.default : n).button(t());
+    var o = (n =
+      n && Object.prototype.hasOwnProperty.call(n, 'default')
+        ? n.default
+        : n).button(t());
     e.Button = o;
   }),
   'object' == typeof exports && 'undefined' != typeof module

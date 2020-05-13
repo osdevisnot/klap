@@ -1,8 +1,8 @@
 diff --git a/node_modules/servor/servor.js b/node_modules/servor/servor.js
-index 878c6b1..a202b6f 100644
+index 63f4ad4..bd79a1e 100644
 --- a/node_modules/servor/servor.js
 +++ b/node_modules/servor/servor.js
-@@ -134,7 +134,7 @@ module.exports = async ({
+@@ -145,7 +145,7 @@ module.exports = async ({
    // Notify livereload clients on file change
  
    reload &&
