@@ -108,6 +108,21 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 
 > Note: See default [browserslist coverage](https://browserl.ist/?q=%3E1%25%2C+not+ie+11%2C+not+op_mini+all)
 
+## :angel: Alternatives / Related Work
+
+In some cases, `klap` might not meet your requirements or preferences, consider using [microbundle](https://github.com/developit/microbundle) or [tsdx](https://github.com/jaredpalmer/tsdx). A quick feature comparison between `klap`, `microbundle` and `tsdx` :
+
+| Feature            |        klap        | [microbundle](https://github.com/developit/microbundle) | [tsdx](https://github.com/jaredpalmer/tsdx) |
+| ------------------ | :----------------: | :-----------------------------------------------------: | :-----------------------------------------: |
+| Typescript Support | :white_check_mark: |                   :white_check_mark:                    |             :white_check_mark:              |
+| No Dependencies    | :white_check_mark: |                           :x:                           |                     :x:                     |
+| Scaffolding        | :white_check_mark: |                           :x:                           |             :white_check_mark:              |
+| Dev Server         | :white_check_mark: |                           :x:                           |                     :x:                     |
+| CSS                |        :x:         |                   :white_check_mark:                    |             :white_check_mark:              |
+| CSS Modules        |        :x:         |                   :white_check_mark:                    |                     :x:                     |
+| Dev Expressions    |        :x:         |                   :white_check_mark:                    |             :white_check_mark:              |
+| Testing/Linting    |        :x:         |                           :x:                           |             :white_check_mark:              |
+
 ## :clinking_glasses: License
 
 **klap** is licensed under the [MIT License](http://opensource.org/licenses/MIT).
@@ -134,6 +149,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
