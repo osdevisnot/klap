@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# set -x
+set -x
 
 git clean -fdX
 
-npm install
+npm link
 
 npm run build
 
 cd examples
 
-for dir in minimal scaffold scaffold-typescript react-component react-typescript react-sc-typescript dynamic-imports
+for dir in $(ls)
 do
 	cd ${dir} && klap build && rm -rf dist/*.map && cd ..
 done
