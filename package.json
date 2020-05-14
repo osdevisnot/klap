@@ -10,8 +10,7 @@
     "klap": "cli.js"
   },
   "files": [
-    "dist",
-    "docs"
+    "dist"
   ],
   "scripts": {
     "prebuild": "patch-package",

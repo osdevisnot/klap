@@ -1,6 +1,6 @@
 # klap :clap:
 
-a zero config, zero dependency bundler for tiny javascript packages.
+## a zero config, zero dependency bundler for tiny javascript packages.
 
 <!-- prettier-ignore-start -->
 [![Build Status](https://img.shields.io/travis/osdevisnot/klap/master?style=flat-square)](https://travis-ci.org/osdevisnot/klap)
@@ -12,13 +12,7 @@ a zero config, zero dependency bundler for tiny javascript packages.
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 
-<table border="0">
-<tr><td>
-<img src="docs/klap-init.gif" alt="klap init output">
-</td><td>
-<img src="docs/klap-build.gif" alt="klap build output">
-</td></tr>
-</table>
+<img src="klap-init.gif" alt="klap output">
 
 ## :sparkles: Features
 
