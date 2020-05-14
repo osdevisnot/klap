@@ -118,9 +118,9 @@ In some cases, `klap` might not meet your requirements or preferences, consider 
 | No Dependencies    | :white_check_mark: |                           :x:                           |                     :x:                     |
 | Scaffolding        | :white_check_mark: |                           :x:                           |             :white_check_mark:              |
 | Dev Server         | :white_check_mark: |                           :x:                           |                     :x:                     |
+| Dev Expressions    | :white_check_mark: |                   :white_check_mark:                    |             :white_check_mark:              |
 | CSS                |        :x:         |                   :white_check_mark:                    |             :white_check_mark:              |
 | CSS Modules        |        :x:         |                   :white_check_mark:                    |                     :x:                     |
-| Dev Expressions    |        :x:         |                   :white_check_mark:                    |             :white_check_mark:              |
 | Testing/Linting    |        :x:         |                           :x:                           |             :white_check_mark:              |
 
 ## :clinking_glasses: License
