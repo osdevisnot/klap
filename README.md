@@ -85,6 +85,8 @@ The `init` command will create a minimal `package.json` with `source`, `main`, `
 
 Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 
+> See [examples](examples) for common use cases using `klap`.
+
 ### :anger: Granular Control
 
 `klap` uses sensible defaults for most part. However, as needed, use below properties in `package.json` to fine tune `klap`. You can also use `cli flags` to control config options for `klap`.
@@ -134,6 +136,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
