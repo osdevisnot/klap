@@ -1,0 +1,13 @@
+diff --git a/node_modules/servor/servor.js b/node_modules/servor/servor.js
+index b66abe5..61a83e8 100644
+--- a/node_modules/servor/servor.js
++++ b/node_modules/servor/servor.js
+@@ -152,7 +152,7 @@ module.exports = async ({
+   // Notify livereload reloadClients on file change
+ 
+   reload &&
+-    fileWatch(root, () => {
++    fileWatch(root + '/dist', () => {
+       while (reloadClients.length > 0)
+         sendMessage(reloadClients.pop(), 'message', 'reload');
+     });
