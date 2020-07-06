@@ -134,3 +134,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## :gift_heart: Supporters
+
+- [JetBrains](https://www.jetbrains.com/?from=klap) has been kind enough to support `klap` with an [open source license](https://www.jetbrains.com/community/opensource/?from=klap).
