@@ -85,22 +85,21 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 
 `klap` uses sensible defaults for most part. However, as needed, use below properties in `package.json` to fine tune `klap`. You can also use `cli flags` to control config options for `klap`.
 
-| option              | cli flag(s)            | description                                    | default                           |
-| ------------------- | ---------------------- | ---------------------------------------------- | --------------------------------- |
-| `source`            | -s&nbsp;--source       | source file to compile and bundle              | `src/index.js`                    |
-|                     | --main                 | the output file to write the cjs file to       | pkg.main                          |
-|                     | --module               | the output file to write the esm file to       | pkg.module                        |
-|                     | --browser              | the output file to write the umd file to       | pkg.browser                       |
-| `browserslist`      | -b&nbsp;--browserslist | browserslist compatible compilation target     | `>1%, not ie 11, not op_mini all` |
-| `klap.name`         | -n&nbsp;--name         | package name for `umd` bundles                 | sanitized `pkg.name`              |
-| `klap.port`         | -p&nbsp;--port         | port for development server                    | `1234`                            |
-| `klap.example`      | -e&nbsp;--example      | location of index js/ts file for start command | `public/index.js` or `pkg.source` |
-| `klap.fallback`     | -f&nbsp;--fallback     | location of index html file for start command  | `public/index.html`               |
-| `klap.target`       | -t&nbsp;--target       | target for development server (`umd|es`)       | `es`                              |
-| `klap.sourcemap`    | --no-sourcemap         | sourcemaps for builds                          | `true`                            |
-| `klap.minify`       | --no-minify            | minification for builds                        | `true`                            |
-| `klap.globals`      |                        | global names for umd bundles                   | `{}`                              |
-| `klap.namedExports` |                        | named exports for commonjs modules             | `{}`                              |
+| option           | cli flag(s)            | description                                    | default                           |
+| ---------------- | ---------------------- | ---------------------------------------------- | --------------------------------- |
+| `source`         | -s&nbsp;--source       | source file to compile and bundle              | `src/index.js`                    |
+|                  | --main                 | the output file to write the cjs file to       | pkg.main                          |
+|                  | --module               | the output file to write the esm file to       | pkg.module                        |
+|                  | --browser              | the output file to write the umd file to       | pkg.browser                       |
+| `browserslist`   | -b&nbsp;--browserslist | browserslist compatible compilation target     | `>1%, not ie 11, not op_mini all` |
+| `klap.name`      | -n&nbsp;--name         | package name for `umd` bundles                 | sanitized `pkg.name`              |
+| `klap.port`      | -p&nbsp;--port         | port for development server                    | `1234`                            |
+| `klap.example`   | -e&nbsp;--example      | location of index js/ts file for start command | `public/index.js` or `pkg.source` |
+| `klap.fallback`  | -f&nbsp;--fallback     | location of index html file for start command  | `public/index.html`               |
+| `klap.target`    | -t&nbsp;--target       | target for development server (`umd|es`)       | `es`                              |
+| `klap.sourcemap` | --no-sourcemap         | sourcemaps for builds                          | `true`                            |
+| `klap.minify`    | --no-minify            | minification for builds                        | `true`                            |
+| `klap.globals`   |                        | global names for umd bundles                   | `{}`                              |
 
 > Note: See default [browserslist coverage](https://browserl.ist/?q=%3E1%25%2C+not+ie+11%2C+not+op_mini+all)
 
@@ -112,7 +111,7 @@ Documentation is licensed under [Creative Common License](http://creativecommons
 
 Created with ❤️ by [@osdevisnot](https://github.com/osdevisnot) and [all contributors](https://github.com/osdevisnot/klap/graphs/contributors).
 
-## Contributors ✨
+## :sparkles: Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

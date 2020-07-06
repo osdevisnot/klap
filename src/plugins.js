@@ -14,7 +14,7 @@ import { babelConfig } from './babel';
 
 const plugins = (command, pkg, options) => {
   const { extensions, presets, plugins } = babelConfig(command, pkg, options);
-  const { sourcemap, minify, fallback, port, namedExports } = options;
+  const { sourcemap, minify, fallback, port } = options;
 
   const babelDefaults = { babelrc: false, configFile: false, compact: false };
 
@@ -25,7 +25,7 @@ const plugins = (command, pkg, options) => {
       mainFields: ['module', 'jsnext:main', 'browser', 'main'],
       extensions,
     }),
-    commonjs({ extensions, include: /\/node_modules\//, namedExports }),
+    commonjs({ extensions, include: /\/node_modules\// }),
     babel({
       ...babelDefaults,
       exclude: 'node_modules/**',

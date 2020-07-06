@@ -2,13 +2,13 @@
   "name": "scaffold-typescript",
   "version": "0.0.0",
   "private": true,
-  "files": [
-    "dist"
-  ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "source": "src/index.ts",
   "browser": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "klap build",
     "start": "klap start",
@@ -18,11 +18,6 @@
     "klap": "2.1.0"
   },
   "klap": {
-    "namedExports": {
-      "react-dom": [
-        "render"
-      ]
-    },
     "example": "public/index.js"
   }
 }

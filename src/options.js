@@ -17,7 +17,6 @@ const getOptions = (pkg, command) => {
     minify = command !== 'start',
     target = 'es',
     globals = {},
-    namedExports = {},
     fallback = 'public/index.html',
     example = 'public/index.js',
   } = klap;
@@ -53,7 +52,7 @@ const getOptions = (pkg, command) => {
     opts.browser = browser;
   }
 
-  return { ...opts, globals, namedExports };
+  return { ...opts, globals };
 };
 
 export { getOptions };
