@@ -4,26 +4,26 @@
  * - `rollup-plugin-filesize` does an internal terser pass for all the files
  * - This is little expensive, specially when we use `terser` to generate final output anyway.
  */
-import gzip from 'gzip-size';
-import prettyBytes from 'pretty-bytes';
-import { info } from '../logger';
+import gzip from 'gzip-size'
+import prettyBytes from 'pretty-bytes'
+import { info } from '../logger'
 
 export const sizeme = () => {
-  const showSize = (bundle) => {
-    const { code, fileName } = bundle;
-    const size = prettyBytes(gzip.sync(code));
-    info(`\t${size}\t${fileName}`);
-  };
+	const showSize = (bundle) => {
+		const { code, fileName } = bundle
+		const size = prettyBytes(gzip.sync(code))
+		info(`\t${size}\t${fileName}`)
+	}
 
-  return {
-    name: 'sizeme',
-    generateBundle(_, bundle, isWrite) {
-      if (isWrite) {
-        Object.keys(bundle)
-          .map((file) => bundle[file])
-          .filter((bundle) => !bundle.isAsset)
-          .forEach((bundle) => showSize(bundle));
-      }
-    },
-  };
-};
+	return {
+		name: 'sizeme',
+		generateBundle(_, bundle, isWrite) {
+			if (isWrite) {
+				Object.keys(bundle)
+					.map((file) => bundle[file])
+					.filter((bundle) => !bundle.isAsset)
+					.forEach((bundle) => showSize(bundle))
+			}
+		},
+	}
+}

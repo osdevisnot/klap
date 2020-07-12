@@ -1,5 +1,5 @@
 const createLicense = (author) => {
-  return `MIT License
+	return `MIT License
 
 Copyright (c) ${new Date().getFullYear()} ${author}
 
@@ -19,11 +19,11 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.`;
-};
+SOFTWARE.`
+}
 
 const createIndex = (pkg) => {
-  return `<!DOCTYPE html>
+	return `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,8 +35,8 @@ const createIndex = (pkg) => {
     <div id="root"></div>
     <script src="${pkg.module}" type="module"></script>
   </body>
-</html>`;
-};
+</html>`
+}
 
 const createTsConfig = () => `{
   "include": ["src"],
@@ -51,56 +51,56 @@ const createTsConfig = () => `{
     "lib": ["dom", "esnext"],
     "removeComments": true
   }
-}`;
+}`
 
 const createReadme = (name) => `# ${name}
-`;
+`
 
 export const getDefaults = (pkg, template) =>
-  [
-    {
-      file: 'README.md',
-      content: createReadme(pkg.name),
-      extensions: ['.md', '.txt'],
-    },
-    pkg.author && {
-      file: 'LICENSE',
-      content: createLicense(pkg.author),
-      extensions: ['', '.md', '.txt'],
-    },
-    {
-      file: '.gitignore',
-      content: ['node_modules', 'dist', 'coverage', '.idea', '*.log'].join('\n'),
-    },
-    {
-      file: 'public/index.html',
-      content: createIndex(pkg),
-    },
-    {
-      file: `public/index.${template}`,
-      content: `import { sum } from '../src/${pkg.name}';\n\nconsole.log('this works => ', sum(2, 3));`,
-    },
-  ].filter(Boolean);
+	[
+		{
+			file: 'README.md',
+			content: createReadme(pkg.name),
+			extensions: ['.md', '.txt'],
+		},
+		pkg.author && {
+			file: 'LICENSE',
+			content: createLicense(pkg.author),
+			extensions: ['', '.md', '.txt'],
+		},
+		{
+			file: '.gitignore',
+			content: ['node_modules', 'dist', 'coverage', '.idea', '*.log'].join('\n'),
+		},
+		{
+			file: 'public/index.html',
+			content: createIndex(pkg),
+		},
+		{
+			file: `public/index.${template}`,
+			content: `import { sum } from '../src/${pkg.name}';\n\nconsole.log('this works => ', sum(2, 3));`,
+		},
+	].filter(Boolean)
 
 export const getTemplates = (pkg, template) => {
-  const templates = {
-    js: [
-      {
-        file: pkg.source,
-        content: `export const sum = (a, b) => a + b;`,
-      },
-    ],
-    ts: [
-      {
-        file: pkg.source,
-        content: `export const sum = (a: number, b: number): number => a + b;`,
-      },
-      {
-        file: 'tsconfig.json',
-        content: createTsConfig(),
-      },
-    ],
-  };
+	const templates = {
+		js: [
+			{
+				file: pkg.source,
+				content: `export const sum = (a, b) => a + b;`,
+			},
+		],
+		ts: [
+			{
+				file: pkg.source,
+				content: `export const sum = (a: number, b: number): number => a + b;`,
+			},
+			{
+				file: 'tsconfig.json',
+				content: createTsConfig(),
+			},
+		],
+	}
 
-  return templates[template.slice(0, 2)];
-};
+	return templates[template.slice(0, 2)]
+}
