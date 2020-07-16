@@ -5,7 +5,7 @@
  * - `jest-worker` had issues with bundling approach we want to follow for `klap`.
  */
 import { join } from 'path'
-import { readFileSync, existsSync } from 'fs'
+import { readFileSync, existsSync, writeFileSync } from 'fs'
 import { codeFrameColumns } from '@babel/code-frame'
 import { createFilter } from '@rollup/pluginutils'
 import { minify } from 'terser'
@@ -32,8 +32,13 @@ export const terser = (options = {}) => {
 	}
 
 	// Read Project .terserrc if exists...
-	let rc = join(process.cwd(), '.terserrc')
-	if (existsSync(rc)) opts = merge(opts, JSON.parse(readFileSync(rc, 'utf-8')))
+	let rc = join(process.cwd(), '.terserrc'),
+		cache
+
+	if (existsSync(rc)) {
+		cache = JSON.parse(readFileSync(rc, 'utf-8'))
+		opts = merge(opts, cache)
+	}
 
 	opts = merge(opts, options)
 
@@ -46,6 +51,12 @@ export const terser = (options = {}) => {
 			let result
 			try {
 				result = transform(code, opts)
+				try {
+					if (cache && opts.nameCache) {
+						cache.nameCache = opts.nameCache
+						writeFileSync(rc, JSON.stringify(cache, null, '  ') + '\n', 'utf-8')
+					}
+				} catch (e) {}
 			} catch (err) {
 				const { message, line, col: column } = err
 				error(codeFrameColumns(code, { start: { line, column } }, { message }))
