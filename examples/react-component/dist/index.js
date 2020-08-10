@@ -10,5 +10,5 @@ var e, t
 		? t(exports, require('react'))
 		: 'function' == typeof define && define.amd
 		? define(['exports', 'react'], t)
-		: t(((e = e || self).reactComponent = {}), e.React)
+		: t(((e = 'undefined' != typeof globalThis ? globalThis : e || self).reactComponent = {}), e.React)
 //# sourceMappingURL=index.js.map

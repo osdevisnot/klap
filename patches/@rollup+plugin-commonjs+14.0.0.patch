@@ -1,5 +1,5 @@
 diff --git a/node_modules/@rollup/plugin-commonjs/dist/index.js b/node_modules/@rollup/plugin-commonjs/dist/index.js
-index 659193f..517a559 100644
+index 737994a..13ff3af 100644
 --- a/node_modules/@rollup/plugin-commonjs/dist/index.js
 +++ b/node_modules/@rollup/plugin-commonjs/dist/index.js
 @@ -179,10 +179,10 @@ function equals(a, b, strict) {

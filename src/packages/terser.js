@@ -12,11 +12,10 @@ import { minify } from 'terser'
 import { error } from '../logger'
 import merge from 'deepmerge'
 
-const transform = (code, options) => {
-	const result = minify(code, options)
-	if (result.error) {
-		throw result.error
-	}
+const transform = async (code, options) => {
+	const result = await minify(code, options).catch((error) => {
+		throw error
+	})
 	return result
 }
 
@@ -45,12 +44,12 @@ export const terser = (options = {}) => {
 	return {
 		name: 'terser',
 
-		renderChunk(code, chunk) {
+		async renderChunk(code, chunk) {
 			if (!filter(chunk.fileName)) return null
 
 			let result
 			try {
-				result = transform(code, opts)
+				result = await transform(code, opts)
 				try {
 					if (cache && opts.nameCache) {
 						cache.nameCache = opts.nameCache

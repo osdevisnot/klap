@@ -9,5 +9,5 @@ var e, n
 		? n(exports)
 		: 'function' == typeof define && define.amd
 		? define(['exports'], n)
-		: n(((e = e || self).scaffold = {}))
+		: n(((e = 'undefined' != typeof globalThis ? globalThis : e || self).scaffold = {}))
 //# sourceMappingURL=index.js.map
