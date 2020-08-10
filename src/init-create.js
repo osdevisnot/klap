@@ -44,9 +44,7 @@ const createTsConfig = () => `{
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "declaration": true,
-    "declarationDir": "dist/types",
-    "emitDeclarationOnly": true,
+    "noEmit": true,
     "jsx": "react",
     "lib": ["dom", "esnext"],
     "removeComments": true

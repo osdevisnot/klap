@@ -61,8 +61,7 @@ const writePackage = async (template, { user, email }) => {
 		pkg = merge(pkg, { klap: { example: `public/index.${template}` } })
 		if (template === 'ts' || template === 'tsx') {
 			pkg = merge(pkg, {
-				types: 'dist/types',
-				scripts: { postbuild: 'tsc -p tsconfig.json' },
+				types: `dist/${name}.d.ts`,
 				devDependencies: { typescript: cli.devDependencies['typescript'] },
 			})
 		}

@@ -1,0 +1,8 @@
+{
+	"name": "typedefs",
+	"version": "0.0.0",
+	"private": true,
+	"module": "dist/index.esm.js",
+	"source": "src/index.ts",
+	"types": "dist/index.d.ts"
+}

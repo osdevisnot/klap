@@ -14,7 +14,7 @@
 	],
 	"scripts": {
 		"prebuild": "patch-package",
-		"build": "ncc build src/klap.js -mo dist",
+		"build": "ncc build src/klap.js -e typescript -mo dist",
 		"prepare": "npm run build",
 		"semantic-release": "semantic-release",
 		"presetup": "git clean -fdX",
@@ -72,6 +72,7 @@
 		"patch-package": "6.2.2",
 		"pretty-bytes": "5.3.0",
 		"rollup": "2.23.1",
+		"rollup-plugin-dts": "1.4.10",
 		"rollup-plugin-node-globals": "1.4.0",
 		"semantic-release": "17.1.1",
 		"servor": "4.0.2",

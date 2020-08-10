@@ -5,6 +5,7 @@ import { error, info, log } from './logger'
 import { getOptions } from './options'
 import { plugins } from './plugins'
 import { exists, read } from './utils'
+import dts from 'rollup-plugin-dts'
 
 const defaultInputOptions = { inlineDynamicImports: true }
 const defaultOutputOptions = { esModule: false, strict: false, freeze: false }
@@ -18,7 +19,7 @@ const validateConfig = (inputOptions, outputOptions) => {
 }
 
 const buildConfig = (command, pkg, options) => {
-	const { dependencies = {}, peerDependencies = {} } = pkg
+	const { dependencies = {}, peerDependencies = {}, types } = pkg
 	const { name, globals, source: input, main, module, browser, sourcemap } = options
 	const external = Object.keys({ ...dependencies, ...peerDependencies })
 
@@ -41,6 +42,10 @@ const buildConfig = (command, pkg, options) => {
 			input,
 			plugins: plugins(command, pkg, { ...options, format: 'umd' }),
 		},
+		types && {
+			input,
+			plugins: dts(),
+		},
 	].filter(Boolean)
 
 	let outputOptions = [
@@ -53,6 +58,11 @@ const buildConfig = (command, pkg, options) => {
 			name,
 			sourcemap,
 			globals,
+		},
+		types && {
+			file: types,
+			format: 'es',
+			sourcemap: false,
 		},
 	].filter(Boolean)
 
