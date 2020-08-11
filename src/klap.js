@@ -3,7 +3,7 @@ import { dirname, basename } from 'path'
 import { rollup, watch } from 'rollup'
 import { error, info, log } from './logger'
 import { getOptions } from './options'
-import { plugins, dts } from './plugins'
+import { plugins, dtsPlugins } from './plugins'
 import { exists, read } from './utils'
 
 const defaultInputOptions = { inlineDynamicImports: true }
@@ -43,7 +43,7 @@ const buildConfig = (command, pkg, options) => {
 		},
 		types && {
 			input,
-			plugins: dts(),
+			plugins: dtsPlugins(),
 		},
 	].filter(Boolean)
 

@@ -43,8 +43,8 @@ const plugins = (command, pkg, options) => {
 	].filter(Boolean)
 }
 
-const dts = () => {
-	return require('rollup-plugin-dts').default()
+const dtsPlugins = () => {
+	return [require('rollup-plugin-dts').default(), sizeme()]
 }
 
-export { plugins, dts }
+export { plugins, dtsPlugins }
