@@ -3,9 +3,8 @@ import { dirname, basename } from 'path'
 import { rollup, watch } from 'rollup'
 import { error, info, log } from './logger'
 import { getOptions } from './options'
-import { plugins } from './plugins'
+import { plugins, dts } from './plugins'
 import { exists, read } from './utils'
-import dts from 'rollup-plugin-dts'
 
 const defaultInputOptions = { inlineDynamicImports: true }
 const defaultOutputOptions = { esModule: false, strict: false, freeze: false }

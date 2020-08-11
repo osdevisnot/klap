@@ -72,16 +72,13 @@ const writePackage = async (template, { user, email }) => {
 }
 
 /**
- * Write boilerplate scripts and common files such as LICENSE and .gitignore to
- * user's directories.
+ * Write boilerplate scripts and common files such as LICENSE and .gitignore to user's directories.
  */
 const writeFiles = async (pkg, template) => {
-	// An array of objects each having `file`, `content`, & optionally
-	// `extensions` properties
+	// An array of objects each having `file`, `content`, & optionally `extensions` properties
 	const files = [...getDefaults(pkg, template), ...getTemplates(pkg, template)]
 
-	// Write files.
-	// Only write files that don't already exist.
+	// Write files, that do not already exist.
 	for (const { file, content, extensions } of files) {
 		let existing = false
 		// If there's a range of possible extensions, check them all.
@@ -102,17 +99,13 @@ const writeFiles = async (pkg, template) => {
  * The main function exported by this module.
  */
 export const init = async () => {
-	const template = process.argv[3] || 'js' // js, jsx, ts, tsx
+	const template = process.argv[3] || 'js'
 
 	if (!['js', 'ts', 'jsx', 'tsx'].includes(template)) {
 		error('Invalid init template. Try one of js, jsx, ts, tsx')
 		return
 	}
+
 	const pkg = await writePackage(template, gitInfo())
 	await writeFiles(pkg, template)
-
-	if (!process.argv[3]) {
-		log('\nWant to use typescript with klap?')
-		info('Initialize your package with `klap init ts`\n')
-	}
 }

@@ -1,4 +1,7 @@
 node_modules
-dist/
+dist
+coverage
 .idea
+*.log
+yarn.lock
 package-lock.json

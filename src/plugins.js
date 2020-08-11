@@ -6,6 +6,8 @@ import replace from '@rollup/plugin-replace'
 import nodeGlobals from 'rollup-plugin-node-globals'
 import babel from '@rollup/plugin-babel'
 
+import dts from 'rollup-plugin-dts'
+
 import { terser } from './packages/terser'
 import { sizeme } from './packages/sizeme'
 import { servor } from './packages/servor'
@@ -43,4 +45,4 @@ const plugins = (command, pkg, options) => {
 	].filter(Boolean)
 }
 
-export { plugins }
+export { plugins, dts }

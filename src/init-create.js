@@ -51,8 +51,7 @@ const createTsConfig = () => `{
   }
 }`
 
-const createReadme = (name) => `# ${name}
-`
+const createReadme = (name) => `# ${name}`
 
 export const getDefaults = (pkg, template) =>
 	[
