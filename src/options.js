@@ -19,6 +19,7 @@ const getOptions = (pkg, command) => {
 		globals = {},
 		fallback = 'public/index.html',
 		example = 'public/index.js',
+		runtime = 'classic',
 	} = klap
 	const opts = getopts(process.argv.slice(3), {
 		boolean: ['sourcemap', 'minify'],
@@ -52,7 +53,7 @@ const getOptions = (pkg, command) => {
 		opts.browser = browser
 	}
 
-	return { ...opts, globals }
+	return { ...opts, globals, runtime }
 }
 
 export { getOptions }

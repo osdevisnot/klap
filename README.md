@@ -96,10 +96,11 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 | `klap.port`      | -p&nbsp;--port         | port for development server                    | `1234`                            |
 | `klap.example`   | -e&nbsp;--example      | location of index js/ts file for start command | `public/index.js` or `pkg.source` |
 | `klap.fallback`  | -f&nbsp;--fallback     | location of index html file for start command  | `public/index.html`               |
-| `klap.target`    | -t&nbsp;--target       | target for development server (`umd|es`)       | `es`                              |
+| `klap.target`    | -t&nbsp;--target       | target for development server (`umd, es`)      | `es`                              |
 | `klap.sourcemap` | --no-sourcemap         | sourcemaps for builds                          | `true`                            |
 | `klap.minify`    | --no-minify            | minification for builds                        | `true`                            |
 | `klap.globals`   |                        | global names for umd bundles                   | `{}`                              |
+| `klap.runtime`   |                        | the runtime for new JSX transform              | `react`                           |
 
 > Note: See default [browserslist coverage](https://browserl.ist/?q=%3E1%25%2C+not+ie+11%2C+not+op_mini+all)
 

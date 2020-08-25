@@ -25,7 +25,7 @@ let hasPackage = (pkg, name) =>
 
 export const babelConfig = (command, pkg, options) => {
 	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json']
-	const { browserslist, format } = options
+	const { browserslist, format, runtime } = options
 
 	// Note: when using `React`, presetTs needs `React` as jsxPragma,
 	// vs presetReact needs `React.createElement`,
@@ -33,6 +33,13 @@ export const babelConfig = (command, pkg, options) => {
 	let [jsxPragma, pragma, pragmaFrag] = hasPackage(pkg, 'react')
 		? ['React', 'React.createElement', 'React.Fragment']
 		: ['h', 'h', 'h']
+
+	// new JSX Transform - https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md
+	let reactPresetOptions = { runtime: 'classic', pragma, pragmaFrag }
+	if (runtime !== 'classic') {
+		reactPresetOptions = { runtime: 'automatic', importSource: runtime }
+	}
+
 	// Note: The styled component plugin effects the css prop, even if
 	// styled components are not being used in project. So, we enable
 	// this only when styled-components is a project dependency...
@@ -53,7 +60,7 @@ export const babelConfig = (command, pkg, options) => {
 			},
 		],
 		[presetTs, { jsxPragma, isTSX: true, allExtensions: true }],
-		[presetReact, { pragma, pragmaFrag }],
+		[presetReact, reactPresetOptions],
 	]
 
 	const plugins = [
