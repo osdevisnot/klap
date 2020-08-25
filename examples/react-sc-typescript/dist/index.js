@@ -1,6 +1,9 @@
 var e, n
 ;(e = this),
 	(n = function (e, n) {
+		function t(e) {
+			return e && 'object' == typeof e && 'default' in e ? e : { default: e }
+		}
 		function o() {
 			var e,
 				n,
@@ -12,8 +15,8 @@ var e, n
 				t
 			)
 		}
-		var t = (n = n && Object.prototype.hasOwnProperty.call(n, 'default') ? n.default : n).button(o())
-		e.Button = t
+		var f = t(n).default.button(o())
+		e.Button = f
 	}),
 	'object' == typeof exports && 'undefined' != typeof module
 		? n(exports, require('styled-components'))

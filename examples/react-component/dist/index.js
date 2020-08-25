@@ -1,10 +1,13 @@
 var e, t
 ;(e = this),
 	(t = function (e, t) {
-		;(t = t && Object.prototype.hasOwnProperty.call(t, 'default') ? t.default : t),
-			(e.Button = function (e) {
-				return t.createElement('button', { class: 'button', onClick: e.onClick }, 'Hello Button')
-			})
+		function n(e) {
+			return e && 'object' == typeof e && 'default' in e ? e : { default: e }
+		}
+		var o = n(t)
+		e.Button = function (e) {
+			return o.default.createElement('button', { class: 'button', onClick: e.onClick }, 'Hello Button')
+		}
 	}),
 	'object' == typeof exports && 'undefined' != typeof module
 		? t(exports, require('react'))
