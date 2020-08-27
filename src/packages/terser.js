@@ -24,22 +24,23 @@ export const terser = (options = {}) => {
 		resolve: false,
 	})
 
-	let opts = {
+	let options_ = {
 		toplevel: true,
 		mangle: { properties: { regex: '^_' } },
+		// eslint-disable-next-line camelcase
 		compress: { passes: 10, pure_getters: true },
 	}
 
 	// Read Project .terserrc if exists...
-	let rc = join(process.cwd(), '.terserrc'),
-		cache
+	const rc = join(process.cwd(), '.terserrc')
+	let cache
 
 	if (existsSync(rc)) {
 		cache = JSON.parse(readFileSync(rc, 'utf-8'))
-		opts = merge(opts, cache)
+		options_ = merge(options_, cache)
 	}
 
-	opts = merge(opts, options)
+	options_ = merge(options_, options)
 
 	return {
 		name: 'terser',
@@ -49,18 +50,19 @@ export const terser = (options = {}) => {
 
 			let result
 			try {
-				result = await transform(code, opts)
+				result = await transform(code, options_)
 				try {
-					if (cache && opts.nameCache) {
-						cache.nameCache = opts.nameCache
+					if (cache && options_.nameCache) {
+						cache.nameCache = options_.nameCache
 						writeFileSync(rc, JSON.stringify(cache, null, '  ') + '\n', 'utf-8')
 					}
-				} catch (e) {}
-			} catch (err) {
-				const { message, line, col: column } = err
+				} catch {}
+			} catch (error_) {
+				const { message, line, col: column } = error_
 				error(codeFrameColumns(code, { start: { line, column } }, { message }))
-				throw err
+				throw error_
 			}
+
 			return {
 				code: result.code,
 				map: result.map,

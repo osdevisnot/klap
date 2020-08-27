@@ -2,7 +2,7 @@ import merge from 'deepmerge'
 import sort from 'sort-package-json'
 import cli from '../package.json'
 import { getDefaults, getTemplates } from './init-create'
-import { error, info, log } from './logger'
+import { error, info, warn } from './logger'
 import { exec, exists, read, write, baseName } from './utils'
 
 /**
@@ -17,6 +17,7 @@ const gitInfo = () => {
 		warn('Count not determine `repository` and `author` fields for `package.json`')
 		warn('Skipped generating `LICENSE` file')
 	}
+
 	return { user, email }
 }
 
@@ -28,7 +29,7 @@ const writePackage = async (template, { user, email }) => {
 	const name = process.cwd().split('/').pop()
 	const source = `src/${name}.${template}`
 
-	if (await exists('./package.json')) {
+	if (exists('./package.json')) {
 		pkg = JSON.parse(await read('./package.json'))
 	}
 
@@ -62,10 +63,11 @@ const writePackage = async (template, { user, email }) => {
 		if (template === 'ts' || template === 'tsx') {
 			pkg = merge(pkg, {
 				types: `dist/${name}.d.ts`,
-				devDependencies: { typescript: cli.devDependencies['typescript'] },
+				devDependencies: { typescript: cli.devDependencies.typescript },
 			})
 		}
 	}
+
 	await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
 	info('\t- wrote ./package.json')
 	return pkg
@@ -83,12 +85,14 @@ const writeFiles = async (pkg, template) => {
 		let existing = false
 		// If there's a range of possible extensions, check them all.
 		if (extensions) {
-			existing = (await Promise.all(extensions.map(async (ext) => await exists(baseName(file) + ext)))).includes(true)
+			// eslint-disable-next-line no-await-in-loop
+			existing = (await Promise.all(extensions.map(async (ext) => exists(baseName(file) + ext)))).includes(true)
 		} else {
-			existing = await exists(file)
+			existing = exists(file)
 		}
 
 		if (!existing) {
+			// eslint-disable-next-line no-await-in-loop
 			await write(file, content)
 			info(`\t- wrote ./${file}`)
 		}

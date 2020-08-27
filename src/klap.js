@@ -11,9 +11,9 @@ const defaultOutputOptions = { esModule: false, strict: false, freeze: false }
 
 const validateConfig = (inputOptions, outputOptions) => {
 	if (!inputOptions || inputOptions.length === 0 || (outputOptions && outputOptions.length === 0)) {
-		error('Error: Count not determine input and output options.')
+		error('Error: Could not determine input and output options.')
 		info('Are you running `klap` command in appropriate package directory ?')
-		process.exit(1)
+		throw new Error('Could not determine input and output options.')
 	}
 }
 
@@ -22,7 +22,7 @@ const buildConfig = (command, pkg, options) => {
 	const { name, globals, source: input, main, module, browser, sourcemap } = options
 	const external = Object.keys({ ...dependencies, ...peerDependencies })
 
-	let inputOptions = [
+	const inputOptions = [
 		main && {
 			...defaultInputOptions,
 			external,
@@ -47,7 +47,7 @@ const buildConfig = (command, pkg, options) => {
 		},
 	].filter(Boolean)
 
-	let outputOptions = [
+	const outputOptions = [
 		main && { ...defaultOutputOptions, file: main, format: 'cjs', sourcemap },
 		module && { ...defaultOutputOptions, file: module, format: 'es', sourcemap },
 		browser && {
@@ -72,8 +72,9 @@ const buildConfig = (command, pkg, options) => {
 
 const startConfig = async (command, pkg, options) => {
 	const { name, globals, example, source, module, browser, sourcemap, target } = options
-	const input = (await exists(example)) ? example : source
-	let inputOptions, outputOptions
+	const input = exists(example) ? example : source
+	let inputOptions
+	let outputOptions
 	if (target === 'es') {
 		inputOptions = {
 			...defaultInputOptions,
@@ -109,9 +110,11 @@ const startConfig = async (command, pkg, options) => {
 
 const deleteDirs = async (options) => {
 	const dirs = {}
-	;['main', 'module', 'browser'].map(
-		(type) => options[type] && (dirs[dirname(options[type]) + '/' + basename(options[type], 'js') + '.{js,map}'] = true)
-	)
+	;['main', 'module', 'browser'].forEach((type) => {
+		if (options[type]) {
+			dirs[dirname(options[type]) + '/' + basename(options[type], 'js') + '.{js,map}'] = true
+		}
+	})
 	await del(Object.keys(dirs))
 }
 
@@ -122,11 +125,11 @@ const writeBundle = async (bundle, outputOptions) => {
 
 const build = async (options, inputOptions) => {
 	try {
-		let bundle = await rollup(inputOptions)
+		const bundle = await rollup(inputOptions)
 		await writeBundle(bundle, options)
-	} catch (err) {
-		error(err)
-		process.exit(1)
+	} catch (error_) {
+		error(error_)
+		throw new Error(error_)
 	}
 }
 
@@ -138,17 +141,21 @@ const processWatcher = (event) => {
 		case 'END':
 			info(`${new Date().toLocaleTimeString('en-GB')} - Waiting for Changes...`)
 			break
+		default:
+			error('Unknown event code: ' + event.code)
 	}
 }
 
 const klap = async (command, pkg) => {
 	const options = getOptions(pkg, command)
 	await deleteDirs(options)
-	let config, watchOptions, watcher
+	let config
+	let watchOptions
+	let watcher
 	switch (command) {
 		case 'build':
 			config = buildConfig(command, pkg, options)
-			config.outputOptions.map((opts, index) => build(opts, config.inputOptions[index]))
+			config.outputOptions.map((options_, index) => build(options_, config.inputOptions[index]))
 			break
 		case 'watch':
 			config = buildConfig(command, pkg, options)
@@ -172,6 +179,8 @@ const klap = async (command, pkg) => {
 			config = await startConfig(command, pkg, options)
 			build(config.outputOptions, config.inputOptions)
 			break
+		default:
+			error('Unknown command :', command)
 	}
 }
 

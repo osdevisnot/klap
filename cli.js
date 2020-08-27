@@ -11,7 +11,7 @@ const defaultEnvironment = {
 	start: 'development',
 }
 
-;(async () => {
+;(async (pkg) => {
 	switch (command) {
 		case 'init':
 			log(`${name}@${version} - Initializing your package...`)
@@ -23,7 +23,7 @@ const defaultEnvironment = {
 		case 'start':
 			log(`${name}@${version} - Working on ${command}...`)
 			process.env.NODE_ENV = process.env.NODE_ENV || defaultEnvironment[command]
-			const pkg = JSON.parse(await read(path.join(process.cwd(), 'package.json')))
+			pkg = JSON.parse(await read(path.join(process.cwd(), 'package.json')))
 			await klap(command, pkg)
 			break
 		case 'help':

@@ -21,7 +21,7 @@ const getOptions = (pkg, command) => {
 		example = 'public/index.js',
 		runtime = 'classic',
 	} = klap
-	const opts = getopts(process.argv.slice(3), {
+	const options = getopts(process.argv.slice(3), {
 		boolean: ['sourcemap', 'minify'],
 		alias: {
 			name: 'n',
@@ -47,13 +47,13 @@ const getOptions = (pkg, command) => {
 	})
 
 	// If no specific target is given, build the standard outputs
-	if (!opts.main && !opts.module && !opts.browser) {
-		opts.main = main
-		opts.module = module
-		opts.browser = browser
+	if (!options.main && !options.module && !options.browser) {
+		options.main = main
+		options.module = module
+		options.browser = browser
 	}
 
-	return { ...opts, globals, runtime }
+	return { ...options, globals, runtime }
 }
 
 export { getOptions }

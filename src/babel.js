@@ -1,11 +1,11 @@
 import { DEFAULT_EXTENSIONS } from '@babel/core'
 
-// babel presets
+// Babel presets
 import presetEnv from '@babel/preset-env'
 import presetTs from '@babel/preset-typescript'
 import presetReact from '@babel/preset-react'
 
-// babel plugins
+// Babel plugins
 import pluginDevExpression from 'babel-plugin-dev-expression'
 import pluginAsyncToPromise from 'babel-plugin-transform-async-to-promises'
 import pluginDecorators from '@babel/plugin-proposal-decorators'
@@ -16,7 +16,8 @@ import pluginEmotion from 'babel-plugin-emotion'
 import pluginMacros from 'babel-plugin-macros'
 import pluginCodegen from 'babel-plugin-codegen'
 
-let hasPackage = (pkg, name) =>
+const hasPackage = (pkg, name) =>
+	// eslint-disable-next-line unicorn/no-reduce
 	['dependencies', 'devDependencies', 'peerDependencies'].reduce(
 		(last, current) => last || (pkg[current] && pkg[current][name]),
 		false
@@ -29,11 +30,11 @@ export const babelConfig = (command, pkg, options) => {
 	// Note: when using `React`, presetTs needs `React` as jsxPragma,
 	// vs presetReact needs `React.createElement`,
 	// but when using `h` as pragma, both presets needs it to be just `h`
-	let [jsxPragma, pragma, pragmaFrag] = hasPackage(pkg, 'react')
+	const [jsxPragma, pragma, pragmaFrag] = hasPackage(pkg, 'react')
 		? ['React', 'React.createElement', 'React.Fragment']
 		: ['h', 'h', 'h']
 
-	// new JSX Transform - https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md
+	// New JSX Transform - https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md
 	let reactPresetOptions = { runtime: 'classic', pragma, pragmaFrag }
 	if (runtime !== 'classic') {
 		reactPresetOptions = { runtime: 'automatic', importSource: runtime }
@@ -42,8 +43,8 @@ export const babelConfig = (command, pkg, options) => {
 	// Note: The styled component plugin effects the css prop, even if
 	// styled components are not being used in project. So, we enable
 	// this only when styled-components is a project dependency...
-	let useStyledComponents = hasPackage(pkg, 'styled-components')
-	let useEmotion = hasPackage(pkg, 'emotion')
+	const useStyledComponents = hasPackage(pkg, 'styled-components')
+	const useEmotion = hasPackage(pkg, 'emotion')
 
 	const presets = [
 		[

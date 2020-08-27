@@ -13,5 +13,5 @@ do
 	cd ${dir} && klap build && rm -rf dist/*.map && cd ..
 done
 
-prettier --write **/dist/*.js
+yarn prettier --write "examples/**/dist/*.js"
 
