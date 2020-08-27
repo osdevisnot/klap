@@ -7,7 +7,6 @@ import presetReact from '@babel/preset-react'
 
 // babel plugins
 import pluginDevExpression from 'babel-plugin-dev-expression'
-import pluginObjectRestSpread from '@babel/plugin-proposal-object-rest-spread'
 import pluginAsyncToPromise from 'babel-plugin-transform-async-to-promises'
 import pluginDecorators from '@babel/plugin-proposal-decorators'
 import pluginClassProperties from '@babel/plugin-proposal-class-properties'
@@ -65,7 +64,6 @@ export const babelConfig = (command, pkg, options) => {
 
 	const plugins = [
 		pluginDevExpression,
-		[pluginObjectRestSpread, { loose: true, useBuiltIns: true }],
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginDecorators, { legacy: true }],
 		[pluginClassProperties, { loose: true }],
