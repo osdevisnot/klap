@@ -142,7 +142,6 @@ const processWatcher = (event) => {
 			info(`${new Date().toLocaleTimeString('en-GB')} - Waiting for Changes...`)
 			break
 		default:
-			error('Unknown event code: ' + event.code)
 	}
 }
 
