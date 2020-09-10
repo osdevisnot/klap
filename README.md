@@ -20,7 +20,7 @@
 - :boom: **zero config**: typescript support (just rename `*.js` to `*.ts`)
 - :star2: **zero config**: code transforms using babel macros
 - :rainbow: **zero config**: code generation using babel plugin codegen
-- :rocket: **zero dependency**: uses [gcc-style bundling](https://www.npmjs.com/package/@zeit/ncc).
+- :rocket: **zero dependency**: uses [gcc-style bundling](https://www.npmjs.com/package/@vercel/ncc).
 - :octopus: creates **tiny bundles** for multiple output formats `cjs`, `esm` and `umd`
 - :fire: **Modern JS** syntax with class properties, async/await, and generators
 - :zap: Built in Minification and Gzip Size Tracking
