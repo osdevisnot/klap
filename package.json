@@ -35,7 +35,7 @@
 	},
 	"xo": {
 		"ignores": [
-			"examples"
+			"examples/**"
 		],
 		"prettier": true
 	},
