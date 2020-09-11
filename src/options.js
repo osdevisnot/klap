@@ -11,7 +11,7 @@ const getOptions = (pkg, command) => {
 		browser,
 	} = pkg
 	const {
-		name = pkg.name,
+		name = pkg.name || process.cwd(),
 		port = 1234,
 		sourcemap = command !== 'start',
 		minify = command !== 'start',
