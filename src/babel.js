@@ -9,7 +9,6 @@ import presetReact from '@babel/preset-react'
 import pluginDevExpression from 'babel-plugin-dev-expression'
 import pluginAsyncToPromise from 'babel-plugin-transform-async-to-promises'
 import pluginDecorators from '@babel/plugin-proposal-decorators'
-import pluginClassProperties from '@babel/plugin-proposal-class-properties'
 import pluginTransformRegen from '@babel/plugin-transform-regenerator'
 import pluginStyledComponents from 'babel-plugin-styled-components'
 import pluginEmotion from 'babel-plugin-emotion'
@@ -67,7 +66,6 @@ export const babelConfig = (command, pkg, options) => {
 		pluginDevExpression,
 		[pluginAsyncToPromise, { inlineHelpers: true, externalHelpers: true }],
 		[pluginDecorators, { legacy: true }],
-		[pluginClassProperties, { loose: true }],
 		[pluginTransformRegen, { async: false }],
 		useStyledComponents && pluginStyledComponents,
 		useEmotion && pluginEmotion,
