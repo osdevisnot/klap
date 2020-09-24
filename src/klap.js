@@ -1,5 +1,5 @@
 import del from 'del'
-import { dirname, basename } from 'path'
+import { dirname, basename, extname, join } from 'path'
 import { rollup, watch } from 'rollup'
 import { error, info, log } from './logger'
 import { getOptions } from './options'
@@ -59,7 +59,7 @@ const buildConfig = (command, pkg, options) => {
 			globals,
 		},
 		types && {
-			file: types,
+			file: join(dirname(module || main), basename(module || main, extname(module || main))) + '.d.ts',
 			format: 'es',
 			sourcemap: false,
 		},
