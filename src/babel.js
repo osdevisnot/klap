@@ -36,7 +36,11 @@ export const babelConfig = (command, pkg, options) => {
 	// New JSX Transform - https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md
 	let reactPresetOptions = { runtime: 'classic', pragma, pragmaFrag }
 	if (runtime !== 'classic') {
-		reactPresetOptions = { runtime: 'automatic', importSource: runtime }
+		reactPresetOptions = {
+			runtime: 'automatic',
+			importSource: runtime,
+			development: !(process.env.NODE_ENV === 'production'),
+		}
 	}
 
 	// Note: The styled component plugin effects the css prop, even if
