@@ -75,9 +75,9 @@ const writePackage = async (template, { user, email }) => {
 /**
  * Write boilerplate scripts and common files such as LICENSE and .gitignore to user's directories.
  */
-const writeFiles = async (pkg, template) => {
+const writeFiles = async (pkg, template, options) => {
 	// An array of objects each having `file`, `content`, & optionally `extensions` properties
-	const files = [...getDefaults(pkg, template), ...getTemplates(pkg, template)]
+	const files = [...getDefaults(pkg, template, options), ...getTemplates(pkg, template, options)]
 
 	// Write files, that do not already exist.
 	for (const { file, content, extensions } of files) {
@@ -109,6 +109,7 @@ export const init = async () => {
 		return
 	}
 
-	const pkg = await writePackage(template, gitInfo())
-	await writeFiles(pkg, template)
+	const options = gitInfo()
+	const pkg = await writePackage(template, options)
+	await writeFiles(pkg, template, options)
 }
