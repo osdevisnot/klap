@@ -26,7 +26,7 @@ export const terser = (options = {}) => {
 
 	let options_ = {
 		toplevel: true,
-		mangle: { properties: { regex: '^_' } },
+		mangle: { properties: { regex: '^[_|\\$]' } },
 		// eslint-disable-next-line camelcase
 		compress: { passes: 10, pure_getters: true },
 	}
@@ -36,8 +36,7 @@ export const terser = (options = {}) => {
 	let cache
 
 	if (existsSync(rc)) {
-		cache = JSON.parse(readFileSync(rc, 'utf-8'))
-		options_ = merge(options_, cache)
+		options_ = JSON.parse(readFileSync(rc, 'utf-8'))
 	}
 
 	options_ = merge(options_, options)
