@@ -16,8 +16,8 @@ const validateConfig = (inputOptions, outputOptions) => {
 }
 
 const buildConfig = (command, pkg, options) => {
-	const { dependencies = {}, peerDependencies = {}, types } = pkg
-	const { name, globals, source: input, main, module, browser, sourcemap } = options
+	const { dependencies = {}, peerDependencies = {} } = pkg
+	const { name, globals, source: input, main, module, browser, sourcemap, types } = options
 	const external = Object.keys({ ...dependencies, ...peerDependencies })
 
 	const inputOptions = [
@@ -57,7 +57,7 @@ const buildConfig = (command, pkg, options) => {
 			globals,
 		},
 		types && {
-			file: join(dirname(module || main), basename(module || main, extname(module || main))) + '.d.ts',
+			file: types,
 			format: 'es',
 			sourcemap: false,
 		},

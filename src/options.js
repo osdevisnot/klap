@@ -9,6 +9,7 @@ const getOptions = (pkg, command) => {
 		main,
 		module,
 		browser,
+		types,
 	} = pkg
 	const {
 		name = pkg.name || process.cwd(),
@@ -24,15 +25,16 @@ const getOptions = (pkg, command) => {
 	const options = getopts(process.argv.slice(3), {
 		boolean: ['sourcemap', 'minify'],
 		alias: {
+			esm: 'e',
+			cjs: 'c',
+			umd: 'u',
+			types: 't',
 			name: 'n',
 			port: 'p',
 			source: 's',
-			target: 't',
-			fallback: 'f',
-			example: 'e',
 			browserslist: 'b',
 		},
-		string: ['main', 'browser', 'module'],
+		string: ['cjs', 'umd', 'esm', 'types', 'runtime'],
 		default: {
 			name: safePackageName(name),
 			source,
@@ -47,10 +49,15 @@ const getOptions = (pkg, command) => {
 	})
 
 	// If no specific target is given, build the standard outputs
-	if (!options.main && !options.module && !options.browser) {
+	if (!options.cjs && !options.esm && !options.umd && !options.types) {
 		options.main = main
 		options.module = module
 		options.browser = browser
+		options.types = types
+	} else {
+		if (options.cjs) options.main = options.cjs
+		if (options.esm) options.module = options.esm
+		if (options.umd) options.browser = options.umd
 	}
 
 	return { ...options, globals, runtime }

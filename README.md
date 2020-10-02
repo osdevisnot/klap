@@ -88,19 +88,20 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 | option           | cli flag(s)            | description                                    | default                           |
 | ---------------- | ---------------------- | ---------------------------------------------- | --------------------------------- |
 | `source`         | -s&nbsp;--source       | source file to compile and bundle              | `src/index.js`                    |
-|                  | --main                 | the output file to write the cjs file to       | pkg.main                          |
-|                  | --module               | the output file to write the esm file to       | pkg.module                        |
-|                  | --browser              | the output file to write the umd file to       | pkg.browser                       |
+| `cjs`            | -c&nbsp;--cjs          | the output file for common js format           | pkg.main                          |
+| `esm`            | -e&nbsp;--esm          | the output file for esm format                 | pkg.module                        |
+| `umd`            | -u&nbsp;--umd          | the output file for umd format                 | pkg.browser                       |
+| `types`          | -t&nbsp;--types        | the output file for type definitions           | pkg.types                         |
 | `browserslist`   | -b&nbsp;--browserslist | browserslist compatible compilation target     | `>1%, not ie 11, not op_mini all` |
 | `klap.name`      | -n&nbsp;--name         | package name for `umd` bundles                 | sanitized `pkg.name`              |
 | `klap.port`      | -p&nbsp;--port         | port for development server                    | `1234`                            |
-| `klap.example`   | -e&nbsp;--example      | location of index js/ts file for start command | `public/index.js` or `pkg.source` |
-| `klap.fallback`  | -f&nbsp;--fallback     | location of index html file for start command  | `public/index.html`               |
-| `klap.target`    | -t&nbsp;--target       | target for development server (`umd, es`)      | `es`                              |
+| `klap.example`   | --example              | location of index js/ts file for start command | `public/index.js` or `pkg.source` |
+| `klap.fallback`  | --fallback             | location of index html file for start command  | `public/index.html`               |
+| `klap.target`    | --target               | target for development server (`umd, es`)      | `es`                              |
 | `klap.sourcemap` | --no-sourcemap         | sourcemaps for builds                          | `true`                            |
 | `klap.minify`    | --no-minify            | minification for builds                        | `true`                            |
+| `klap.runtime`   | --runtime              | the runtime for new JSX transform              | `react`                           |
 | `klap.globals`   |                        | global names for umd bundles                   | `{}`                              |
-| `klap.runtime`   |                        | the runtime for new JSX transform              | `react`                           |
 
 > Note: See default [browserslist coverage](https://browserl.ist/?q=%3E1%25%2C+not+ie+11%2C+not+op_mini+all)
 
