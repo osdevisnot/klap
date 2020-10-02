@@ -1,5 +1,3 @@
-import del from 'del'
-import { dirname, basename, extname, join } from 'path'
 import { rollup, watch } from 'rollup'
 import { error, info, log } from './logger'
 import { getOptions } from './options'
@@ -108,16 +106,6 @@ const startConfig = async (command, pkg, options) => {
 	return { inputOptions, outputOptions }
 }
 
-const deleteDirs = async (options) => {
-	const dirs = {}
-	;['main', 'module', 'browser'].forEach((type) => {
-		if (options[type]) {
-			dirs[dirname(options[type]) + '/' + basename(options[type], 'js') + '.{js,map}'] = true
-		}
-	})
-	await del(Object.keys(dirs))
-}
-
 const writeBundle = async (bundle, outputOptions) => {
 	await bundle.generate(outputOptions)
 	await bundle.write(outputOptions)
@@ -147,7 +135,6 @@ const processWatcher = (event) => {
 
 const klap = async (command, pkg) => {
 	const options = getOptions(pkg, command)
-	await deleteDirs(options)
 	let config
 	let watchOptions
 	let watcher

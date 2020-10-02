@@ -71,7 +71,6 @@
 		"babel-plugin-transform-async-to-promises": "0.8.15",
 		"cz-conventional-changelog": "3.3.0",
 		"deepmerge": "4.2.2",
-		"del": "6.0.0",
 		"getopts": "2.2.5",
 		"gzip-size": "5.1.1",
 		"kleur": "4.1.3",
