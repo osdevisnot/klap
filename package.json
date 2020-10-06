@@ -68,7 +68,6 @@
 		"babel-plugin-emotion": "10.0.33",
 		"babel-plugin-macros": "2.8.0",
 		"babel-plugin-styled-components": "1.11.1",
-		"babel-plugin-transform-async-to-promises": "0.8.15",
 		"cz-conventional-changelog": "3.3.0",
 		"deepmerge": "4.2.2",
 		"getopts": "2.2.5",
