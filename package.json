@@ -76,7 +76,7 @@
 		"mkdirp": "1.0.4",
 		"patch-package": "6.2.2",
 		"pretty-bytes": "5.4.1",
-		"rollup": "2.30.0",
+		"rollup": "2.31.0",
 		"rollup-plugin-dts": "1.4.13",
 		"rollup-plugin-node-globals": "1.4.0",
 		"semantic-release": "17.2.1",
