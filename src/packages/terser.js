@@ -4,7 +4,7 @@
  * - `rollup-plugin-terser` relies on `jest-worker`
  * - `jest-worker` had issues with bundling approach we want to follow for `klap`.
  */
-import { join } from 'path'
+import path from 'path'
 import { readFileSync, existsSync, writeFileSync } from 'fs'
 import { codeFrameColumns } from '@babel/code-frame'
 import { createFilter } from '@rollup/pluginutils'
@@ -32,7 +32,7 @@ export const terser = (options = {}) => {
 	}
 
 	// Read Project .terserrc if exists...
-	const rc = join(process.cwd(), '.terserrc')
+	const rc = path.join(process.cwd(), '.terserrc')
 	let cache
 
 	if (existsSync(rc)) {

@@ -83,12 +83,11 @@ const writeFiles = async (pkg, template, options) => {
 	for (const { file, content, extensions } of files) {
 		let existing = false
 		// If there's a range of possible extensions, check them all.
-		if (extensions) {
-			// eslint-disable-next-line no-await-in-loop
-			existing = (await Promise.all(extensions.map(async (ext) => exists(baseName(file) + ext)))).includes(true)
-		} else {
-			existing = exists(file)
-		}
+
+		existing = extensions
+			? // eslint-disable-next-line no-await-in-loop
+			  (await Promise.all(extensions.map(async (ext) => exists(baseName(file) + ext)))).includes(true)
+			: exists(file)
 
 		if (!existing) {
 			// eslint-disable-next-line no-await-in-loop
