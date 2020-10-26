@@ -39,7 +39,7 @@ const writePackage = async (template, { user, email }) => {
 			version: '0.0.0',
 			license: 'MIT',
 			description: name,
-			exports: { '.': { import: `dist/${name}.js` } },
+			exports: { '.': { import: `./dist/${name}.js` } },
 			keywords: [name],
 		},
 		pkg
