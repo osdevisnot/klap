@@ -33,7 +33,17 @@ const writePackage = async (template, { user, email }) => {
 		pkg = JSON.parse(await read('./package.json'))
 	}
 
-	pkg = merge({ name, version: '0.0.0', license: 'MIT', description: '' }, pkg)
+	pkg = merge(
+		{
+			name,
+			version: '0.0.0',
+			license: 'MIT',
+			description: name,
+			exports: { '.': { import: `dist/${name}.js` } },
+			keywords: [name],
+		},
+		pkg
+	)
 
 	if (user) {
 		pkg = merge({ repository: `${user}/${pkg.name}` }, pkg)
