@@ -42,7 +42,7 @@ const writePackage = async (template, { user, email }) => {
 			exports: {
 				'.': {
 					import: `./dist/${name}.js`,
-					require: `dist/${name}.cjs.js`,
+					require: `./dist/${name}.cjs.js`,
 				},
 			},
 			keywords: [name],
