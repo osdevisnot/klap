@@ -39,7 +39,12 @@ const writePackage = async (template, { user, email }) => {
 			version: '0.0.0',
 			license: 'MIT',
 			description: name,
-			exports: { '.': { import: `./dist/${name}.js` } },
+			exports: {
+				'.': {
+					import: `./dist/${name}.js`,
+					require: `dist/${name}.cjs.js`,
+				},
+			},
 			keywords: [name],
 		},
 		pkg
@@ -64,7 +69,7 @@ const writePackage = async (template, { user, email }) => {
 			watch: 'klap watch',
 		},
 		devDependencies: {
-			[cli.name]: cli.version,
+			[cli.name]: `^${cli.version}`,
 		},
 	})
 	if (template !== 'js') {
