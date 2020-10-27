@@ -41,9 +41,13 @@ const writePackage = async (template, { user, email }) => {
 			description: name,
 			exports: {
 				'.': {
+					browser: `./dist/${name}.js`,
 					import: `./dist/${name}.js`,
 					require: `./dist/${name}.cjs.js`,
+					umd: `./dist/${name}.umd.js`,
 				},
+				'./package.json': './package.json',
+				'./': './',
 			},
 			keywords: [name],
 		},
@@ -59,6 +63,7 @@ const writePackage = async (template, { user, email }) => {
 		main: `dist/${name}.cjs.js`,
 		unpkg: `dist/${name}.js`,
 		module: `dist/${name}.js`,
+		browser: `dist/${name}.umd.js`,
 		source,
 		sideEffects: false,
 		files: ['dist'],
