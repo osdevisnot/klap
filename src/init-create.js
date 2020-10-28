@@ -45,6 +45,7 @@ const createTsConfig = () => `{
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    "allowJs": true,
     "jsx": "preserve",
     "lib": ["dom", "esnext"],
     "removeComments": true
@@ -220,7 +221,16 @@ export const getTemplates = (pkg, template, _options) => {
 		js: [
 			{
 				file: pkg.source,
-				content: `export const sum = (a, b) => a + b;`,
+				content: `/**
+ * add two numbers
+ * @param {number} a first number
+ * @param {number} b second number
+ */
+export const sum = (a, b) => a + b;`,
+			},
+			{
+				file: 'tsconfig.json',
+				content: createTsConfig(),
 			},
 		],
 		ts: [

@@ -46,8 +46,8 @@ const writePackage = async (template, { user, email }) => {
 					require: `./dist/${name}.cjs.js`,
 					umd: `./dist/${name}.umd.js`,
 				},
-				'./package.json': './package.json',
 				'./': './',
+				'./package.json': './package.json',
 			},
 			keywords: [name],
 		},
@@ -64,6 +64,7 @@ const writePackage = async (template, { user, email }) => {
 		unpkg: `dist/${name}.js`,
 		module: `dist/${name}.js`,
 		browser: `dist/${name}.umd.js`,
+		types: `dist/${name}.d.ts`,
 		source,
 		sideEffects: false,
 		files: ['dist'],
@@ -75,16 +76,12 @@ const writePackage = async (template, { user, email }) => {
 		},
 		devDependencies: {
 			[cli.name]: `^${cli.version}`,
+			typescript: cli.devDependencies.typescript,
 		},
 	})
+
 	if (template !== 'js') {
 		pkg = merge(pkg, { klap: { example: `public/index.${template}` } })
-		if (template === 'ts' || template === 'tsx') {
-			pkg = merge(pkg, {
-				types: `dist/${name}.d.ts`,
-				devDependencies: { typescript: cli.devDependencies.typescript },
-			})
-		}
 	}
 
 	await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
