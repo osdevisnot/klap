@@ -65,7 +65,7 @@
 		"@vercel/ncc": "0.24.1",
 		"babel-plugin-codegen": "4.0.1",
 		"babel-plugin-dev-expression": "0.2.2",
-		"babel-plugin-emotion": "10.0.33",
+		"babel-plugin-emotion": "11.0.0",
 		"babel-plugin-macros": "2.8.0",
 		"babel-plugin-styled-components": "1.11.1",
 		"cz-conventional-changelog": "3.3.0",
