@@ -10,7 +10,7 @@ import pluginDevExpression from 'babel-plugin-dev-expression'
 import pluginDecorators from '@babel/plugin-proposal-decorators'
 import pluginTransformRegen from '@babel/plugin-transform-regenerator'
 import pluginStyledComponents from 'babel-plugin-styled-components'
-import pluginEmotion from 'babel-plugin-emotion'
+import pluginEmotion from '@emotion/babel-plugin'
 import pluginMacros from 'babel-plugin-macros'
 import pluginCodegen from 'babel-plugin-codegen'
 
