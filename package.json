@@ -81,7 +81,7 @@
 		"rollup-plugin-node-globals": "1.4.0",
 		"semantic-release": "17.2.3",
 		"servor": "4.0.2",
-		"sort-package-json": "1.46.1",
+		"sort-package-json": "1.47.0",
 		"terser": "5.4.0",
 		"typescript": "^4.0.5",
 		"xo": "0.34.2",
