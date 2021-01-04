@@ -62,7 +62,7 @@
 		"@rollup/plugin-node-resolve": "11.0.1",
 		"@rollup/plugin-replace": "2.3.4",
 		"@rollup/pluginutils": "4.1.0",
-		"@types/node": "14.14.16",
+		"@types/node": "14.14.19",
 		"@vercel/ncc": "0.24.1",
 		"babel-plugin-codegen": "4.0.1",
 		"babel-plugin-dev-expression": "0.2.2",
