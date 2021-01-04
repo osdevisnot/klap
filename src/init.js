@@ -1,9 +1,9 @@
 import merge from 'deepmerge'
 import sort from 'sort-package-json'
 import cli from '../package.json'
-import { getDefaults, getTemplates } from './init-create'
-import { error, info, warn } from './logger'
-import { exec, exists, read, write, baseName } from './utils'
+import { getDefaults, getTemplates } from './init-create.js'
+import { error, info, warn } from './logger.js'
+import { exec, exists, read, write, baseName } from './utils.js'
 
 /**
  * Source user's .gitconfig info (name & email)

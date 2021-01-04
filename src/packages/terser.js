@@ -9,7 +9,7 @@ import { readFileSync, existsSync, writeFileSync } from 'fs'
 import { codeFrameColumns } from '@babel/code-frame'
 import { createFilter } from '@rollup/pluginutils'
 import { minify } from 'terser'
-import { error } from '../logger'
+import { error } from '../logger.js'
 import merge from 'deepmerge'
 
 const transform = async (code, options) => {

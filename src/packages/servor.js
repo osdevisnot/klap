@@ -2,7 +2,7 @@
  * A rollup plugin to start `servor` as build step
  */
 import _servor from 'servor'
-import { warn } from '../logger'
+import { warn } from '../logger.js'
 
 let singleton = false
 

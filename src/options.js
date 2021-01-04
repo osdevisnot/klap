@@ -1,5 +1,5 @@
 import getopts from 'getopts'
-import { safePackageName } from './utils'
+import { safePackageName } from './utils.js'
 
 const getOptions = (pkg, command) => {
 	const {

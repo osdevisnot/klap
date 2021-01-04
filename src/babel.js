@@ -15,7 +15,7 @@ import pluginMacros from 'babel-plugin-macros'
 import pluginCodegen from 'babel-plugin-codegen'
 
 const hasPackage = (pkg, name) =>
-	// eslint-disable-next-line unicorn/no-reduce
+	// eslint-disable-next-line unicorn/no-array-reduce
 	['dependencies', 'devDependencies', 'peerDependencies'].reduce(
 		(last, current) => last || (pkg[current] && pkg[current][name]),
 		false

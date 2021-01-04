@@ -6,7 +6,7 @@
  */
 import gzip from 'gzip-size'
 import prettyBytes from 'pretty-bytes'
-import { info } from '../logger'
+import { info } from '../logger.js'
 
 export const sizeme = () => {
 	const showSize = (bundle) => {

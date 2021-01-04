@@ -6,11 +6,11 @@ import replace from '@rollup/plugin-replace'
 import nodeGlobals from 'rollup-plugin-node-globals'
 import babel from '@rollup/plugin-babel'
 
-import { terser } from './packages/terser'
-import { sizeme } from './packages/sizeme'
-import { servor } from './packages/servor'
+import { terser } from './packages/terser.js'
+import { sizeme } from './packages/sizeme.js'
+import { servor } from './packages/servor.js'
 
-import { babelConfig } from './babel'
+import { babelConfig } from './babel.js'
 
 const plugins = (command, pkg, options) => {
 	const { extensions, presets, plugins } = babelConfig(command, pkg, options)

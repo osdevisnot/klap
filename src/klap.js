@@ -1,8 +1,8 @@
 import { rollup, watch } from 'rollup'
-import { error, info, log } from './logger'
-import { getOptions } from './options'
-import { plugins, dtsPlugins } from './plugins'
-import { exists, read } from './utils'
+import { error, info, log } from './logger.js'
+import { getOptions } from './options.js'
+import { plugins, dtsPlugins } from './plugins.js'
+import { exists, read } from './utils.js'
 
 const defaultInputOptions = { inlineDynamicImports: true }
 const defaultOutputOptions = { esModule: false, strict: false, freeze: false }
@@ -170,5 +170,5 @@ const klap = async (command, pkg) => {
 	}
 }
 
-export { init } from './init'
+export { init } from './init.js'
 export { klap, error, info, log, read }
