@@ -5,7 +5,7 @@ const getOptions = (pkg, command) => {
 	const {
 		klap = {},
 		source = 'src/index.js',
-		browserslist = 'last 2 Chrome versions or last 2 ChromeAndroid versions or last 2 Safari versions or last 2 iOS versions or last 2 Firefox versions or last 2 FirefoxAndroid versions or last 2 Edge versions or last 2 Opera versions or last 2 OperaMobile versions or last 2 Samsung versions and >1%',
+		browserslist = 'last 2 Chrome versions or last 2 ChromeAndroid versions or last 2 Safari versions or last 2 iOS versions or last 2 Firefox versions or last 2 FirefoxAndroid versions or last 2 Edge versions or last 2 Opera versions or last 2 OperaMobile versions and >1%',
 		main,
 		module,
 		browser,
