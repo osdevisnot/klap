@@ -5,7 +5,7 @@ const getOptions = (pkg, command) => {
 	const {
 		klap = {},
 		source = 'src/index.js',
-		browserslist = '>1%, not ie 11, not op_mini all',
+		browserslist = '>1% and supports es6-module and last 2 versions',
 		main,
 		module,
 		browser,
