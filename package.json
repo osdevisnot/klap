@@ -79,7 +79,7 @@
 		"rollup": "2.36.2",
 		"rollup-plugin-dts": "2.0.1",
 		"rollup-plugin-node-globals": "1.4.0",
-		"semantic-release": "17.3.3",
+		"semantic-release": "17.3.6",
 		"servor": "4.0.2",
 		"sort-package-json": "1.48.1",
 		"terser": "5.5.1",
