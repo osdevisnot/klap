@@ -39,6 +39,7 @@ const writePackage = async (template, { user, email }) => {
 			version: '0.0.0',
 			license: 'MIT',
 			description: name,
+			type: 'module',
 			exports: {
 				'.': {
 					browser: `./dist/${name}.js`,
@@ -70,7 +71,7 @@ const writePackage = async (template, { user, email }) => {
 		files: ['dist'],
 		scripts: {
 			build: 'klap build',
-			prepublishOnly: 'yarn build',
+			prepublishOnly: 'klap build',
 			start: 'klap start',
 			watch: 'klap watch',
 		},
