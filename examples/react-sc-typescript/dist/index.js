@@ -1,22 +1,16 @@
 var e, n
 ;(e = this),
 	(n = function (e, n) {
-		function t(e) {
+		function o(e) {
 			return e && 'object' == typeof e && 'default' in e ? e : { default: e }
 		}
-		function o() {
-			var e,
-				n,
-				t = ((e = ['\n  background-color: red;\n  width: 100%;\n']), n || (n = e.slice(0)), (e.raw = n), e)
-			return (
-				(o = function () {
-					return t
-				}),
-				t
+		var t,
+			f,
+			d,
+			i = o(n).default.button(
+				t || ((f = ['\n  background-color: red;\n  width: 100%;\n']), d || (d = f.slice(0)), (f.raw = d), (t = f))
 			)
-		}
-		var f = t(n).default.button(o())
-		e.Button = f
+		e.Button = i
 	}),
 	'object' == typeof exports && 'undefined' != typeof module
 		? n(exports, require('styled-components'))
