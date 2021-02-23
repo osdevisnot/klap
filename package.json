@@ -54,7 +54,7 @@
 		"@babel/plugin-transform-regenerator": "7.12.13",
 		"@babel/preset-env": "7.12.13",
 		"@babel/preset-react": "7.12.13",
-		"@babel/preset-typescript": "7.12.13",
+		"@babel/preset-typescript": "7.13.0",
 		"@emotion/babel-plugin": "11.2.0",
 		"@rollup/plugin-babel": "5.2.3",
 		"@rollup/plugin-commonjs": "17.1.0",
