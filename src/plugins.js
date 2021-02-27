@@ -36,7 +36,7 @@ const plugins = (command, pkg, options) => {
 			babelHelpers: 'bundled',
 			inputSourceMap: sourcemap,
 		}),
-		replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
+		replace({ preventAssignment: true, values: { 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) } }),
 		command !== 'start' && minify && terser({ sourceMap: sourcemap }),
 		command !== 'start' && sizeme(),
 		command === 'start' && servor({ fallback, port }),

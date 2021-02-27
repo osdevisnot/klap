@@ -4,6 +4,7 @@
  * - `rollup-plugin-filesize` does an internal terser pass for all the files
  * - This is little expensive, specially when we use `terser` to generate final output anyway.
  */
+/* eslint-disable unicorn/no-array-for-each */
 import gzip from 'gzip-size'
 import prettyBytes from 'pretty-bytes'
 import { info } from '../logger.js'
