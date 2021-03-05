@@ -21,9 +21,10 @@ const getOptions = (pkg, command) => {
 		fallback = 'public/index.html',
 		example = 'public/index.js',
 		runtime = 'classic',
+		usets = false,
 	} = klap
 	const options = getopts(process.argv.slice(3), {
-		boolean: ['sourcemap', 'minify'],
+		boolean: ['sourcemap', 'minify', 'usets'],
 		alias: {
 			esm: 'e',
 			cjs: 'c',
@@ -45,6 +46,7 @@ const getOptions = (pkg, command) => {
 			fallback,
 			example,
 			browserslist,
+			usets,
 		},
 	})
 

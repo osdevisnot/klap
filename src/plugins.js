@@ -5,6 +5,7 @@ import replace from '@rollup/plugin-replace'
 
 import nodeGlobals from 'rollup-plugin-node-globals'
 import babel from '@rollup/plugin-babel'
+import typescript from '@rollup/plugin-typescript'
 
 import { terser } from './packages/terser.js'
 import { sizeme } from './packages/sizeme.js'
@@ -14,7 +15,7 @@ import { babelConfig } from './babel.js'
 
 const plugins = (command, pkg, options) => {
 	const { extensions, presets, plugins } = babelConfig(command, pkg, options)
-	const { sourcemap, minify, fallback, port } = options
+	const { sourcemap, minify, fallback, port, usets } = options
 
 	const babelDefaults = { babelrc: false, configFile: false, compact: false }
 
@@ -26,6 +27,7 @@ const plugins = (command, pkg, options) => {
 			extensions,
 		}),
 		commonjs({ extensions, include: /\/node_modules\// }),
+		usets && typescript(),
 		babel({
 			...babelDefaults,
 			exclude: 'node_modules/**',
