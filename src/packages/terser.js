@@ -1,8 +1,7 @@
 /**
  * A rollup plugin to run generated code through `terser`
- * Why we need a custom plugin :- to be able to bundle things up.
- * - `rollup-plugin-terser` relies on `jest-worker`
- * - `jest-worker` had issues with bundling approach we want to follow for `klap`.
+ * We need a custom plugin because `rollup-plugin-terser` relies on `jest-worker`
+ * and `jest-worker` can't be bundled using ncc.
  */
 import path from 'path'
 import { readFileSync, existsSync, writeFileSync } from 'fs'

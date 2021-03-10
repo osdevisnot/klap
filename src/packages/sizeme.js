@@ -1,8 +1,8 @@
 /**
  * A rollup plugin to print gzip size of output assets.
- * Why we need a custom plugin :- To save 2 terser passes
- * - `rollup-plugin-filesize` does an internal terser pass for all the files
- * - This is little expensive, specially when we use `terser` to generate final output anyway.
+ * We need a custom plugin because `rollup-plugin-filesize` does an
+ * internal terser pass for all the files. This is little expensive,
+ * specially when we use `terser` to generate final output anyway.
  */
 /* eslint-disable unicorn/no-array-for-each */
 import gzip from 'gzip-size'
