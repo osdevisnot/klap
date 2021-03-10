@@ -26,7 +26,7 @@ const gitInfo = () => {
  */
 const writePackage = async (template, { user, email }) => {
 	let pkg = {}
-	const name = process.cwd().split('/').pop()
+	const name = baseName(process.cwd())
 	const source = `src/${name}.${template}`
 
 	if (exists('./package.json')) {
