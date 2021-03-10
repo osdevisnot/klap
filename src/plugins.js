@@ -10,6 +10,7 @@ import typescript from '@rollup/plugin-typescript'
 import { terser } from './packages/terser.js'
 import { sizeme } from './packages/sizeme.js'
 import { servor } from './packages/servor.js'
+import { cdn } from './packages/cdn.js'
 
 import { babelConfig } from './babel.js'
 
@@ -38,6 +39,7 @@ const plugins = (command, pkg, options) => {
 			babelHelpers: 'bundled',
 			inputSourceMap: sourcemap,
 		}),
+		cdn(),
 		replace({ preventAssignment: true, values: { 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) } }),
 		command !== 'start' && minify && terser({ sourceMap: sourcemap }),
 		command !== 'start' && sizeme(),
