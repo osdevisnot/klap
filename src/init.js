@@ -26,11 +26,11 @@ const gitInfo = () => {
  */
 const writePackage = async (template, { user, email }) => {
 	let pkg = {}
-	const name = baseName(process.cwd())
-	const source = `src/${name}.${template}`
+	let name = baseName(process.cwd())
 
 	if (exists('./package.json')) {
 		pkg = JSON.parse(await read('./package.json'))
+		name = pkg.name
 	}
 
 	pkg = merge(
@@ -66,7 +66,7 @@ const writePackage = async (template, { user, email }) => {
 		module: `dist/${name}.js`,
 		browser: `dist/${name}.umd.js`,
 		types: `dist/${name}.d.ts`,
-		source,
+		source: `src/${name}.${template}`,
 		sideEffects: false,
 		files: ['dist'],
 		scripts: {
