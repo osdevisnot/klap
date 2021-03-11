@@ -1,3 +1,4 @@
+import path from 'path'
 import merge from 'deepmerge'
 import sort from 'sort-package-json'
 import cli from '../package.json'
@@ -24,21 +25,23 @@ const gitInfo = () => {
 /**
  * Generate / supplement `package.json` with fields and klap scripts
  */
-const writePackage = async (template, { user, email }) => {
+const writePackage = async (ext, { user, email }) => {
 	let pkg = {}
-	const name = process.cwd().split('/').pop()
-	const source = `src/${name}.${template}`
+	let name = process.cwd().split(path.sep).pop()
 
 	if (exists('./package.json')) {
 		pkg = JSON.parse(await read('./package.json'))
+		name = pkg.name.split('/').pop()
 	}
+
+	const source = `src/${name}.${ext}`
 
 	pkg = merge(
 		{
 			name,
 			version: '0.0.0',
 			license: 'MIT',
-			description: name,
+			description: pkg.name,
 			type: 'module',
 			exports: {
 				'.': {
@@ -56,7 +59,7 @@ const writePackage = async (template, { user, email }) => {
 	)
 
 	if (user) {
-		pkg = merge({ repository: `${user}/${pkg.name}` }, pkg)
+		pkg = merge({ repository: `${user}/${name}` }, pkg)
 		if (email) pkg = merge({ author: `${user} <${email}>` }, pkg)
 	}
 
@@ -81,8 +84,8 @@ const writePackage = async (template, { user, email }) => {
 		},
 	})
 
-	if (template !== 'js') {
-		pkg = merge(pkg, { klap: { example: `public/index.${template}` } })
+	if (ext !== 'js') {
+		pkg = merge(pkg, { klap: { example: `public/index.${ext}` } })
 	}
 
 	await write('./package.json', JSON.stringify(sort(pkg), null, '  '))
