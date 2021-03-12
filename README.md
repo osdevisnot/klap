@@ -102,7 +102,7 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 | `klap.sourcemap` | --no-sourcemap         | sourcemaps for builds                          | `true`                                                        |
 | `klap.minify`    | --no-minify            | minification for builds                        | `true`                                                        |
 | `klap.runtime`   | --runtime              | the runtime for new JSX transform              | `react`                                                       |
-| `klap.usets`     | --usets                | use typescript compiler for the project        | `react`                                                       |
+| `klap.usets`     | --usets                | use typescript compiler for the project        | `false`                                                       |
 | `klap.globals`   |                        | global names for umd bundles                   | `{}`                                                          |
 
 > `--usets` allows the library code to use typescript features not supported by `@babel/preset-typescript`. See [const-enums](examples/const-enums) example to enable usage of const enums.
