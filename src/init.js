@@ -31,7 +31,7 @@ const writePackage = async (ext, { user, email }) => {
 
 	if (exists('./package.json')) {
 		pkg = JSON.parse(await read('./package.json'))
-		name = pkg.name.split('/').pop()
+		if (pkg.name) name = pkg.name.split('/').pop()
 	}
 
 	const source = `src/${name}.${ext}`
