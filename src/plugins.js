@@ -27,7 +27,7 @@ const plugins = (command, pkg, options) => {
 			extensions,
 		}),
 		commonjs({ extensions, include: /\/node_modules\// }),
-		usets && require('@rollup/plugin-typescript').default(),
+		usets && require('@rollup/plugin-typescript')(),
 		babel({
 			...babelDefaults,
 			exclude: 'node_modules/**',
