@@ -1,9 +1,13 @@
 {
-  "name": "dev-expressions",
-  "version": "0.0.0",
-  "private": true,
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "source": "src/index.js",
-  "browser": "dist/index.js"
+	"name": "dev-expressions",
+	"version": "0.0.0",
+	"private": true,
+	"license": "MIT",
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.esm.js",
+	"source": "src/index.js",
+	"browser": "dist/index.js",
+	"devDependencies": {
+		"klap": "*"
+	}
 }

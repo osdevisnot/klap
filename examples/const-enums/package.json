@@ -2,9 +2,16 @@
 	"name": "const-enums",
 	"version": "0.0.0",
 	"private": true,
+	"license": "MIT",
 	"module": "dist/index.esm.js",
 	"source": "src/index.ts",
 	"types": "dist/index.d.ts",
+	"dependencies": {
+		"typescript": "*"
+	},
+	"devDependencies": {
+		"klap": "*"
+	},
 	"klap": {
 		"usets": true
 	}

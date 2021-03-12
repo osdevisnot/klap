@@ -1,23 +1,28 @@
 {
-  "name": "scaffold-typescript",
-  "version": "0.0.0",
-  "private": true,
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "source": "src/index.ts",
-  "browser": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "klap build",
-    "start": "klap start",
-    "watch": "klap watch"
-  },
-  "devDependencies": {
-    "klap": "2.1.0"
-  },
-  "klap": {
-    "example": "public/index.js"
-  }
+	"name": "scaffold-typescript",
+	"version": "0.0.0",
+	"private": true,
+	"license": "MIT",
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.esm.js",
+	"source": "src/index.ts",
+	"browser": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "klap build",
+		"start": "klap start",
+		"watch": "klap watch"
+	},
+	"dependencies": {
+		"typescript": "*"
+	},
+	"devDependencies": {
+		"klap": "*"
+	},
+	"klap": {
+		"example": "public/index.js"
+	}
 }

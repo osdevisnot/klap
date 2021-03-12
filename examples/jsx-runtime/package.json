@@ -2,8 +2,12 @@
 	"name": "jsx-runtime",
 	"version": "0.0.0",
 	"private": true,
+	"license": "MIT",
 	"module": "dist/index.esm.js",
 	"source": "src/index.js",
+	"devDependencies": {
+		"klap": "*"
+	},
 	"klap": {
 		"runtime": "preact"
 	}
