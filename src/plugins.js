@@ -5,7 +5,6 @@ import replace from '@rollup/plugin-replace'
 
 import nodeGlobals from 'rollup-plugin-node-globals'
 import babel from '@rollup/plugin-babel'
-import typescript from '@rollup/plugin-typescript'
 
 import { terser } from './packages/terser.js'
 import { sizeme } from './packages/sizeme.js'
@@ -28,7 +27,7 @@ const plugins = (command, pkg, options) => {
 			extensions,
 		}),
 		commonjs({ extensions, include: /\/node_modules\// }),
-		usets && typescript(),
+		usets && require('@rollup/plugin-typescript').default(),
 		babel({
 			...babelDefaults,
 			exclude: 'node_modules/**',
