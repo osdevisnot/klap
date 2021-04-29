@@ -1,0 +1,133 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "13:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.25
+    - 14.14.27
+    - 14.14.28
+    - 14.14.30
+    - 14.14.31
+    - 14.14.32
+    - 14.14.34
+    - 14.14.35
+    - 14.14.36
+    - 14.14.37
+    - 14.14.39
+    - 14.14.41
+    - 15.0.0
+  - dependency-name: rollup
+    versions:
+    - 2.38.1
+    - 2.38.3
+    - 2.38.4
+    - 2.38.5
+    - 2.39.0
+    - 2.39.1
+    - 2.41.0
+    - 2.41.1
+    - 2.41.3
+    - 2.41.4
+    - 2.41.5
+    - 2.42.0
+    - 2.42.2
+    - 2.42.3
+    - 2.43.1
+    - 2.44.0
+    - 2.45.0
+    - 2.45.1
+    - 2.45.2
+  - dependency-name: "@vercel/ncc"
+    versions:
+    - 0.27.0
+    - 0.28.0
+    - 0.28.1
+    - 0.28.2
+    - 0.28.3
+  - dependency-name: "@babel/core"
+    versions:
+    - 7.12.13
+    - 7.12.16
+    - 7.12.17
+    - 7.13.1
+    - 7.13.10
+    - 7.13.13
+    - 7.13.14
+    - 7.13.15
+  - dependency-name: "@babel/preset-react"
+    versions:
+    - 7.12.13
+    - 7.13.13
+  - dependency-name: "@rollup/plugin-typescript"
+    versions:
+    - 8.2.1
+  - dependency-name: "@rollup/plugin-node-resolve"
+    versions:
+    - 11.2.0
+    - 11.2.1
+  - dependency-name: "@rollup/plugin-commonjs"
+    versions:
+    - 18.0.0
+  - dependency-name: "@rollup/plugin-replace"
+    versions:
+    - 2.4.2
+  - dependency-name: rollup-plugin-dts
+    versions:
+    - 3.0.1
+  - dependency-name: "@babel/preset-env"
+    versions:
+    - 7.12.13
+    - 7.12.16
+    - 7.12.17
+    - 7.13.0
+    - 7.13.10
+    - 7.13.12
+    - 7.13.5
+  - dependency-name: terser
+    versions:
+    - 5.6.0
+    - 5.6.1
+  - dependency-name: semantic-release
+    versions:
+    - 17.3.8
+    - 17.3.9
+    - 17.4.0
+    - 17.4.1
+    - 17.4.2
+  - dependency-name: patch-package
+    versions:
+    - 6.4.2
+    - 6.4.3
+    - 6.4.4
+    - 6.4.5
+    - 6.4.6
+  - dependency-name: xo-quick
+    versions:
+    - 0.0.7
+  - dependency-name: xo
+    versions:
+    - 0.38.2
+  - dependency-name: "@babel/preset-typescript"
+    versions:
+    - 7.12.13
+    - 7.12.16
+    - 7.12.17
+    - 7.13.0
+  - dependency-name: "@rollup/plugin-babel"
+    versions:
+    - 5.3.0
+  - dependency-name: "@babel/plugin-proposal-decorators"
+    versions:
+    - 7.12.13
+  - dependency-name: "@babel/plugin-transform-regenerator"
+    versions:
+    - 7.12.13
+  - dependency-name: "@babel/plugin-proposal-object-rest-spread"
+    versions:
+    - 7.12.13
