@@ -48,7 +48,7 @@
 		"useTabs": true
 	},
 	"devDependencies": {
-		"@babel/core": "7.13.15",
+		"@babel/core": "7.14.0",
 		"@babel/plugin-proposal-decorators": "7.13.15",
 		"@babel/plugin-proposal-object-rest-spread": "7.13.8",
 		"@babel/plugin-transform-regenerator": "7.13.15",
