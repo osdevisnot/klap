@@ -8,8 +8,8 @@ import { readFileSync, existsSync, writeFileSync } from 'fs'
 import { codeFrameColumns } from '@babel/code-frame'
 import { createFilter } from '@rollup/pluginutils'
 import { minify } from 'terser'
-import { error } from '../logger.js'
 import merge from 'deepmerge'
+import { error } from '../logger.js'
 
 const transform = async (code, options) => {
 	const result = await minify(code, options).catch((error) => {

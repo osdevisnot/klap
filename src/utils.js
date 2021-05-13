@@ -1,8 +1,8 @@
 import { execSync } from 'child_process'
 import { existsSync as exists, readFile as _readFile, writeFile as _writeFile } from 'fs'
-import mkdir from 'mkdirp'
 import path from 'path'
 import { promisify } from 'util'
+import mkdir from 'mkdirp'
 
 const readFile = promisify(_readFile)
 const writeFile = promisify(_writeFile)
