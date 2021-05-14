@@ -84,7 +84,7 @@
 		"pretty-bytes": "5.6.0",
 		"rollup": "2.47.0",
 		"rollup-plugin-dts": "3.0.1",
-		"rollup-plugin-node-globals": "1.4.0",
+		"rollup-plugin-polyfill-node": "0.6.2",
 		"semantic-release": "17.4.3",
 		"servor": "4.0.2",
 		"sort-package-json": "1.50.0",
