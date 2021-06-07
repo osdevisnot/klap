@@ -21,6 +21,8 @@ const getOptions = (pkg, command) => {
 		fallback = 'public/index.html',
 		example = 'public/index.js',
 		runtime = 'classic',
+		pragma = 'React.createElement',
+		pragmaFrag = 'React.Fragment',
 		usets = false,
 	} = klap
 	const options = getopts(process.argv.slice(3), {

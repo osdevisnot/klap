@@ -23,14 +23,12 @@ const hasPackage = (pkg, name) =>
 
 export const babelConfig = (command, pkg, options) => {
 	const extensions = [...DEFAULT_EXTENSIONS, '.ts', '.tsx', '.json']
-	const { browserslist, format, runtime } = options
+	const { browserslist, format, runtime, pragma, pragmaFrag } = options
 
 	// Note: when using `React`, presetTs needs `React` as jsxPragma,
 	// vs presetReact needs `React.createElement`,
 	// but when using `h` as pragma, both presets needs it to be just `h`
-	const [jsxPragma, pragma, pragmaFrag] = hasPackage(pkg, 'react')
-		? ['React', 'React.createElement', 'React.Fragment']
-		: ['h', 'h', 'h']
+	const jsxPragma = pragma === 'React.createElement' ? 'React' : pragma
 
 	// New JSX Transform - https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md
 	let reactPresetOptions = { runtime: 'classic', pragma, pragmaFrag }

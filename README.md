@@ -86,24 +86,26 @@ Then use `npm run` or `yarn` to invoke npm scripts as you normally would.
 
 `klap` uses sensible defaults for most part. However, as needed, use below properties in `package.json` to fine tune `klap`. You can also use `cli flags` to control config options for `klap`.
 
-| option           | cli flag(s)            | description                                    | default                                                       |
-| ---------------- | ---------------------- | ---------------------------------------------- | ------------------------------------------------------------- |
-| `source`         | -s&nbsp;--source       | source file to compile and bundle              | `src/index.js`                                                |
-| `cjs`            | -c&nbsp;--cjs          | the output file for common js format           | pkg.main                                                      |
-| `esm`            | -e&nbsp;--esm          | the output file for esm format                 | pkg.module                                                    |
-| `umd`            | -u&nbsp;--umd          | the output file for umd format                 | pkg.browser                                                   |
-| `types`          | -t&nbsp;--types        | the output file for type definitions           | pkg.types                                                     |
-| `browserslist`   | -b&nbsp;--browserslist | browserslist compatible compilation target     | `last 2 versions modern browsers if usage is greater than 1%` |
-| `klap.name`      | -n&nbsp;--name         | package name for `umd` bundles                 | sanitized `pkg.name`                                          |
-| `klap.port`      | -p&nbsp;--port         | port for development server                    | `1234`                                                        |
-| `klap.example`   | --example              | location of index js/ts file for start command | `public/index.js` or `pkg.source`                             |
-| `klap.fallback`  | --fallback             | location of index html file for start command  | `public/index.html`                                           |
-| `klap.target`    | --target               | target for development server (`umd, es`)      | `es`                                                          |
-| `klap.sourcemap` | --no-sourcemap         | sourcemaps for builds                          | `true`                                                        |
-| `klap.minify`    | --no-minify            | minification for builds                        | `true`                                                        |
-| `klap.runtime`   | --runtime              | the runtime for new JSX transform              | `react`                                                       |
-| `klap.usets`     | --usets                | use typescript compiler for the project        | `false`                                                       |
-| `klap.globals`   |                        | global names for umd bundles                   | `{}`                                                          |
+| option            | cli flag(s)            | description                                    | default                                                       |
+| ----------------- | ---------------------- | ---------------------------------------------- | ------------------------------------------------------------- |
+| `source`          | -s&nbsp;--source       | source file to compile and bundle              | `src/index.js`                                                |
+| `cjs`             | -c&nbsp;--cjs          | the output file for common js format           | pkg.main                                                      |
+| `esm`             | -e&nbsp;--esm          | the output file for esm format                 | pkg.module                                                    |
+| `umd`             | -u&nbsp;--umd          | the output file for umd format                 | pkg.browser                                                   |
+| `types`           | -t&nbsp;--types        | the output file for type definitions           | pkg.types                                                     |
+| `browserslist`    | -b&nbsp;--browserslist | browserslist compatible compilation target     | `last 2 versions modern browsers if usage is greater than 1%` |
+| `klap.name`       | -n&nbsp;--name         | package name for `umd` bundles                 | sanitized `pkg.name`                                          |
+| `klap.port`       | -p&nbsp;--port         | port for development server                    | `1234`                                                        |
+| `klap.example`    | --example              | location of index js/ts file for start command | `public/index.js` or `pkg.source`                             |
+| `klap.fallback`   | --fallback             | location of index html file for start command  | `public/index.html`                                           |
+| `klap.target`     | --target               | target for development server (`umd, es`)      | `es`                                                          |
+| `klap.sourcemap`  | --no-sourcemap         | sourcemaps for builds                          | `true`                                                        |
+| `klap.minify`     | --no-minify            | minification for builds                        | `true`                                                        |
+| `klap.runtime`    | --runtime              | the runtime for new JSX transform              | `react`                                                       |
+| `klap.pragma`     | --pragma               | the JSX Pragma for classic runtime             | `react`                                                       |
+| `klap.pragmaFrag` | --pragmaFrag           | JSX Fragment pragma                            | `react`                                                       |
+| `klap.usets`      | --usets                | use typescript compiler for the project        | `false`                                                       |
+| `klap.globals`    |                        | global names for umd bundles                   | `{}`                                                          |
 
 > `--usets` allows the library code to use typescript features not supported by `@babel/preset-typescript`. See [const-enums](examples/const-enums) example to enable usage of const enums.
 
