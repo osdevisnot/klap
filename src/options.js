@@ -49,6 +49,8 @@ const getOptions = (pkg, command) => {
 			example,
 			browserslist,
 			usets,
+			pragma,
+			pragmaFrag,
 		},
 	})
 
