@@ -3,7 +3,7 @@ import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import replace from '@rollup/plugin-replace'
 
-import nodePolyfills from 'rollup-plugin-polyfill-node';
+import nodePolyfills from 'rollup-plugin-polyfill-node'
 import babel from '@rollup/plugin-babel'
 
 import { terser } from './packages/terser.js'
@@ -21,7 +21,7 @@ const plugins = (command, pkg, options) => {
 
 	return [
 		json(),
-		nodePolyfills({sourceMap: sourcemap}),
+		nodePolyfills({ sourceMap: sourcemap }),
 		nodeResolve({
 			mainFields: ['module', 'jsnext:main', 'browser', 'main'],
 			extensions,

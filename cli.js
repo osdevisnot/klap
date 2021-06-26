@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const path = require('path')
-const { init, klap, read, log, error, info } = require('./dist')
+const { init, klap, read, log, error, info } = require('./dist/index.js')
 const { name, version } = require('./package.json')
 const command = process.argv[2]
 
