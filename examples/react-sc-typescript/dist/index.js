@@ -1,20 +1,17 @@
-var e, n
+var e, o
 ;(e = this),
-	(n = function (e, n) {
-		function o(e) {
+	(o = function (e, o) {
+		function t(e) {
 			return e && 'object' == typeof e && 'default' in e ? e : { default: e }
 		}
-		var t,
-			f,
-			d,
-			i = o(n).default.button(
-				t || ((f = ['\n  background-color: red;\n  width: 100%;\n']), d || (d = f.slice(0)), (f.raw = d), (t = f))
-			)
-		e.Button = i
+		var n = t(o).default.button.withConfig({ displayName: 'src__Button', componentId: 'sc-a2me5-0' })([
+			'background-color:red;width:100%;',
+		])
+		e.Button = n
 	}),
 	'object' == typeof exports && 'undefined' != typeof module
-		? n(exports, require('styled-components'))
+		? o(exports, require('styled-components'))
 		: 'function' == typeof define && define.amd
-		? define(['exports', 'styled-components'], n)
-		: n(((e = 'undefined' != typeof globalThis ? globalThis : e || self).reactScTypescript = {}), e.styledComponents)
+		? define(['exports', 'styled-components'], o)
+		: o(((e = 'undefined' != typeof globalThis ? globalThis : e || self).reactScTypescript = {}), e.styledComponents)
 //# sourceMappingURL=index.js.map
