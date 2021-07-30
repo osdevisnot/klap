@@ -10,7 +10,7 @@
 		"klap": "cli.js"
 	},
 	"files": [
-		"dist",f
+		"dist",
 		"cli.js"
 	],
 	"scripts": {
