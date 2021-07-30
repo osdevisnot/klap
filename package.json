@@ -10,7 +10,7 @@
 		"klap": "cli.js"
 	},
 	"files": [
-		"dist",f
+		"dist",
 		"cli.js"
 	],
 	"scripts": {
@@ -65,7 +65,7 @@
 		"@rollup/plugin-json": "4.1.0",
 		"@rollup/plugin-node-resolve": "13.0.4",
 		"@rollup/plugin-replace": "3.0.0",
-		"@rollup/plugin-typescript": "8.2.4",
+		"@rollup/plugin-typescript": "8.2.5",
 		"@rollup/pluginutils": "4.1.1",
 		"@types/node": "16.4.7",
 		"@vercel/ncc": "0.29.0",
