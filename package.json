@@ -56,7 +56,7 @@
 		"@babel/plugin-proposal-decorators": "7.14.5",
 		"@babel/plugin-proposal-object-rest-spread": "7.14.7",
 		"@babel/plugin-transform-regenerator": "7.14.5",
-		"@babel/preset-env": "7.14.8",
+		"@babel/preset-env": "7.14.9",
 		"@babel/preset-react": "7.14.5",
 		"@babel/preset-typescript": "7.14.5",
 		"@emotion/babel-plugin": "11.3.0",
