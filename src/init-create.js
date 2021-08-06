@@ -45,6 +45,7 @@ const createTsConfig = () => `{
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    "checkJs": true,
     "allowJs": true,
     "jsx": "preserve",
     "lib": ["dom", "esnext"],
