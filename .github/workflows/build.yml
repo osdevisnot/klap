@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: git diff
+      - run: git diff --quiet
       - run: npm install
       - run: npm link
       - run: cd $GITHUB_WORKSPACE/examples/dev-expressions && klap build
@@ -25,5 +25,5 @@ jobs:
       - run: cd $GITHUB_WORKSPACE/examples/scaffold-typescript && klap build
       - run: cd $GITHUB_WORKSPACE/examples/typedefs && klap build
       - run: npm run format
-      - run: git diff
+      - run: git diff --quiet
 
