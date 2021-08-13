@@ -24,5 +24,6 @@ jobs:
       - run: cd $GITHUB_WORKSPACE/examples/scaffold && klap build
       - run: cd $GITHUB_WORKSPACE/examples/scaffold-typescript && klap build
       - run: cd $GITHUB_WORKSPACE/examples/typedefs && klap build
+      - run: npm run format
       - run: git diff
 
