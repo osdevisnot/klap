@@ -28,7 +28,6 @@ jobs:
       - run: npm run format
       - run: git diff --quiet
       - run: npm semantic-release
-        if: contains(github.ref, 'main')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
