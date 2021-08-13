@@ -9,12 +9,20 @@ jobs:
     - stage: test
       script:
         - npm run build && npm link
+        - cd $TRAVIS_BUILD_DIR/examples/const-enums && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/dev-expressions && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/dynamic-imports && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/jsx-runtime && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/minimal && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/react-component && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/react-sc-typescript && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/react-typescript && klap build
         - cd $TRAVIS_BUILD_DIR/examples/scaffold && klap build
         - cd $TRAVIS_BUILD_DIR/examples/scaffold-typescript && klap build
-        - cd $TRAVIS_BUILD_DIR/examples/react-component && klap build
-        - cd $TRAVIS_BUILD_DIR/examples/react-typescript && klap build
-        - cd $TRAVIS_BUILD_DIR/examples/react-sc-typescript && klap build
+        - cd $TRAVIS_BUILD_DIR/examples/typedefs && klap build
+        - git diff --quiet
     - stage: release
+      if: branch = main
       deploy:
         provider: script
         skip_cleanup: true
