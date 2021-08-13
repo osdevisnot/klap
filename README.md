@@ -3,7 +3,7 @@
 ## a zero config, zero dependency bundler for tiny javascript packages.
 
 <!-- prettier-ignore-start -->
-[![Build Status](https://img.shields.io/travis/osdevisnot/klap/master?style=flat-square)](https://travis-ci.org/osdevisnot/klap)
+[![Build Status](https://github.com/osdevisnot/klap/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/osdevisnot/klap/actions/workflows/build.yml)
 ![David](https://img.shields.io/david/osdevisnot/klap?style=flat-square)
 ![David](https://img.shields.io/david/dev/osdevisnot/klap?style=flat-square)
 ![npm](https://img.shields.io/npm/v/klap?style=flat-square)

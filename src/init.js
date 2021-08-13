@@ -71,7 +71,7 @@ const writePackage = async (ext, { user, email }) => {
 		types: `dist/${name}.d.ts`,
 		source,
 		sideEffects: false,
-		files: ['dist'],
+		files: ['dist', 'src'],
 		scripts: {
 			build: 'klap build',
 			prepublishOnly: 'klap build',

@@ -4,7 +4,11 @@ import { getOptions } from './options.js'
 import { plugins, dtsPlugins } from './plugins.js'
 import { exists, read } from './utils.js'
 
-const defaultInputOptions = { inlineDynamicImports: true }
+const defaultInputOptions = {
+	inlineDynamicImports: true,
+	onwarn: (warning, warn) => warning.code !== 'CIRCULAR_DEPENDENCY' && warn(warning),
+}
+
 const defaultOutputOptions = { esModule: false, strict: false, freeze: false }
 
 const validateConfig = (inputOptions, outputOptions) => {
@@ -163,7 +167,7 @@ const klap = async (command, pkg) => {
 			break
 		case 'prod':
 			config = await startConfig(command, pkg, options)
-			build(config.outputOptions, config.inputOptions)
+			await build(config.outputOptions, config.inputOptions)
 			break
 		default:
 			error('Unknown command :', command)
