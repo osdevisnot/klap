@@ -12,8 +12,9 @@ import { info } from '../logger.js'
 export const sizeme = () => {
 	const showSize = (bundle) => {
 		const { code, fileName } = bundle
-		const size = prettyBytes(gzip.sync(code))
-		info(`\t${size}\t${fileName}`)
+		const size = gzip.sync(code)
+		const pretty = prettyBytes(gzip.sync(code))
+		info(`\t${pretty}\t(${size})\t${fileName}`)
 	}
 
 	return {
