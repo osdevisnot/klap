@@ -27,7 +27,7 @@ jobs:
       - run: cd $GITHUB_WORKSPACE/examples/typedefs && klap build
       - run: npm run format
       - run: git diff --quiet
-      - run: npm semantic-release
+      - run: npm run semantic-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
