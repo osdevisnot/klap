@@ -12,7 +12,10 @@ module.exports = {
 					{ type: 'perf', release: 'patch' },
 					{ type: 'feat', release: 'minor' },
 				],
+				parserOpts: { noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'] },
 			},
 		],
+		'@semantic-release/release-notes-generator',
+		'@semantic-release/npm',
 	],
 }
