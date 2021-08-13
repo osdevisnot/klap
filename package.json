@@ -67,8 +67,8 @@
 		"@rollup/plugin-replace": "3.0.0",
 		"@rollup/plugin-typescript": "8.2.5",
 		"@rollup/pluginutils": "4.1.1",
-		"@types/node": "16.4.13",
-		"@vercel/ncc": "0.29.0",
+		"@types/node": "16.6.1",
+		"@vercel/ncc": "0.29.1",
 		"babel-plugin-codegen": "4.1.4",
 		"babel-plugin-dev-expression": "0.2.2",
 		"babel-plugin-macros": "3.1.0",
@@ -82,7 +82,7 @@
 		"mkdirp": "1.0.4",
 		"patch-package": "6.4.7",
 		"pretty-bytes": "5.6.0",
-		"rollup": "2.56.0",
+		"rollup": "2.56.2",
 		"rollup-plugin-dts": "3.0.2",
 		"rollup-plugin-polyfill-node": "0.7.0",
 		"semantic-release": "17.4.4",
@@ -90,7 +90,7 @@
 		"sort-package-json": "1.50.0",
 		"terser": "5.7.1",
 		"typescript": "^4.3.5",
-		"xo": "0.43.0",
+		"xo": "0.44.0",
 		"xo-quick": "0.0.8"
 	}
 }
