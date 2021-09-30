@@ -68,7 +68,7 @@
 		"@rollup/plugin-replace": "3.0.0",
 		"@rollup/plugin-typescript": "8.2.5",
 		"@rollup/pluginutils": "4.1.1",
-		"@types/node": "16.7.2",
+		"@types/node": "16.10.2",
 		"@vercel/ncc": "0.29.2",
 		"babel-plugin-codegen": "4.1.4",
 		"babel-plugin-dev-expression": "0.2.2",
