@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # set -x
 git clean -fdX
+npm install
 npm link
 cd examples
 for dir in $(ls | grep -v const-enums) 
