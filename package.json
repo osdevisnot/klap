@@ -83,7 +83,7 @@
 		"mkdirp": "1.0.4",
 		"patch-package": "6.4.7",
 		"pretty-bytes": "5.6.0",
-		"rollup": "2.63.0",
+		"rollup": "2.65.0",
 		"rollup-plugin-dts": "4.1.0",
 		"rollup-plugin-polyfill-node": "0.8.0",
 		"semantic-release": "18.0.1",
