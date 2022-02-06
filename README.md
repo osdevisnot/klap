@@ -26,6 +26,7 @@
 - :zap: Built in Minification and Gzip Size Tracking
 - :cyclone: Built in development server for quick prototyping.
 - :confetti_ball: Supports **`react`**, **`styled-components`** and **`emotion`** out of the box.
+- :crystal_ball: Supports [typescript transformers](https://github.com/cevek/ttypescript) when `usets` is enabled.
 
 ### :muscle: Powered By
 
