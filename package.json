@@ -89,7 +89,7 @@
 		"semantic-release": "19.0.2",
 		"servor": "4.0.2",
 		"sort-package-json": "1.54.0",
-		"terser": "5.10.0",
+		"terser": "5.12.1",
 		"typescript": "^4.5.5",
 		"xo": "0.47.0",
 		"xo-quick": "0.0.9"
